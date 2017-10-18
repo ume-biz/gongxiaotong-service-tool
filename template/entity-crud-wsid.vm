@@ -1,0 +1,25 @@
+#set($comment = "# Service mapping define for entity restful Crud management")
+#set($sharp = "#")
+${comment}
+
+#foreach(${dto} in ${dtos})
+${sharp} ${dto.tableCrudServiceInterface}
+
+${dto.tblId}-11=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#create
+${dto.tblId}-110=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#createList
+${dto.tblId}-12=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#createOrUpdate
+${dto.tblId}-120=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#createOrUpdateList
+${dto.tblId}-31=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#update
+${dto.tblId}-310=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#updateList
+${dto.tblId}-32=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#updateFully
+${dto.tblId}-320=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#updateFullyList
+${dto.tblId}-41=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#delete
+${dto.tblId}-410=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#deleteList
+${dto.tblId}-21=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#find
+${dto.tblId}-22=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#count
+${dto.tblId}-23=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#search
+${dto.tblId}-24=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#likeSearch
+${dto.tblId}-25=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#dynaSearch
+
+#end
+

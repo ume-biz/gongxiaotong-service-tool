@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false"/>
+	</settings>
+	<typeHandlers>
+		<typeHandler javaType="java.sql.Blob" handler="com.ibm.jp.cis.fw.core.dao.lob.ex.CISBlobTypeHandler"/>
+		<typeHandler javaType="java.sql.Clob" handler="com.ibm.jp.cis.fw.core.dao.lob.ex.CISClobTypeHandler"/>
+	</typeHandlers>
+	<environments default="product">
+		<environment id="product">
+			<transactionManager type="JDBC" />
+			<dataSource type="JNDI">
+				<property name="data_source" value="java:comp/env/jdbc/CISDataSource" />
+				<!-- <property name="data_source" value="jdbc/CISDataSource" /> -->
+			</dataSource>
+		</environment>
+
+		<environment id="refer">
+			<transactionManager type="JDBC" />
+			<dataSource type="JNDI">
+				<property name="data_source" value="java:comp/env/jdbc/CISDataSourceRefer" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<!-- 共通 -->
+		<mapper resource="sql/cmt/comm.DBConnectionCheck.xml" />
+		<!-- 自定義 -->
+		<mapper resource="sql/cmt/custom.xml" />
+		<mapper resource="sql/cmt/prototype.xml" />
+		<!-- 自動生成-->
+#foreach ( $dto in $dtos )
+#if($dto.classPackage == "com.ibm.jp.cis.main.db.tbl")
+		<mapper resource="sql/tbl/${dto.tblId}.xml" />
+#elseif($dto.classPackage == "com.ibm.jp.cis.main.db.view")
+		<mapper resource="sql/view/${dto.tblId}.xml" />
+#end
+#end
+
+	</mappers>
+</configuration>

@@ -1,0 +1,205 @@
+package ${dto.tableCrudServicePackage};
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import org.umeframework.dora.bean.BeanValidator;
+import org.umeframework.dora.transaction.TransactionRequired;
+import org.umeframework.dora.service.BaseDBComponent;
+import ${dto.classPackage}.${dto.classId};
+import ${dto.tableCrudServiceInterfacePackage}.${dto.tableCrudServiceInterface};
+
+/**
+ * ${dto.TblName}:${dto.tblId}<br>
+ * Crud service implementation class.<br>
+ *
+ * @author DORA.Generator
+ */
+@org.springframework.stereotype.Service
+public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${dto.tableCrudServiceInterface} {
+    /* (non-Javadoc)
+     * 
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     */
+    @Override
+    @TransactionRequired
+    public Integer create(${dto.classId} entity) {
+        validate(entity);
+        return getDao().update(${dto.classId}.SQLID.INSERT, entity);
+    }
+    
+    /* (non-Javadoc)
+     * 
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     */
+    @Override
+    @TransactionRequired
+    public List<Integer> createList(List<${dto.classId}> entityList) {
+        List<Integer> result = new ArrayList<Integer>(entityList.size());
+        for (${dto.classId} entity : entityList) {
+            result.add(create(entity));
+        }
+        return result;
+    }
+    
+    /* (non-Javadoc)
+     * 
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     */
+    @Override
+    @TransactionRequired
+    public Integer createOrUpdate(${dto.classId} entity) {
+        ${dto.classId} existed = getDao().queryForObject(${dto.classId}.SQLID.FIND, entity, ${dto.classId}.class);
+        if (existed == null) {
+            return getDao().update(${dto.classId}.SQLID.INSERT, entity);
+        } else {
+            validate(entity);
+            return getDao().update(${dto.classId}.SQLID.SMART_UPDATE, entity);
+        }
+    }
+    
+    /* (non-Javadoc)
+     * 
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     */
+    @Override
+    @TransactionRequired
+    public List<Integer> createOrUpdateList(List<${dto.classId}> entityList) {
+        List<Integer> result = new ArrayList<Integer>(entityList.size());
+        for (${dto.classId} entity : entityList) {
+            result.add(createOrUpdate(entity));
+        }
+        return result;
+    }
+    
+    /* (non-Javadoc)
+     * 
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     */
+    @Override
+    @TransactionRequired
+    public Integer update(${dto.classId} entity) {
+        validate(entity);
+        return getDao().update(${dto.classId}.SQLID.SMART_UPDATE, entity);
+    }
+    
+    /* (non-Javadoc)
+     * 
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     */
+    @Override
+    @TransactionRequired
+    public List<Integer> updateList(List<${dto.classId}> entityList) {
+        List<Integer> result = new ArrayList<Integer>(entityList.size());
+        for (${dto.classId} entity : entityList) {
+            result.add(update(entity));
+        }
+        return result;
+    }
+    
+    /* (non-Javadoc)
+     * 
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     */
+    @Override
+    @TransactionRequired
+    public Integer updateFully(${dto.classId} entity) {
+        validate(entity);
+        return getDao().update(${dto.classId}.SQLID.UPDATE, entity);
+    }
+    
+    /* (non-Javadoc)
+     * 
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     */
+    @Override
+    @TransactionRequired
+    public List<Integer> updateFullyList(List<${dto.classId}> entityList) {
+        List<Integer> result = new ArrayList<Integer>(entityList.size());
+        for (${dto.classId} entity : entityList) {
+            result.add(updateFully(entity));
+        }
+        return result;
+    }
+    
+    /* (non-Javadoc)
+     * 
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     */
+    @Override
+    @TransactionRequired
+    public Integer delete(${dto.classId} entity) {
+        return getDao().update(${dto.classId}.SQLID.DELETE, entity);
+    }
+    
+    /* (non-Javadoc)
+     * 
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     */
+    @Override
+    @TransactionRequired
+    public List<Integer> deleteList(List<${dto.classId}> entityList) {
+        List<Integer> result = new ArrayList<Integer>(entityList.size());
+        for (${dto.classId} entity : entityList) {
+            result.add(delete(entity));
+        }
+        return result;
+    }
+    
+    /* (non-Javadoc)
+     * 
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     */
+    @Override
+    public ${dto.classId} find(${dto.classId} queryParam) {
+        return getDao().queryForObject(${dto.classId}.SQLID.FIND, queryParam, ${dto.classId}.class);
+    }
+    
+    /* (non-Javadoc)
+     * 
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     */
+    @Override
+    public List<${dto.classId}> search(${dto.classId} condition) {
+        return getDao().queryForObjectList(${dto.classId}.SQLID.SEARCH, condition, ${dto.classId}.class);
+    }
+    
+    /* (non-Javadoc)
+     * 
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     */
+    @Override
+    public List<${dto.classId}> likeSearch(Map<String, String> condition) {
+        return getDao().queryForObjectList(${dto.classId}.SQLID.LIKE_SEARCH, condition, ${dto.classId}.class);
+    }
+    
+    /* (non-Javadoc)
+     * 
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     */
+    @Override
+    public List<${dto.classId}> dynaSearch(Map<String, String> condition) {
+        return getDao().queryForObjectList(${dto.classId}.SQLID.DYNA_SEARCH, condition, ${dto.classId}.class);
+    }
+    
+    /* (non-Javadoc)
+     * 
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     */
+    @Override
+    public Integer count(Map<String, String> condition) {
+        return getDao().count(${dto.classId}.SQLID.COUNT, condition);
+    }
+
+    /**
+     * Do entity validation before doUpdate
+     * 
+     * @param entity - Target doUpdate Entity
+     */
+    protected void validate(${dto.classId} entity) {
+        // Here invoke the default entity check logic
+        BeanValidator beanValidator = new BeanValidator();
+        // Invoke validation rule
+        beanValidator.validate(entity);
+    }
+}
