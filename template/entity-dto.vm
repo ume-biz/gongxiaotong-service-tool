@@ -51,26 +51,26 @@ public class $dto.classId extends TableEntity implements Serializable {
    /**
     * Create Author (default setting while insert)
     */
-    @ColumnDesc(index=($dto.fieldList.size() + 1), type="VARCHAR", label="Create Author")
-    @Column(name="CREATE_AUTHER", nullable=true, length=32)
+    @ColumnDesc(index=($dto.fieldList.size() + 1), type="VARCHAR", label="${var_createAuthor}")
+    @Column(name="${var_CREATE_AUTHOR}", nullable=true, length=32)
     private String ${var_createAuthor};
    /**
     * Create Datetime (default setting while insert)
     */
-    @ColumnDesc(index=($dto.fieldList.size() + 2), type="TIMESTAMP", label="Create Datetime")
-    @Column(name="CREATE_DATETIME", nullable=true)
+    @ColumnDesc(index=($dto.fieldList.size() + 2), type="TIMESTAMP", label="${var_createDatetime}")
+    @Column(name="${var_CREATE_DATETIME}", nullable=true)
     private java.sql.Timestamp ${var_createDatetime};
    /**
     * Update Author (refresh on each update)
     */
-    @ColumnDesc(index=($dto.fieldList.size() + 3), type="VARCHAR", label="Update Author")
-    @Column(name="UPDATE_AUTHER", nullable=true, length=32)
+    @ColumnDesc(index=($dto.fieldList.size() + 3), type="VARCHAR", label="${var_updateAuthor}")
+    @Column(name="${var_UPDATE_AUTHOR}", nullable=true, length=32)
     private String ${var_updateAuthor};
    /**
     * Update Datetime (refresh on each update)
     */
-    @ColumnDesc(index=($dto.fieldList.size() + 4), type="TIMESTAMP", label="Update Datetime")
-    @Column(name="UPDATE_DATETIME", nullable=true)
+    @ColumnDesc(index=($dto.fieldList.size() + 4), type="TIMESTAMP", label="${var_updateDatetime}")
+    @Column(name="${var_UPDATE_DATETIME}", nullable=true)
     private java.sql.Timestamp ${var_updateDatetime};
 
 #foreach ( $field in $dto.fieldList )
