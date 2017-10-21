@@ -1,5 +1,5 @@
 
-package org.umeframework.wechat.entity;
+package org.umeframework.wechat.uac.entity;
 
 import java.io.Serializable;
 import org.umeframework.dora.validation.constraints.Size;
@@ -19,9 +19,9 @@ import org.umeframework.dora.service.TableEntity;
  * @author ume-team
  */
 @Entity
-@Table(name="WECHAT_USER")
+@Table(name="UME_WECHAT_USER")
 @TableDesc(label="微信用户基础属性表")
-public class WechatUserDto extends TableEntity implements Serializable {
+public class UmeWechatUserDto extends TableEntity implements Serializable {
    /**
     * Default serial version code
     */
@@ -444,12 +444,12 @@ public class WechatUserDto extends TableEntity implements Serializable {
      *            - properties which copy to new instance
      * @return
      */
-    public WechatUserDto copyFrom(
+    public UmeWechatUserDto copyFrom(
             Property... selectProperties) {
         if (selectProperties == null) {
             return null;
         }
-        WechatUserDto newInstance = new WechatUserDto();
+        UmeWechatUserDto newInstance = new UmeWechatUserDto();
         for (Property property : selectProperties) {
             String name = property.toString();
             Object value = BeanUtil.getBeanProperty(this, name);
@@ -462,16 +462,16 @@ public class WechatUserDto extends TableEntity implements Serializable {
      * Constant declare: SQL ID in config file
      */
     public static class SQLID {
-        public static final String INSERT = "org.umeframework.wechat.entity.WECHAT_USER_INSERT"; 
-        public static final String UPDATE = "org.umeframework.wechat.entity.WECHAT_USER_UPDATE"; 
-        public static final String SMART_UPDATE = "org.umeframework.wechat.entity.WECHAT_USER_SMART_UPDATE"; 
-        public static final String DELETE = "org.umeframework.wechat.entity.WECHAT_USER_DELETE"; 
-        public static final String FIND = "org.umeframework.wechat.entity.WECHAT_USER_FIND"; 
-        public static final String FIND_FOR_UPDATE = "org.umeframework.wechat.entity.WECHAT_USER_FIND_FOR_UPDATE"; 
-        public static final String SEARCH = "org.umeframework.wechat.entity.WECHAT_USER_SEARCH"; 
-        public static final String LIKE_SEARCH = "org.umeframework.wechat.entity.WECHAT_USER_LIKE_SEARCH"; 
-        public static final String DYNA_SEARCH = "org.umeframework.wechat.entity.WECHAT_USER_DYNA_SEARCH"; 
-        public static final String COUNT = "org.umeframework.wechat.entity.WECHAT_USER_COUNT";
+        public static final String INSERT = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_INSERT"; 
+        public static final String UPDATE = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_UPDATE"; 
+        public static final String SMART_UPDATE = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_SMART_UPDATE"; 
+        public static final String DELETE = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_DELETE"; 
+        public static final String FIND = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_FIND"; 
+        public static final String FIND_FOR_UPDATE = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_FIND_FOR_UPDATE"; 
+        public static final String SEARCH = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_SEARCH"; 
+        public static final String LIKE_SEARCH = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_LIKE_SEARCH"; 
+        public static final String DYNA_SEARCH = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_DYNA_SEARCH"; 
+        public static final String COUNT = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_COUNT";
     } 
 
     /**
@@ -526,6 +526,6 @@ public class WechatUserDto extends TableEntity implements Serializable {
     /**
      * Constant declare: table name.<br>
      */
-    public static String TableName = "WECHAT_USER";
+    public static String TableName = "UME_WECHAT_USER";
 
 }

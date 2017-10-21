@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.umeframework.wechat.entity">
-  <!-- 微信用户基础属性表 [WECHAT_USER] -->
+<mapper namespace="org.umeframework.wechat.uac.entity">
+  <!-- 微信用户基础属性表 [UME_WECHAT_USER] -->
   
   <!-- Insert one -->
-  <insert id="WECHAT_USER_INSERT" parameterType="org.umeframework.wechat.entity.WechatUserDto">
-    INSERT INTO WECHAT_USER (
+  <insert id="UME_WECHAT_USER_INSERT" parameterType="org.umeframework.wechat.uac.entity.UmeWechatUserDto">
+    INSERT INTO UME_WECHAT_USER (
       UID,
       WECHAT_OPENID,
       WECHAT_CITY,
@@ -50,8 +50,8 @@
   </insert>
 
   <!-- Update with optimism check) -->
-  <update id="WECHAT_USER_UPDATE" parameterType="org.umeframework.wechat.entity.WechatUserDto">
-    UPDATE WECHAT_USER
+  <update id="UME_WECHAT_USER_UPDATE" parameterType="org.umeframework.wechat.uac.entity.UmeWechatUserDto">
+    UPDATE UME_WECHAT_USER
     SET
       WECHAT_OPENID = #{wechatOpenid},
       WECHAT_CITY = #{wechatCity},
@@ -77,8 +77,8 @@
   </update>
 
   <!-- Smart update -->
-  <update id="WECHAT_USER_SMART_UPDATE" parameterType="org.umeframework.wechat.entity.WechatUserDto">
-    UPDATE WECHAT_USER
+  <update id="UME_WECHAT_USER_SMART_UPDATE" parameterType="org.umeframework.wechat.uac.entity.UmeWechatUserDto">
+    UPDATE UME_WECHAT_USER
     <set>
       <if test="wechatOpenid!=null">WECHAT_OPENID = #{wechatOpenid},</if>
       <if test="wechatCity!=null">WECHAT_CITY = #{wechatCity},</if>
@@ -105,14 +105,14 @@
   </update>
   
   <!-- Delete one -->
-  <delete id="WECHAT_USER_DELETE" parameterType="org.umeframework.wechat.entity.WechatUserDto">
-    DELETE FROM WECHAT_USER
+  <delete id="UME_WECHAT_USER_DELETE" parameterType="org.umeframework.wechat.uac.entity.UmeWechatUserDto">
+    DELETE FROM UME_WECHAT_USER
     WHERE
       UID = #{uid} 
   </delete>
 
   <!-- Find by primary key -->
-  <select id="WECHAT_USER_FIND" resultType="org.umeframework.wechat.entity.WechatUserDto">
+  <select id="UME_WECHAT_USER_FIND" resultType="org.umeframework.wechat.uac.entity.UmeWechatUserDto">
     SELECT
       UID AS "uid",
       WECHAT_OPENID AS "wechatOpenid",
@@ -133,13 +133,13 @@
       CREATE_DATETIME AS "createDatetime",
       UPDATE_AUTHOR AS "updateAuthor",
       UPDATE_DATETIME AS "updateDatetime"
-    FROM WECHAT_USER
+    FROM UME_WECHAT_USER
     WHERE
       UID = #{uid} 
   </select>
 
   <!-- Find by primary key for update with row lock -->
-  <select id="WECHAT_USER_FIND_FOR_UPDATE" resultType="org.umeframework.wechat.entity.WechatUserDto">
+  <select id="UME_WECHAT_USER_FIND_FOR_UPDATE" resultType="org.umeframework.wechat.uac.entity.UmeWechatUserDto">
     SELECT
       UID AS "uid",
       WECHAT_OPENID AS "wechatOpenid",
@@ -160,14 +160,14 @@
       CREATE_DATETIME AS "createDatetime",
       UPDATE_AUTHOR AS "updateAuthor",
       UPDATE_DATETIME AS "updateDatetime"
-    FROM WECHAT_USER
+    FROM UME_WECHAT_USER
     WHERE
       UID = #{uid} 
     FOR UPDATE
   </select>
 
   <!-- Search -->
-  <select id="WECHAT_USER_SEARCH" resultType="org.umeframework.wechat.entity.WechatUserDto">
+  <select id="UME_WECHAT_USER_SEARCH" resultType="org.umeframework.wechat.uac.entity.UmeWechatUserDto">
     SELECT
       UID AS "uid",
       WECHAT_OPENID AS "wechatOpenid",
@@ -188,7 +188,7 @@
       CREATE_DATETIME AS "createDatetime",
       UPDATE_AUTHOR AS "updateAuthor",
       UPDATE_DATETIME AS "updateDatetime"
-    FROM WECHAT_USER
+    FROM UME_WECHAT_USER
     WHERE 1 = 1 
       <if test="uid != null">AND UID = #{uid}</if>
       <if test="wechatOpenid != null">AND WECHAT_OPENID = #{wechatOpenid}</if>
@@ -215,7 +215,7 @@
   </select>
 
   <!-- Like Search -->
-  <select id="WECHAT_USER_LIKE_SEARCH" resultType="org.umeframework.wechat.entity.WechatUserDto">
+  <select id="UME_WECHAT_USER_LIKE_SEARCH" resultType="org.umeframework.wechat.uac.entity.UmeWechatUserDto">
     SELECT
       UID AS "uid",
       WECHAT_OPENID AS "wechatOpenid",
@@ -236,7 +236,7 @@
       CREATE_DATETIME AS "createDatetime",
       UPDATE_AUTHOR AS "updateAuthor",
       UPDATE_DATETIME AS "updateDatetime"
-    FROM WECHAT_USER
+    FROM UME_WECHAT_USER
     WHERE 1 = 1 
       <if test="uid != null">AND UID LIKE CONCAT('%', #{uid}, '%')</if>
       <if test="wechatOpenid != null">AND WECHAT_OPENID LIKE CONCAT('%', #{wechatOpenid}, '%')</if>
@@ -263,7 +263,7 @@
   </select>
   
   <!-- Dynamic Search -->
-  <select id="WECHAT_USER_DYNA_SEARCH" resultType="org.umeframework.wechat.entity.WechatUserDto">
+  <select id="UME_WECHAT_USER_DYNA_SEARCH" resultType="org.umeframework.wechat.uac.entity.UmeWechatUserDto">
     SELECT
       UID AS "uid",
       WECHAT_OPENID AS "wechatOpenid",
@@ -284,7 +284,7 @@
       CREATE_DATETIME AS "createDatetime",
       UPDATE_AUTHOR AS "updateAuthor",
       UPDATE_DATETIME AS "updateDatetime"
-    FROM WECHAT_USER
+    FROM UME_WECHAT_USER
     WHERE 1 = 1 
       <if test="uid != null">AND ( ${uid} )</if>
       <if test="wechatOpenid != null">AND ( ${wechatOpenid} )</if>
@@ -308,9 +308,9 @@
   </select>
   
   <!-- Count by input condition -->
-  <select id="WECHAT_USER_COUNT" resultType="java.lang.Integer">
+  <select id="UME_WECHAT_USER_COUNT" resultType="java.lang.Integer">
     SELECT count(*)
-    FROM WECHAT_USER
+    FROM UME_WECHAT_USER
     WHERE 1 = 1 
       <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
       <if test="uid != null">AND UID = #{uid}</if>
