@@ -11,7 +11,7 @@
 	</repositories>
 
 	<groupId>cn.com.gxt</groupId>
-	<artifactId>gxt-service-tool</artifactId>
+	<artifactId>gongxiaotong-service-tool</artifactId>
 
     <!-- Inherit from umeframework-tool -->
 	<parent>
