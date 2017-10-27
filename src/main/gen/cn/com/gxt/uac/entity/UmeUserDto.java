@@ -32,42 +32,51 @@ public class UmeUserDto extends TableEntity implements Serializable {
     * 用户识别ID 
     */
     @NotEmpty
-    @Size(max=16)
+    @Size(max=32)
     @Id
     @ColumnDesc(index=1, type="VARCHAR", label="用户识别ID")
-    @Column(name="USER_ID", nullable=false, length=16)
+    @Column(name="USER_ID", nullable=false, length=32)
     private String userId;
 
    /**
     * 用户登录密码 
     */
-    @Size(max=64)
+    @Size(max=32)
     @ColumnDesc(index=2, type="VARCHAR", label="用户登录密码")
-    @Column(name="USER_PASSWORD", nullable=true, length=64)
+    @Column(name="USER_PASSWORD", nullable=true, length=32)
     private String userPassword;
 
    /**
     * 用户名 
     */
-    @Size(max=64)
+    @Size(max=256)
     @ColumnDesc(index=3, type="VARCHAR", label="用户名")
-    @Column(name="USER_NAME", nullable=true, length=64)
+    @Column(name="USER_NAME", nullable=true, length=256)
     private String userName;
 
    /**
     * 用户昵称 
     */
-    @Size(max=64)
+    @Size(max=256)
     @ColumnDesc(index=4, type="VARCHAR", label="用户昵称")
-    @Column(name="USER_NICK_NAME", nullable=true, length=64)
+    @Column(name="USER_NICK_NAME", nullable=true, length=256)
     private String userNickName;
+
+   /**
+    * 用户性别 
+    * 1:男 2:女
+    */
+    @Size(max=1)
+    @ColumnDesc(index=5, type="INT", label="用户性别")
+    @Column(name="USER_GENDER", nullable=true, length=1)
+    private Integer userGender;
 
    /**
     * 用户手机 
     */
     @Size(max=16)
     @TextFormat(TextFormat.Category.MobileNumber)
-    @ColumnDesc(index=5, type="VARCHAR", label="用户手机")
+    @ColumnDesc(index=6, type="VARCHAR", label="用户手机")
     @Column(name="USER_MOBILE", nullable=true, length=16)
     private String userMobile;
 
@@ -76,7 +85,7 @@ public class UmeUserDto extends TableEntity implements Serializable {
     */
     @Size(max=64)
     @TextFormat(TextFormat.Category.Email)
-    @ColumnDesc(index=6, type="VARCHAR", label="用户邮箱")
+    @ColumnDesc(index=7, type="VARCHAR", label="用户邮箱")
     @Column(name="USER_EMAIL", nullable=true, length=64)
     private String userEmail;
 
@@ -85,24 +94,32 @@ public class UmeUserDto extends TableEntity implements Serializable {
     * URL
     */
     @Size(max=256)
-    @ColumnDesc(index=7, type="VARCHAR", label="用户头像")
+    @ColumnDesc(index=8, type="VARCHAR", label="用户头像")
     @Column(name="USER_HEAD_IMAGE", nullable=true, length=256)
     private String userHeadImage;
+
+   /**
+    * 用户描述信息 
+    */
+    @Size(max=256)
+    @ColumnDesc(index=9, type="VARCHAR", label="用户描述信息")
+    @Column(name="USER_DESC", nullable=true, length=256)
+    private String userDesc;
 
    /**
     * 用户账户状态 
     * 1:正常 2:关闭
     */
-    @Size(max=2)
-    @ColumnDesc(index=8, type="INT", label="用户账户状态")
-    @Column(name="USER_STATUS", nullable=true, length=2)
+    @Size(max=1)
+    @ColumnDesc(index=10, type="INT", label="用户账户状态")
+    @Column(name="USER_STATUS", nullable=true, length=1)
     private Integer userStatus;
 
    /**
     * 用户收货地址(默认) 
     */
     @Size(max=256)
-    @ColumnDesc(index=9, type="VARCHAR", label="用户收货地址(默认)")
+    @ColumnDesc(index=11, type="VARCHAR", label="用户收货地址(默认)")
     @Column(name="USER_POST_ADDR", nullable=true, length=256)
     private String userPostAddr;
 
@@ -111,7 +128,7 @@ public class UmeUserDto extends TableEntity implements Serializable {
     * 多个名称的时候用分号“；”分隔
     */
     @Size(max=1024)
-    @ColumnDesc(index=10, type="VARCHAR", label="用户收货地址(备用)")
+    @ColumnDesc(index=12, type="VARCHAR", label="用户收货地址(备用)")
     @Column(name="USER_POST_ADDR_OTHER", nullable=true, length=1024)
     private String userPostAddrOther;
 
@@ -119,7 +136,7 @@ public class UmeUserDto extends TableEntity implements Serializable {
     * 用户银行账号(默认) 
     */
     @Size(max=32)
-    @ColumnDesc(index=11, type="VARCHAR", label="用户银行账号(默认)")
+    @ColumnDesc(index=13, type="VARCHAR", label="用户银行账号(默认)")
     @Column(name="USER_BANK_ACC_NO", nullable=true, length=32)
     private String userBankAccNo;
 
@@ -128,7 +145,7 @@ public class UmeUserDto extends TableEntity implements Serializable {
     * 多个名称的时候用分号“；”分隔
     */
     @Size(max=128)
-    @ColumnDesc(index=12, type="VARCHAR", label="用户银行账号(备用)")
+    @ColumnDesc(index=14, type="VARCHAR", label="用户银行账号(备用)")
     @Column(name="USER_BANK_ACC_NO_OTHER", nullable=true, length=128)
     private String userBankAccNoOther;
 
@@ -136,7 +153,7 @@ public class UmeUserDto extends TableEntity implements Serializable {
     * 用户银行名称(默认) 
     */
     @Size(max=32)
-    @ColumnDesc(index=13, type="VARCHAR", label="用户银行名称(默认)")
+    @ColumnDesc(index=15, type="VARCHAR", label="用户银行名称(默认)")
     @Column(name="USER_BANK_ACC_NAME", nullable=true, length=32)
     private String userBankAccName;
 
@@ -145,7 +162,7 @@ public class UmeUserDto extends TableEntity implements Serializable {
     * 多个名称的时候用分号“；”分隔
     */
     @Size(max=128)
-    @ColumnDesc(index=14, type="VARCHAR", label="用户银行名称(备用)")
+    @ColumnDesc(index=16, type="VARCHAR", label="用户银行名称(备用)")
     @Column(name="USER_BANK_ACC_NAME_OTHER", nullable=true, length=128)
     private String userBankAccNameOther;
 
@@ -153,32 +170,32 @@ public class UmeUserDto extends TableEntity implements Serializable {
     * 用户身份证号码 
     */
     @Size(max=32)
-    @ColumnDesc(index=15, type="VARCHAR", label="用户身份证号码")
+    @ColumnDesc(index=17, type="VARCHAR", label="用户身份证号码")
     @Column(name="USER_IDENTITY_CARD", nullable=true, length=32)
     private String userIdentityCard;
 
    /**
     * Create Author (default setting while insert)
     */
-    @ColumnDesc(index=(15 + 1), type="VARCHAR", label="createAuthor")
+    @ColumnDesc(index=(17 + 1), type="VARCHAR", label="createAuthor")
     @Column(name="CREATE_AUTHOR", nullable=true, length=32)
     private String createAuthor;
    /**
     * Create Datetime (default setting while insert)
     */
-    @ColumnDesc(index=(15 + 2), type="TIMESTAMP", label="createDatetime")
+    @ColumnDesc(index=(17 + 2), type="TIMESTAMP", label="createDatetime")
     @Column(name="CREATE_DATETIME", nullable=true)
     private java.sql.Timestamp createDatetime;
    /**
     * Update Author (refresh on each update)
     */
-    @ColumnDesc(index=(15 + 3), type="VARCHAR", label="updateAuthor")
+    @ColumnDesc(index=(17 + 3), type="VARCHAR", label="updateAuthor")
     @Column(name="UPDATE_AUTHOR", nullable=true, length=32)
     private String updateAuthor;
    /**
     * Update Datetime (refresh on each update)
     */
-    @ColumnDesc(index=(15 + 4), type="TIMESTAMP", label="updateDatetime")
+    @ColumnDesc(index=(17 + 4), type="TIMESTAMP", label="updateDatetime")
     @Column(name="UPDATE_DATETIME", nullable=true)
     private java.sql.Timestamp updateDatetime;
 
@@ -239,6 +256,20 @@ public class UmeUserDto extends TableEntity implements Serializable {
     }
 
     /**
+     *　Get the "用户性别"
+     */
+    public Integer getUserGender() {
+        return this.userGender;
+    }
+    /**
+     *　Set the "用户性别"
+     */
+    public void setUserGender(
+            Integer userGender) {
+        this.userGender = userGender;
+    }
+
+    /**
      *　Get the "用户手机"
      */
     public String getUserMobile() {
@@ -278,6 +309,20 @@ public class UmeUserDto extends TableEntity implements Serializable {
     public void setUserHeadImage(
             String userHeadImage) {
         this.userHeadImage = userHeadImage;
+    }
+
+    /**
+     *　Get the "用户描述信息"
+     */
+    public String getUserDesc() {
+        return this.userDesc;
+    }
+    /**
+     *　Set the "用户描述信息"
+     */
+    public void setUserDesc(
+            String userDesc) {
+        this.userDesc = userDesc;
     }
 
     /**
@@ -493,9 +538,11 @@ public class UmeUserDto extends TableEntity implements Serializable {
         public static final String userPassword = "userPassword";
         public static final String userName = "userName";
         public static final String userNickName = "userNickName";
+        public static final String userGender = "userGender";
         public static final String userMobile = "userMobile";
         public static final String userEmail = "userEmail";
         public static final String userHeadImage = "userHeadImage";
+        public static final String userDesc = "userDesc";
         public static final String userStatus = "userStatus";
         public static final String userPostAddr = "userPostAddr";
         public static final String userPostAddrOther = "userPostAddrOther";
@@ -518,9 +565,11 @@ public class UmeUserDto extends TableEntity implements Serializable {
         public static final String USER_PASSWORD = "USER_PASSWORD";
         public static final String USER_NAME = "USER_NAME";
         public static final String USER_NICK_NAME = "USER_NICK_NAME";
+        public static final String USER_GENDER = "USER_GENDER";
         public static final String USER_MOBILE = "USER_MOBILE";
         public static final String USER_EMAIL = "USER_EMAIL";
         public static final String USER_HEAD_IMAGE = "USER_HEAD_IMAGE";
+        public static final String USER_DESC = "USER_DESC";
         public static final String USER_STATUS = "USER_STATUS";
         public static final String USER_POST_ADDR = "USER_POST_ADDR";
         public static final String USER_POST_ADDR_OTHER = "USER_POST_ADDR_OTHER";

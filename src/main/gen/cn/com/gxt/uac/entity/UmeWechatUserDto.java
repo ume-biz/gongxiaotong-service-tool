@@ -1,5 +1,5 @@
 
-package org.umeframework.wechat.uac.entity;
+package cn.com.gxt.uac.entity;
 
 import java.io.Serializable;
 import org.umeframework.dora.validation.constraints.Size;
@@ -31,18 +31,19 @@ public class UmeWechatUserDto extends TableEntity implements Serializable {
     * 用户识别ID 
     */
     @NotEmpty
-    @Size(max=16)
+    @Size(max=32)
     @Id
     @ColumnDesc(index=1, type="VARCHAR", label="用户识别ID")
-    @Column(name="UID", nullable=false, length=16)
-    private String uid;
+    @Column(name="USER_ID", nullable=false, length=32)
+    private String userId;
 
    /**
     * 关联微信属性 
     */
+    @NotEmpty
     @Size(max=32)
     @ColumnDesc(index=2, type="VARCHAR", label="关联微信属性")
-    @Column(name="WECHAT_OPENID", nullable=true, length=32)
+    @Column(name="WECHAT_OPENID", nullable=false, length=32)
     private String wechatOpenid;
 
    /**
@@ -80,9 +81,10 @@ public class UmeWechatUserDto extends TableEntity implements Serializable {
    /**
     * 关联微信属性 
     */
+    @NotEmpty
     @Size(max=1024)
     @ColumnDesc(index=7, type="VARCHAR", label="关联微信属性")
-    @Column(name="WECHAT_NICKNAME", nullable=true, length=1024)
+    @Column(name="WECHAT_NICKNAME", nullable=false, length=1024)
     private String wechatNickname;
 
    /**
@@ -174,15 +176,15 @@ public class UmeWechatUserDto extends TableEntity implements Serializable {
     /**
      *　Get the "用户识别ID"
      */
-    public String getUid() {
-        return this.uid;
+    public String getUserId() {
+        return this.userId;
     }
     /**
      *　Set the "用户识别ID"
      */
-    public void setUid(
-            String uid) {
-        this.uid = uid;
+    public void setUserId(
+            String userId) {
+        this.userId = userId;
     }
 
     /**
@@ -462,23 +464,23 @@ public class UmeWechatUserDto extends TableEntity implements Serializable {
      * Constant declare: SQL ID in config file
      */
     public static class SQLID {
-        public static final String INSERT = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_INSERT"; 
-        public static final String UPDATE = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_UPDATE"; 
-        public static final String SMART_UPDATE = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_SMART_UPDATE"; 
-        public static final String DELETE = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_DELETE"; 
-        public static final String FIND = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_FIND"; 
-        public static final String FIND_FOR_UPDATE = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_FIND_FOR_UPDATE"; 
-        public static final String SEARCH = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_SEARCH"; 
-        public static final String LIKE_SEARCH = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_LIKE_SEARCH"; 
-        public static final String DYNA_SEARCH = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_DYNA_SEARCH"; 
-        public static final String COUNT = "org.umeframework.wechat.uac.entity.UME_WECHAT_USER_COUNT";
+        public static final String INSERT = "cn.com.gxt.uac.entity.UME_WECHAT_USER_INSERT"; 
+        public static final String UPDATE = "cn.com.gxt.uac.entity.UME_WECHAT_USER_UPDATE"; 
+        public static final String SMART_UPDATE = "cn.com.gxt.uac.entity.UME_WECHAT_USER_SMART_UPDATE"; 
+        public static final String DELETE = "cn.com.gxt.uac.entity.UME_WECHAT_USER_DELETE"; 
+        public static final String FIND = "cn.com.gxt.uac.entity.UME_WECHAT_USER_FIND"; 
+        public static final String FIND_FOR_UPDATE = "cn.com.gxt.uac.entity.UME_WECHAT_USER_FIND_FOR_UPDATE"; 
+        public static final String SEARCH = "cn.com.gxt.uac.entity.UME_WECHAT_USER_SEARCH"; 
+        public static final String LIKE_SEARCH = "cn.com.gxt.uac.entity.UME_WECHAT_USER_LIKE_SEARCH"; 
+        public static final String DYNA_SEARCH = "cn.com.gxt.uac.entity.UME_WECHAT_USER_DYNA_SEARCH"; 
+        public static final String COUNT = "cn.com.gxt.uac.entity.UME_WECHAT_USER_COUNT";
     } 
 
     /**
      * Constant declare: entity property name.<br>
      */
     public static class Property {
-        public static final String uid = "uid";
+        public static final String userId = "userId";
         public static final String wechatOpenid = "wechatOpenid";
         public static final String wechatCity = "wechatCity";
         public static final String wechatCountry = "wechatCountry";
@@ -503,7 +505,7 @@ public class UmeWechatUserDto extends TableEntity implements Serializable {
      * Constant declare: column name map with bean property.<br>
      */
     public static class ColumnName {
-        public static final String UID = "UID";
+        public static final String USER_ID = "USER_ID";
         public static final String WECHAT_OPENID = "WECHAT_OPENID";
         public static final String WECHAT_CITY = "WECHAT_CITY";
         public static final String WECHAT_COUNTRY = "WECHAT_COUNTRY";

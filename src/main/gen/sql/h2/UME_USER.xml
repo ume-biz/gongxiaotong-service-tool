@@ -11,9 +11,11 @@
       USER_PASSWORD,
       USER_NAME,
       USER_NICK_NAME,
+      USER_GENDER,
       USER_MOBILE,
       USER_EMAIL,
       USER_HEAD_IMAGE,
+      USER_DESC,
       USER_STATUS,
       USER_POST_ADDR,
       USER_POST_ADDR_OTHER,
@@ -31,9 +33,11 @@
       #{userPassword},
       #{userName},
       #{userNickName},
+      #{userGender},
       #{userMobile},
       #{userEmail},
       #{userHeadImage},
+      #{userDesc},
       #{userStatus},
       #{userPostAddr},
       #{userPostAddrOther},
@@ -56,9 +60,11 @@
       USER_PASSWORD = #{userPassword},
       USER_NAME = #{userName},
       USER_NICK_NAME = #{userNickName},
+      USER_GENDER = #{userGender},
       USER_MOBILE = #{userMobile},
       USER_EMAIL = #{userEmail},
       USER_HEAD_IMAGE = #{userHeadImage},
+      USER_DESC = #{userDesc},
       USER_STATUS = #{userStatus},
       USER_POST_ADDR = #{userPostAddr},
       USER_POST_ADDR_OTHER = #{userPostAddrOther},
@@ -83,9 +89,11 @@
       <if test="userPassword!=null">USER_PASSWORD = #{userPassword},</if>
       <if test="userName!=null">USER_NAME = #{userName},</if>
       <if test="userNickName!=null">USER_NICK_NAME = #{userNickName},</if>
+      <if test="userGender!=null">USER_GENDER = #{userGender},</if>
       <if test="userMobile!=null">USER_MOBILE = #{userMobile},</if>
       <if test="userEmail!=null">USER_EMAIL = #{userEmail},</if>
       <if test="userHeadImage!=null">USER_HEAD_IMAGE = #{userHeadImage},</if>
+      <if test="userDesc!=null">USER_DESC = #{userDesc},</if>
       <if test="userStatus!=null">USER_STATUS = #{userStatus},</if>
       <if test="userPostAddr!=null">USER_POST_ADDR = #{userPostAddr},</if>
       <if test="userPostAddrOther!=null">USER_POST_ADDR_OTHER = #{userPostAddrOther},</if>
@@ -118,9 +126,11 @@
       USER_PASSWORD AS "userPassword",
       USER_NAME AS "userName",
       USER_NICK_NAME AS "userNickName",
+      USER_GENDER AS "userGender",
       USER_MOBILE AS "userMobile",
       USER_EMAIL AS "userEmail",
       USER_HEAD_IMAGE AS "userHeadImage",
+      USER_DESC AS "userDesc",
       USER_STATUS AS "userStatus",
       USER_POST_ADDR AS "userPostAddr",
       USER_POST_ADDR_OTHER AS "userPostAddrOther",
@@ -145,9 +155,11 @@
       USER_PASSWORD AS "userPassword",
       USER_NAME AS "userName",
       USER_NICK_NAME AS "userNickName",
+      USER_GENDER AS "userGender",
       USER_MOBILE AS "userMobile",
       USER_EMAIL AS "userEmail",
       USER_HEAD_IMAGE AS "userHeadImage",
+      USER_DESC AS "userDesc",
       USER_STATUS AS "userStatus",
       USER_POST_ADDR AS "userPostAddr",
       USER_POST_ADDR_OTHER AS "userPostAddrOther",
@@ -173,9 +185,11 @@
       USER_PASSWORD AS "userPassword",
       USER_NAME AS "userName",
       USER_NICK_NAME AS "userNickName",
+      USER_GENDER AS "userGender",
       USER_MOBILE AS "userMobile",
       USER_EMAIL AS "userEmail",
       USER_HEAD_IMAGE AS "userHeadImage",
+      USER_DESC AS "userDesc",
       USER_STATUS AS "userStatus",
       USER_POST_ADDR AS "userPostAddr",
       USER_POST_ADDR_OTHER AS "userPostAddrOther",
@@ -194,9 +208,11 @@
       <if test="userPassword != null">AND USER_PASSWORD = #{userPassword}</if>
       <if test="userName != null">AND USER_NAME = #{userName}</if>
       <if test="userNickName != null">AND USER_NICK_NAME = #{userNickName}</if>
+      <if test="userGender != null">AND USER_GENDER = #{userGender}</if>
       <if test="userMobile != null">AND USER_MOBILE = #{userMobile}</if>
       <if test="userEmail != null">AND USER_EMAIL = #{userEmail}</if>
       <if test="userHeadImage != null">AND USER_HEAD_IMAGE = #{userHeadImage}</if>
+      <if test="userDesc != null">AND USER_DESC = #{userDesc}</if>
       <if test="userStatus != null">AND USER_STATUS = #{userStatus}</if>
       <if test="userPostAddr != null">AND USER_POST_ADDR = #{userPostAddr}</if>
       <if test="userPostAddrOther != null">AND USER_POST_ADDR_OTHER = #{userPostAddrOther}</if>
@@ -221,9 +237,11 @@
       USER_PASSWORD AS "userPassword",
       USER_NAME AS "userName",
       USER_NICK_NAME AS "userNickName",
+      USER_GENDER AS "userGender",
       USER_MOBILE AS "userMobile",
       USER_EMAIL AS "userEmail",
       USER_HEAD_IMAGE AS "userHeadImage",
+      USER_DESC AS "userDesc",
       USER_STATUS AS "userStatus",
       USER_POST_ADDR AS "userPostAddr",
       USER_POST_ADDR_OTHER AS "userPostAddrOther",
@@ -242,9 +260,11 @@
       <if test="userPassword != null">AND USER_PASSWORD LIKE CONCAT('%', #{userPassword}, '%')</if>
       <if test="userName != null">AND USER_NAME LIKE CONCAT('%', #{userName}, '%')</if>
       <if test="userNickName != null">AND USER_NICK_NAME LIKE CONCAT('%', #{userNickName}, '%')</if>
+      <if test="userGender != null">AND USER_GENDER LIKE CONCAT('%', #{userGender}, '%')</if>
       <if test="userMobile != null">AND USER_MOBILE LIKE CONCAT('%', #{userMobile}, '%')</if>
       <if test="userEmail != null">AND USER_EMAIL LIKE CONCAT('%', #{userEmail}, '%')</if>
       <if test="userHeadImage != null">AND USER_HEAD_IMAGE LIKE CONCAT('%', #{userHeadImage}, '%')</if>
+      <if test="userDesc != null">AND USER_DESC LIKE CONCAT('%', #{userDesc}, '%')</if>
       <if test="userStatus != null">AND USER_STATUS LIKE CONCAT('%', #{userStatus}, '%')</if>
       <if test="userPostAddr != null">AND USER_POST_ADDR LIKE CONCAT('%', #{userPostAddr}, '%')</if>
       <if test="userPostAddrOther != null">AND USER_POST_ADDR_OTHER LIKE CONCAT('%', #{userPostAddrOther}, '%')</if>
@@ -269,9 +289,11 @@
       USER_PASSWORD AS "userPassword",
       USER_NAME AS "userName",
       USER_NICK_NAME AS "userNickName",
+      USER_GENDER AS "userGender",
       USER_MOBILE AS "userMobile",
       USER_EMAIL AS "userEmail",
       USER_HEAD_IMAGE AS "userHeadImage",
+      USER_DESC AS "userDesc",
       USER_STATUS AS "userStatus",
       USER_POST_ADDR AS "userPostAddr",
       USER_POST_ADDR_OTHER AS "userPostAddrOther",
@@ -290,9 +312,11 @@
       <if test="userPassword != null">AND ( ${userPassword} )</if>
       <if test="userName != null">AND ( ${userName} )</if>
       <if test="userNickName != null">AND ( ${userNickName} )</if>
+      <if test="userGender != null">AND ( ${userGender} )</if>
       <if test="userMobile != null">AND ( ${userMobile} )</if>
       <if test="userEmail != null">AND ( ${userEmail} )</if>
       <if test="userHeadImage != null">AND ( ${userHeadImage} )</if>
+      <if test="userDesc != null">AND ( ${userDesc} )</if>
       <if test="userStatus != null">AND ( ${userStatus} )</if>
       <if test="userPostAddr != null">AND ( ${userPostAddr} )</if>
       <if test="userPostAddrOther != null">AND ( ${userPostAddrOther} )</if>
@@ -317,9 +341,11 @@
       <if test="userPassword != null">AND USER_PASSWORD = #{userPassword}</if>
       <if test="userName != null">AND USER_NAME = #{userName}</if>
       <if test="userNickName != null">AND USER_NICK_NAME = #{userNickName}</if>
+      <if test="userGender != null">AND USER_GENDER = #{userGender}</if>
       <if test="userMobile != null">AND USER_MOBILE = #{userMobile}</if>
       <if test="userEmail != null">AND USER_EMAIL = #{userEmail}</if>
       <if test="userHeadImage != null">AND USER_HEAD_IMAGE = #{userHeadImage}</if>
+      <if test="userDesc != null">AND USER_DESC = #{userDesc}</if>
       <if test="userStatus != null">AND USER_STATUS = #{userStatus}</if>
       <if test="userPostAddr != null">AND USER_POST_ADDR = #{userPostAddr}</if>
       <if test="userPostAddrOther != null">AND USER_POST_ADDR_OTHER = #{userPostAddrOther}</if>

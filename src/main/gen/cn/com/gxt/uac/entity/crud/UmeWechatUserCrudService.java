@@ -1,8 +1,8 @@
-package org.umeframework.wechat.uac.entity.crud;
+package cn.com.gxt.uac.entity.crud;
 
 import java.util.List;
 import java.util.Map;
-import org.umeframework.wechat.uac.entity.UmeWechatUserDto;
+import cn.com.gxt.uac.entity.UmeWechatUserDto;
 
 /*
  * 微信用户基础属性表:UME_WECHAT_USER<br>

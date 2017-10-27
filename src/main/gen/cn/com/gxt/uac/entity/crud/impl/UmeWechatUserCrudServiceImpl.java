@@ -1,4 +1,4 @@
-package org.umeframework.wechat.uac.entity.crud.impl;
+package cn.com.gxt.uac.entity.crud.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.Map;
 import org.umeframework.dora.bean.BeanValidator;
 import org.umeframework.dora.transaction.TransactionRequired;
 import org.umeframework.dora.service.BaseDBComponent;
-import org.umeframework.wechat.uac.entity.UmeWechatUserDto;
-import org.umeframework.wechat.uac.entity.crud.UmeWechatUserCrudService;
+import cn.com.gxt.uac.entity.UmeWechatUserDto;
+import cn.com.gxt.uac.entity.crud.UmeWechatUserCrudService;
 
 /**
  * 微信用户基础属性表:UME_WECHAT_USER<br>
@@ -19,7 +19,7 @@ import org.umeframework.wechat.uac.entity.crud.UmeWechatUserCrudService;
 public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements UmeWechatUserCrudService {
     /* (non-Javadoc)
      * 
-     * @see org.umeframework.wechat.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
      */
     @Override
     @TransactionRequired
@@ -30,7 +30,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see org.umeframework.wechat.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
      */
     @Override
     @TransactionRequired
@@ -44,7 +44,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see org.umeframework.wechat.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
      */
     @Override
     @TransactionRequired
@@ -60,7 +60,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see org.umeframework.wechat.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
      */
     @Override
     @TransactionRequired
@@ -74,7 +74,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see org.umeframework.wechat.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
      */
     @Override
     @TransactionRequired
@@ -85,7 +85,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see org.umeframework.wechat.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
      */
     @Override
     @TransactionRequired
@@ -99,7 +99,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see org.umeframework.wechat.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
      */
     @Override
     @TransactionRequired
@@ -110,7 +110,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see org.umeframework.wechat.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
      */
     @Override
     @TransactionRequired
@@ -124,7 +124,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see org.umeframework.wechat.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
      */
     @Override
     @TransactionRequired
@@ -134,7 +134,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see org.umeframework.wechat.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
      */
     @Override
     @TransactionRequired
@@ -148,7 +148,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see org.umeframework.wechat.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
      */
     @Override
     public UmeWechatUserDto find(UmeWechatUserDto queryParam) {
@@ -157,7 +157,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see org.umeframework.wechat.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
      */
     @Override
     public List<UmeWechatUserDto> search(UmeWechatUserDto condition) {
@@ -166,7 +166,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see org.umeframework.wechat.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
      */
     @Override
     public List<UmeWechatUserDto> likeSearch(Map<String, String> condition) {
@@ -175,7 +175,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see org.umeframework.wechat.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
      */
     @Override
     public List<UmeWechatUserDto> dynaSearch(Map<String, String> condition) {
@@ -184,7 +184,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see org.umeframework.wechat.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
      */
     @Override
     public Integer count(Map<String, String> condition) {
