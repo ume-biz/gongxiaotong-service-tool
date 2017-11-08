@@ -1,3 +1,5 @@
+#set($var_OPERATION_HISTORY_DATETIME="OPERATION_HISTORY_DATETIME")
+#set($var_OPERATION_HISTORY_CATEGORY="OPERATION_HISTORY_CATEGORY")
 #set($var_CREATE_AUTHOR="CREATE_AUTHOR")
 #set($var_CREATE_DATETIME="CREATE_DATETIME")
 #set($var_UPDATE_AUTHOR="UPDATE_AUTHOR")
@@ -35,4 +37,23 @@ CREATE TABLE `${dto.tblId}` (
 ) COMMENT '${dto.tblName}' ;
 #if ($var_hasAutoIncrement != '1')
 ALTER TABLE `${dto.tblId}` ADD CONSTRAINT `PK_${dto.tblId}` PRIMARY KEY ( #foreach(${pkField}in${dto.primaryKeyFieldList})${pkField.colId} #if(${velocityHasNext}),#end#end) ;
+#end
+
+#if(${dto.tblHistory} != '')
+DROP TABLE IF EXISTS `${dto.tblId}_${dto.tblHistory}` ;
+CREATE TABLE `${dto.tblId}_${dto.tblHistory}` (
+    `${var_OPERATION_HISTORY_DATETIME}` TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '操作时间',
+    `${var_OPERATION_HISTORY_CATEGORY}` CHAR(1) COMMENT '操作类别',
+#foreach(${field} in ${dto.fieldList})
+#if (${field.colDataType} == 'AUTO-INCREMENT')
+    `${field.colId}` INT COMMENT '${field.colName}',
+#else
+    `${field.colId}` ${field.colDataTypeWithLength} COMMENT '${field.colName}',
+#end
+#end
+    `${var_CREATE_AUTHOR}` VARCHAR(32) BINARY COMMENT '创建者',
+    `${var_CREATE_DATETIME}` TIMESTAMP COMMENT '创建时间',
+    `${var_UPDATE_AUTHOR}` VARCHAR(32) BINARY COMMENT '更新者',
+    `${var_UPDATE_DATETIME}` TIMESTAMP COMMENT '更新时间'
+);
 #end

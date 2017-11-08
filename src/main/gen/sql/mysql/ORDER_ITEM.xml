@@ -280,11 +280,11 @@
       <if test="orderItemOrderStatus != null">AND ORDER_ITEM_ORDER_STATUS = #{orderItemOrderStatus}</if>
       <if test="orderItemComment != null">AND ORDER_ITEM_COMMENT = #{orderItemComment}</if>
   </select>
-  
+
   <insert id="ORDER_ITEM_INSERT_HT" parameterType="cn.com.gxt.entity.OrderItemDto">
     INSERT INTO ORDER_ITEM_HT (
-      THE_OPERATION_TIMESTAMP,
-      THE_OPERATION_CATEGORY,
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       ORDER_ITEM_SEQ,
       ORDER_ITEM_CODE,
@@ -322,8 +322,8 @@
   </insert>
   <insert id="ORDER_ITEM_UPDATE_HT" parameterType="cn.com.gxt.entity.OrderItemDto">
     INSERT INTO ORDER_ITEM_HT (
-      THE_OPERATION_TIMESTAMP,
-      THE_OPERATION_CATEGORY,
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       ORDER_ITEM_SEQ,
       ORDER_ITEM_CODE,
@@ -361,8 +361,8 @@
   </insert>
   <insert id="ORDER_ITEM_DELETE_HT" parameterType="cn.com.gxt.entity.OrderItemDto">
     INSERT INTO ORDER_ITEM_HT (
-      THE_OPERATION_TIMESTAMP,
-      THE_OPERATION_CATEGORY,
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       ORDER_ITEM_SEQ,
       ORDER_ITEM_CODE,

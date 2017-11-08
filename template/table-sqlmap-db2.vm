@@ -1,3 +1,5 @@
+#set($var_OPERATION_HISTORY_DATETIME="OPERATION_HISTORY_DATETIME")
+#set($var_OPERATION_HISTORY_CATEGORY="OPERATION_HISTORY_CATEGORY")
 #set($var_CREATE_AUTHOR="CREATE_AUTHOR")
 #set($var_CREATE_DATETIME="CREATE_DATETIME")
 #set($var_UPDATE_AUTHOR="UPDATE_AUTHOR")
@@ -188,11 +190,11 @@
     <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
   </select>
 
-#if(${dto.tblHistory} == 'Y')
-  <insert id="${dto.tblId}_INSERT_HT" parameterType="$dto.classPackage.${dto.classId}">
-    INSERT INTO ${var_tablePreFix}${dto.tblId}${dto.tblDivision}_HT (
-      THE_OPERATION_TIMESTAMP,
-      THE_OPERATION_CATEGORY,
+#if(${dto.tblHistory} != '')
+  <insert id="${dto.tblId}_INSERT_${dto.tblHistory}" parameterType="$dto.classPackage.${dto.classId}">
+    INSERT INTO ${var_tablePreFix}${dto.tblId}_${dto.tblHistory}${dto.tblDivision} (
+      ${var_OPERATION_HISTORY_DATETIME},
+      ${var_OPERATION_HISTORY_CATEGORY},
 #foreach(${field}in${dto.fieldList})
       ${field.colId},
 #end
@@ -212,10 +214,10 @@
       #{${var_updateDatetime}}
     )
   </insert>
-  <insert id="${dto.tblId}_UPDATE_HT" parameterType="$dto.classPackage.${dto.classId}">
-    INSERT INTO ${var_tablePreFix}${dto.tblId}${dto.tblDivision}_HT (
-      THE_OPERATION_TIMESTAMP,
-      THE_OPERATION_CATEGORY,
+  <insert id="${dto.tblId}_UPDATE_${dto.tblHistory}" parameterType="$dto.classPackage.${dto.classId}">
+    INSERT INTO ${var_tablePreFix}${dto.tblId}_${dto.tblHistory}${dto.tblDivision} (
+      ${var_OPERATION_HISTORY_DATETIME},
+      ${var_OPERATION_HISTORY_CATEGORY},
 #foreach(${field}in${dto.fieldList})
       ${field.colId},
 #end
@@ -235,10 +237,10 @@
       #{${var_updateDatetime}}
     )
   </insert>
-  <insert id="${dto.tblId}_DELETE_HT" parameterType="$dto.classPackage.${dto.classId}">
-    INSERT INTO ${var_tablePreFix}${dto.tblId}${dto.tblDivision}_HT (
-      THE_OPERATION_TIMESTAMP,
-      THE_OPERATION_CATEGORY,
+  <insert id="${dto.tblId}_DELETE_${dto.tblHistory}" parameterType="$dto.classPackage.${dto.classId}">
+    INSERT INTO ${var_tablePreFix}${dto.tblId}_${dto.tblHistory}${dto.tblDivision} (
+      ${var_OPERATION_HISTORY_DATETIME},
+      ${var_OPERATION_HISTORY_CATEGORY},
 #foreach(${field}in${dto.fieldList})
       ${field.colId},
 #end

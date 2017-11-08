@@ -319,8 +319,8 @@
 
   <insert id="ORDER_INSERT_HT" parameterType="cn.com.gxt.entity.OrderDto">
     INSERT INTO ORDER_HT (
-      THE_OPERATION_TIMESTAMP,
-      THE_OPERATION_CATEGORY,
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       ORDER_DESC,
       ORDER_DELIVERY_DATE,
@@ -364,8 +364,8 @@
   </insert>
   <insert id="ORDER_UPDATE_HT" parameterType="cn.com.gxt.entity.OrderDto">
     INSERT INTO ORDER_HT (
-      THE_OPERATION_TIMESTAMP,
-      THE_OPERATION_CATEGORY,
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       ORDER_DESC,
       ORDER_DELIVERY_DATE,
@@ -409,8 +409,8 @@
   </insert>
   <insert id="ORDER_DELETE_HT" parameterType="cn.com.gxt.entity.OrderDto">
     INSERT INTO ORDER_HT (
-      THE_OPERATION_TIMESTAMP,
-      THE_OPERATION_CATEGORY,
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       ORDER_DESC,
       ORDER_DELIVERY_DATE,

@@ -180,10 +180,10 @@ public class $dto.classId extends TableEntity implements Serializable {
         public static final String LIKE_SEARCH = "${dto.classPackage}.${dto.tblId}_LIKE_SEARCH"; 
         public static final String DYNA_SEARCH = "${dto.classPackage}.${dto.tblId}_DYNA_SEARCH"; 
         public static final String COUNT = "${dto.classPackage}.${dto.tblId}_COUNT";
-#if(${dto.tblHistory} == 'Y')
-        public static final String INSERT_HT = "${dto.classPackage}.${dto.tblId}_INSERT_HT"; 
-        public static final String UPDATE_HT = "${dto.classPackage}.${dto.tblId}_UPDATE_HT"; 
-        public static final String DELETE_HT = "${dto.classPackage}.${dto.tblId}_DELETE_HT"; 
+#if(${dto.tblHistory} != '')
+        public static final String INSERT_${dto.tblHistory} = "${dto.classPackage}.${dto.tblId}_INSERT_{dto.tblHistory}"; 
+        public static final String UPDATE_${dto.tblHistory} = "${dto.classPackage}.${dto.tblId}_UPDATE_{dto.tblHistory}"; 
+        public static final String DELETE_${dto.tblHistory} = "${dto.classPackage}.${dto.tblId}_DELETE_{dto.tblHistory}"; 
 #end
     } 
 

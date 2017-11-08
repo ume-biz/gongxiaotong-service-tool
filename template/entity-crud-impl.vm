@@ -16,7 +16,7 @@ import ${dto.tableCrudServiceInterfacePackage}.${dto.tableCrudServiceInterface};
  */
 @org.springframework.stereotype.Service
 public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${dto.tableCrudServiceInterface} {
-#if(${dto.tblHistory} == 'Y')
+#if(${dto.tblHistory} != '')
     /**
      * Enable operation history table automatic insert flag.<br>
      */
@@ -39,10 +39,10 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     @TransactionRequired
     public Integer create(${dto.classId} entity) {
         validate(entity);
-#if(${dto.tblHistory} == 'Y')
+#if(${dto.tblHistory} != '')
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(${dto.classId}.SQLID.INSERT_HT, entity);
+            super.getDao().update(${dto.classId}.SQLID.INSERT_${dto.tblHistory}, entity);
         }
 #end
         int result = super.getDao().update(${dto.classId}.SQLID.INSERT, entity);
@@ -101,10 +101,10 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     @TransactionRequired
     public Integer update(${dto.classId} entity) {
         validate(entity);
-#if(${dto.tblHistory} == 'Y')
+#if(${dto.tblHistory} != '')
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(${dto.classId}.SQLID.UPDATE_HT, this.find(entity));
+            super.getDao().update(${dto.classId}.SQLID.UPDATE_${dto.tblHistory}, this.find(entity));
         }
 #end
         int result = super.getDao().update(${dto.classId}.SQLID.SMART_UPDATE, entity);
@@ -133,10 +133,10 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     @TransactionRequired
     public Integer updateFully(${dto.classId} entity) {
         validate(entity);
-#if(${dto.tblHistory} == 'Y')
+#if(${dto.tblHistory} != '')
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(${dto.classId}.SQLID.UPDATE_HT, entity);
+            super.getDao().update(${dto.classId}.SQLID.UPDATE_${dto.tblHistory}, entity);
         }
 #end
         int result = super.getDao().update(${dto.classId}.SQLID.UPDATE, entity);
@@ -164,10 +164,10 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     @Override
     @TransactionRequired
     public Integer delete(${dto.classId} entity) {
-#if(${dto.tblHistory} == 'Y')
+#if(${dto.tblHistory} != '')
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(${dto.classId}.SQLID.DELETE_HT, this.find(entity));
+            super.getDao().update(${dto.classId}.SQLID.DELETE_${dto.tblHistory}, this.find(entity));
         }
 #end
         int result = super.getDao().update(${dto.classId}.SQLID.DELETE, entity);

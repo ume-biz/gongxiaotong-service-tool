@@ -228,11 +228,11 @@
       <if test="bidContactPhone != null">AND BID_CONTACT_PHONE = #{bidContactPhone}</if>
       <if test="bidComment != null">AND BID_COMMENT = #{bidComment}</if>
   </select>
-  
+
   <insert id="ORDER_BID_INSERT_HT" parameterType="cn.com.gxt.entity.OrderBidDto">
     INSERT INTO ORDER_BID_HT (
-      THE_OPERATION_TIMESTAMP,
-      THE_OPERATION_CATEGORY,
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       BID_UID,
       BID_DESC,
@@ -262,8 +262,8 @@
   </insert>
   <insert id="ORDER_BID_UPDATE_HT" parameterType="cn.com.gxt.entity.OrderBidDto">
     INSERT INTO ORDER_BID_HT (
-      THE_OPERATION_TIMESTAMP,
-      THE_OPERATION_CATEGORY,
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       BID_UID,
       BID_DESC,
@@ -293,8 +293,8 @@
   </insert>
   <insert id="ORDER_BID_DELETE_HT" parameterType="cn.com.gxt.entity.OrderBidDto">
     INSERT INTO ORDER_BID_HT (
-      THE_OPERATION_TIMESTAMP,
-      THE_OPERATION_CATEGORY,
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       BID_UID,
       BID_DESC,

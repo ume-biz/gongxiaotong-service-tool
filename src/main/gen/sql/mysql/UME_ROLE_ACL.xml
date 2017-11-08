@@ -195,7 +195,7 @@
       <if test="accResType != null">AND ACC_RES_TYPE = #{accResType}</if>
       <if test="accLevel != null">AND ACC_LEVEL = #{accLevel}</if>
   </select>
-  
+
 
 </mapper>
 

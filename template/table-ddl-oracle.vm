@@ -37,3 +37,22 @@ ALTER TABLE ${dto.tblId} ADD CONSTRAINT PK_${dto.tblId} PRIMARY KEY ( #foreach($
 CREATE SEQUENCE SEQ_${dto.tblId}_${field.colId} INCREMENT BY 1 START WITH 1 NOMAXVALUE NOCYCLE NOCACHE;
 #end
 #end
+
+#if(${dto.tblHistory} != '')
+DROP TABLE IF EXISTS `${dto.tblId}_${dto.tblHistory}` ;
+CREATE TABLE `${dto.tblId}_${dto.tblHistory}` (
+    `${var_OPERATION_HISTORY_DATETIME}` TIMESTAMP,
+    `${var_OPERATION_HISTORY_CATEGORY}` CHAR(1),
+#foreach(${field} in ${dto.fieldList})
+#if (${field.colDataType} == 'AUTO-INCREMENT')
+    `${field.colId}` NUMBER NOT NULL,
+#else
+    `${field.colId}` ${field.colDataTypeWithLength},
+#end
+#end
+    `${var_CREATE_AUTHOR}` VARCHAR2(32),
+    `${var_CREATE_DATETIME}` TIMESTAMP,
+    `${var_UPDATE_AUTHOR}` VARCHAR2(32),
+    `${var_UPDATE_DATETIME}` TIMESTAMP
+);
+#end

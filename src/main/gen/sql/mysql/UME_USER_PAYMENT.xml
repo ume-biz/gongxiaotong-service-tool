@@ -241,7 +241,7 @@
       <if test="cardExpirationDate != null">AND CARD_EXPIRATION_DATE = #{cardExpirationDate}</if>
       <if test="cardStatus != null">AND CARD_STATUS = #{cardStatus}</if>
   </select>
-  
+
 
 </mapper>
 

@@ -254,7 +254,7 @@
       <if test="contactNumber != null">AND CONTACT_NUMBER = #{contactNumber}</if>
       <if test="addressType != null">AND ADDRESS_TYPE = #{addressType}</if>
   </select>
-  
+
 
 </mapper>
 

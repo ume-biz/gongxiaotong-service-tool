@@ -277,7 +277,7 @@
       <if test="userStatus != null">AND USER_STATUS = #{userStatus}</if>
       <if test="userIdentityCard != null">AND USER_IDENTITY_CARD = #{userIdentityCard}</if>
   </select>
-  
+
 
 </mapper>
 

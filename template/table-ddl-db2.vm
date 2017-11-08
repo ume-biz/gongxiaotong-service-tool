@@ -25,3 +25,18 @@ CREATE TABLE `${dto.tblId}` (
 #if (${dto.autoIncrementColumnList.size()} > 0)
 ALTER TABLE `${dto.tblId}` ADD CONSTRAINT `PK_${dto.tblId}` PRIMARY KEY ( #foreach(${pkField}in${dto.primaryKeyFieldList})${pkField.colId} #if(${velocityHasNext}),#end#end) ;
 #end
+
+#if(${dto.tblHistory} != '')
+DROP TABLE IF EXISTS `${dto.tblId}_${dto.tblHistory}` ;
+CREATE TABLE `${dto.tblId}_${dto.tblHistory}` (
+    `${var_OPERATION_HISTORY_DATETIME}` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `${var_OPERATION_HISTORY_CATEGORY}` CHAR(1),
+#foreach(${field} in ${dto.fieldList})
+    `${field.colId}` ${field.colDataTypeWithLength},
+#end
+    `${var_CREATE_AUTHOR}` VARCHAR(32),
+    `${var_CREATE_DATETIME}` TIMESTAMP,
+    `${var_UPDATE_AUTHOR}` VARCHAR(32),
+    `${var_UPDATE_DATETIME}` TIMESTAMP
+);
+#end

@@ -1,3 +1,5 @@
+#set($var_OPERATION_HISTORY_DATETIME="OPERATION_HISTORY_DATETIME")
+#set($var_OPERATION_HISTORY_CATEGORY="OPERATION_HISTORY_CATEGORY")
 #set($var_CREATE_AUTHOR="CREATE_AUTHOR")
 #set($var_CREATE_DATETIME="CREATE_DATETIME")
 #set($var_UPDATE_AUTHOR="UPDATE_AUTHOR")
@@ -34,4 +36,23 @@ CREATE TABLE `${dto.tblId}` (
 );
 #if ($var_hasAutoIncrement != '1')
 ALTER TABLE `${dto.tblId}` ADD CONSTRAINT `PK_${dto.tblId}` PRIMARY KEY ( #foreach(${pkField}in${dto.primaryKeyFieldList})${pkField.colId} #if(${velocityHasNext}),#end#end) ;
+#end
+
+#if(${dto.tblHistory} != '')
+DROP TABLE IF EXISTS `${dto.tblId}_${dto.tblHistory}` ;
+CREATE TABLE `${dto.tblId}_${dto.tblHistory}` (
+    `${var_OPERATION_HISTORY_DATETIME}` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `${var_OPERATION_HISTORY_CATEGORY}` CHAR(1),
+#foreach(${field} in ${dto.fieldList})
+#if (${field.colDataType} == 'AUTO-INCREMENT')
+    `${field.colId}` INT,
+#else
+    `${field.colId}` ${field.colDataTypeWithLength},
+#end
+#end
+    `${var_CREATE_AUTHOR}` VARCHAR(32),
+    `${var_CREATE_DATETIME}` TIMESTAMP,
+    `${var_UPDATE_AUTHOR}` VARCHAR(32),
+    `${var_UPDATE_DATETIME}` TIMESTAMP
+);
 #end
