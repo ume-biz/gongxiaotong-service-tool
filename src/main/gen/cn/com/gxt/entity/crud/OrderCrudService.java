@@ -2,22 +2,22 @@ package cn.com.gxt.entity.crud;
 
 import java.util.List;
 import java.util.Map;
-import cn.com.gxt.entity.ReqSubDto;
+import cn.com.gxt.entity.OrderDto;
 
 /*
- * 需求发布明细信息表:REQ_SUB<br>
+ * 需求发布主信息表:ORDER<br>
  * Crud service interface declare.<br>
  *
  * @author DORA.Generator
  */
-public interface ReqSubCrudService {
+public interface OrderCrudService {
     /**
      * Insert entity.<br>
      * 
      * @param entity - entity instance
      * @return
      */
-    Integer create(ReqSubDto entity);
+    Integer create(OrderDto entity);
     
     /**
      * Insert entity list.<br>
@@ -25,7 +25,7 @@ public interface ReqSubCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> createList(List<ReqSubDto> entityList);
+    List<Integer> createList(List<OrderDto> entityList);
     
     /**
      * Update entity when exist, insert new record if not exist.<br>
@@ -33,7 +33,7 @@ public interface ReqSubCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer createOrUpdate(ReqSubDto entity);
+    Integer createOrUpdate(OrderDto entity);
     
     /**
      * Update entity list when exist, insert new records if not exist.<br>
@@ -41,7 +41,7 @@ public interface ReqSubCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> createOrUpdateList(List<ReqSubDto> entityList);
+    List<Integer> createOrUpdateList(List<OrderDto> entityList);
     
     /**
      * Update entity.<br>
@@ -49,7 +49,7 @@ public interface ReqSubCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer update(ReqSubDto entity);
+    Integer update(OrderDto entity);
     
     /**
      * Update entity list.<br>
@@ -57,7 +57,7 @@ public interface ReqSubCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> updateList(List<ReqSubDto> entityList);
+    List<Integer> updateList(List<OrderDto> entityList);
     
     /**
      * Update entity (full filed update include null value).<br>
@@ -65,7 +65,7 @@ public interface ReqSubCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer updateFully(ReqSubDto entity);
+    Integer updateFully(OrderDto entity);
     
     /**
      * Update entity list (full filed update include null value).<br>
@@ -73,7 +73,7 @@ public interface ReqSubCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> updateFullyList(List<ReqSubDto> entityList);
+    List<Integer> updateFullyList(List<OrderDto> entityList);
 
     /**
      * Delete entity.<br>
@@ -81,7 +81,7 @@ public interface ReqSubCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer delete(ReqSubDto entity);
+    Integer delete(OrderDto entity);
     
     /**
      * Delete entity list.<br>
@@ -89,7 +89,7 @@ public interface ReqSubCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> deleteList(List<ReqSubDto> entityList);
+    List<Integer> deleteList(List<OrderDto> entityList);
     
     /**
      * Find entity by primary key set.<br>
@@ -97,7 +97,7 @@ public interface ReqSubCrudService {
      * @param condition - query parameter
      * @return - matched entity instance
      */
-    ReqSubDto find(ReqSubDto condition);
+    OrderDto find(OrderDto condition);
     
     /**
      * Search entity list use equal match.<br>
@@ -105,7 +105,7 @@ public interface ReqSubCrudService {
      * @param condition - query parameter
      * @return - matched entity instance list
      */
-    List<ReqSubDto> search(ReqSubDto condition);
+    List<OrderDto> search(OrderDto condition);
     
     /**
      * Search entity list use like (%var%) match.<br>
@@ -113,7 +113,7 @@ public interface ReqSubCrudService {
      * @param condition - query parameter
      * @return - matched entity instance list
      */
-    List<ReqSubDto> likeSearch(Map<String, String> condition);
+    List<OrderDto> likeSearch(Map<String, String> condition);
     
     /**
      * Search entity list use dynamic condition.<br>
@@ -121,7 +121,7 @@ public interface ReqSubCrudService {
      * @param condition - query parameter
      * @return - matched entity instance list
      */
-    List<ReqSubDto> dynaSearch(Map<String, String> condition);
+    List<OrderDto> dynaSearch(Map<String, String> condition);
     
     /**
      * Count.<br>

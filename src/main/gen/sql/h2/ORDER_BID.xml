@@ -2,28 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.com.gxt.entity">
-  <!-- 需求竞标信息表 [REQ_BID] -->
+  <!-- 需求竞标信息表 [ORDER_BID] -->
   
   <!-- Insert one -->
-  <insert id="REQ_BID_INSERT" parameterType="cn.com.gxt.entity.ReqBidDto">
-    INSERT INTO REQ_BID (
-      REQ_CODE,
-      BID_CODE,
+  <insert id="ORDER_BID_INSERT" parameterType="cn.com.gxt.entity.OrderBidDto">
+    INSERT INTO ORDER_BID (
+      ORDER_CODE,
+      BID_UID,
       BID_DESC,
       BID_PRICE,
-      BID_OWNER,
-      BID_OWNER_MOBILE,
+      BID_CONTACT_NAME,
+      BID_CONTACT_PHONE,
+      BID_COMMENT,
       CREATE_AUTHOR,
       CREATE_DATETIME,
       UPDATE_AUTHOR,
       UPDATE_DATETIME
     ) VALUES (
-      #{reqCode},
-      #{bidCode},
+      #{orderCode},
+      #{bidUid},
       #{bidDesc},
       #{bidPrice},
-      #{bidOwner},
-      #{bidOwnerMobile},
+      #{bidContactName},
+      #{bidContactPhone},
+      #{bidComment},
       #{createAuthor},
       current_timestamp(),
       #{updateAuthor},
@@ -32,110 +34,116 @@
   </insert>
 
   <!-- Update with optimism check) -->
-  <update id="REQ_BID_UPDATE" parameterType="cn.com.gxt.entity.ReqBidDto">
-    UPDATE REQ_BID
+  <update id="ORDER_BID_UPDATE" parameterType="cn.com.gxt.entity.OrderBidDto">
+    UPDATE ORDER_BID
     SET
       BID_DESC = #{bidDesc},
       BID_PRICE = #{bidPrice},
-      BID_OWNER = #{bidOwner},
-      BID_OWNER_MOBILE = #{bidOwnerMobile},
+      BID_CONTACT_NAME = #{bidContactName},
+      BID_CONTACT_PHONE = #{bidContactPhone},
+      BID_COMMENT = #{bidComment},
       CREATE_AUTHOR = #{createAuthor},
       CREATE_DATETIME = #{createDatetime},
       UPDATE_AUTHOR = #{updateAuthor},
       UPDATE_DATETIME = current_timestamp() 
     WHERE UPDATE_DATETIME = #{updateDatetime}
-      AND REQ_CODE = #{reqCode}
-      AND BID_CODE = #{bidCode}
+      AND ORDER_CODE = #{orderCode}
+      AND BID_UID = #{bidUid}
       <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
   </update>
 
   <!-- Smart update -->
-  <update id="REQ_BID_SMART_UPDATE" parameterType="cn.com.gxt.entity.ReqBidDto">
-    UPDATE REQ_BID
+  <update id="ORDER_BID_SMART_UPDATE" parameterType="cn.com.gxt.entity.OrderBidDto">
+    UPDATE ORDER_BID
     <set>
       <if test="bidDesc!=null">BID_DESC = #{bidDesc},</if>
       <if test="bidPrice!=null">BID_PRICE = #{bidPrice},</if>
-      <if test="bidOwner!=null">BID_OWNER = #{bidOwner},</if>
-      <if test="bidOwnerMobile!=null">BID_OWNER_MOBILE = #{bidOwnerMobile},</if>
+      <if test="bidContactName!=null">BID_CONTACT_NAME = #{bidContactName},</if>
+      <if test="bidContactPhone!=null">BID_CONTACT_PHONE = #{bidContactPhone},</if>
+      <if test="bidComment!=null">BID_COMMENT = #{bidComment},</if>
       <if test="createAuthor!=null">CREATE_AUTHOR = #{createAuthor},</if>
       <if test="createDatetime!=null">CREATE_DATETIME = #{createDatetime},</if>
       <if test="updateAuthor!=null">UPDATE_AUTHOR = #{updateAuthor},</if>
       UPDATE_DATETIME = current_timestamp()
     </set>
     WHERE 
-       REQ_CODE = #{reqCode}
-       AND  BID_CODE = #{bidCode}
+       ORDER_CODE = #{orderCode}
+       AND  BID_UID = #{bidUid}
       <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
   </update>
   
   <!-- Delete one -->
-  <delete id="REQ_BID_DELETE" parameterType="cn.com.gxt.entity.ReqBidDto">
-    DELETE FROM REQ_BID
+  <delete id="ORDER_BID_DELETE" parameterType="cn.com.gxt.entity.OrderBidDto">
+    DELETE FROM ORDER_BID
     WHERE
-      REQ_CODE = #{reqCode} AND 
-      BID_CODE = #{bidCode} 
+      ORDER_CODE = #{orderCode} AND 
+      BID_UID = #{bidUid} 
   </delete>
 
   <!-- Find by primary key -->
-  <select id="REQ_BID_FIND" resultType="cn.com.gxt.entity.ReqBidDto">
+  <select id="ORDER_BID_FIND" resultType="cn.com.gxt.entity.OrderBidDto">
     SELECT
-      REQ_CODE AS "reqCode",
-      BID_CODE AS "bidCode",
+      ORDER_CODE AS "orderCode",
+      BID_UID AS "bidUid",
       BID_DESC AS "bidDesc",
       BID_PRICE AS "bidPrice",
-      BID_OWNER AS "bidOwner",
-      BID_OWNER_MOBILE AS "bidOwnerMobile",
+      BID_CONTACT_NAME AS "bidContactName",
+      BID_CONTACT_PHONE AS "bidContactPhone",
+      BID_COMMENT AS "bidComment",
       CREATE_AUTHOR AS "createAuthor",
       CREATE_DATETIME AS "createDatetime",
       UPDATE_AUTHOR AS "updateAuthor",
       UPDATE_DATETIME AS "updateDatetime"
-    FROM REQ_BID
+    FROM ORDER_BID
     WHERE
-      REQ_CODE = #{reqCode} AND 
-      BID_CODE = #{bidCode} 
+      ORDER_CODE = #{orderCode} AND 
+      BID_UID = #{bidUid} 
   </select>
 
   <!-- Find by primary key for update with row lock -->
-  <select id="REQ_BID_FIND_FOR_UPDATE" resultType="cn.com.gxt.entity.ReqBidDto">
+  <select id="ORDER_BID_FIND_FOR_UPDATE" resultType="cn.com.gxt.entity.OrderBidDto">
     SELECT
-      REQ_CODE AS "reqCode",
-      BID_CODE AS "bidCode",
+      ORDER_CODE AS "orderCode",
+      BID_UID AS "bidUid",
       BID_DESC AS "bidDesc",
       BID_PRICE AS "bidPrice",
-      BID_OWNER AS "bidOwner",
-      BID_OWNER_MOBILE AS "bidOwnerMobile",
+      BID_CONTACT_NAME AS "bidContactName",
+      BID_CONTACT_PHONE AS "bidContactPhone",
+      BID_COMMENT AS "bidComment",
       CREATE_AUTHOR AS "createAuthor",
       CREATE_DATETIME AS "createDatetime",
       UPDATE_AUTHOR AS "updateAuthor",
       UPDATE_DATETIME AS "updateDatetime"
-    FROM REQ_BID
+    FROM ORDER_BID
     WHERE
-      REQ_CODE = #{reqCode} AND 
-      BID_CODE = #{bidCode} 
+      ORDER_CODE = #{orderCode} AND 
+      BID_UID = #{bidUid} 
     FOR UPDATE
   </select>
 
   <!-- Search -->
-  <select id="REQ_BID_SEARCH" resultType="cn.com.gxt.entity.ReqBidDto">
+  <select id="ORDER_BID_SEARCH" resultType="cn.com.gxt.entity.OrderBidDto">
     SELECT
-      REQ_CODE AS "reqCode",
-      BID_CODE AS "bidCode",
+      ORDER_CODE AS "orderCode",
+      BID_UID AS "bidUid",
       BID_DESC AS "bidDesc",
       BID_PRICE AS "bidPrice",
-      BID_OWNER AS "bidOwner",
-      BID_OWNER_MOBILE AS "bidOwnerMobile",
+      BID_CONTACT_NAME AS "bidContactName",
+      BID_CONTACT_PHONE AS "bidContactPhone",
+      BID_COMMENT AS "bidComment",
       CREATE_AUTHOR AS "createAuthor",
       CREATE_DATETIME AS "createDatetime",
       UPDATE_AUTHOR AS "updateAuthor",
       UPDATE_DATETIME AS "updateDatetime"
-    FROM REQ_BID
+    FROM ORDER_BID
     WHERE 1 = 1 
-      <if test="reqCode != null">AND REQ_CODE = #{reqCode}</if>
-      <if test="bidCode != null">AND BID_CODE = #{bidCode}</if>
+      <if test="orderCode != null">AND ORDER_CODE = #{orderCode}</if>
+      <if test="bidUid != null">AND BID_UID = #{bidUid}</if>
       <if test="bidDesc != null">AND BID_DESC = #{bidDesc}</if>
       <if test="bidPrice != null">AND BID_PRICE = #{bidPrice}</if>
-      <if test="bidOwner != null">AND BID_OWNER = #{bidOwner}</if>
-      <if test="bidOwnerMobile != null">AND BID_OWNER_MOBILE = #{bidOwnerMobile}</if>
+      <if test="bidContactName != null">AND BID_CONTACT_NAME = #{bidContactName}</if>
+      <if test="bidContactPhone != null">AND BID_CONTACT_PHONE = #{bidContactPhone}</if>
+      <if test="bidComment != null">AND BID_COMMENT = #{bidComment}</if>
       <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
       <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
       <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
@@ -146,26 +154,28 @@
   </select>
 
   <!-- Like Search -->
-  <select id="REQ_BID_LIKE_SEARCH" resultType="cn.com.gxt.entity.ReqBidDto">
+  <select id="ORDER_BID_LIKE_SEARCH" resultType="cn.com.gxt.entity.OrderBidDto">
     SELECT
-      REQ_CODE AS "reqCode",
-      BID_CODE AS "bidCode",
+      ORDER_CODE AS "orderCode",
+      BID_UID AS "bidUid",
       BID_DESC AS "bidDesc",
       BID_PRICE AS "bidPrice",
-      BID_OWNER AS "bidOwner",
-      BID_OWNER_MOBILE AS "bidOwnerMobile",
+      BID_CONTACT_NAME AS "bidContactName",
+      BID_CONTACT_PHONE AS "bidContactPhone",
+      BID_COMMENT AS "bidComment",
       CREATE_AUTHOR AS "createAuthor",
       CREATE_DATETIME AS "createDatetime",
       UPDATE_AUTHOR AS "updateAuthor",
       UPDATE_DATETIME AS "updateDatetime"
-    FROM REQ_BID
+    FROM ORDER_BID
     WHERE 1 = 1 
-      <if test="reqCode != null">AND REQ_CODE LIKE CONCAT('%', #{reqCode}, '%')</if>
-      <if test="bidCode != null">AND BID_CODE LIKE CONCAT('%', #{bidCode}, '%')</if>
+      <if test="orderCode != null">AND ORDER_CODE LIKE CONCAT('%', #{orderCode}, '%')</if>
+      <if test="bidUid != null">AND BID_UID LIKE CONCAT('%', #{bidUid}, '%')</if>
       <if test="bidDesc != null">AND BID_DESC LIKE CONCAT('%', #{bidDesc}, '%')</if>
       <if test="bidPrice != null">AND BID_PRICE LIKE CONCAT('%', #{bidPrice}, '%')</if>
-      <if test="bidOwner != null">AND BID_OWNER LIKE CONCAT('%', #{bidOwner}, '%')</if>
-      <if test="bidOwnerMobile != null">AND BID_OWNER_MOBILE LIKE CONCAT('%', #{bidOwnerMobile}, '%')</if>
+      <if test="bidContactName != null">AND BID_CONTACT_NAME LIKE CONCAT('%', #{bidContactName}, '%')</if>
+      <if test="bidContactPhone != null">AND BID_CONTACT_PHONE LIKE CONCAT('%', #{bidContactPhone}, '%')</if>
+      <if test="bidComment != null">AND BID_COMMENT LIKE CONCAT('%', #{bidComment}, '%')</if>
       <if test="createAuthor != null">AND CREATE_AUTHOR LIKE CONCAT('%', #{createAuthor}, '%')</if>
       <if test="updateAuthor != null">AND UPDATE_AUTHOR LIKE CONCAT('%', #{updateAuthor}, '%')</if>
       <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
@@ -176,26 +186,28 @@
   </select>
   
   <!-- Dynamic Search -->
-  <select id="REQ_BID_DYNA_SEARCH" resultType="cn.com.gxt.entity.ReqBidDto">
+  <select id="ORDER_BID_DYNA_SEARCH" resultType="cn.com.gxt.entity.OrderBidDto">
     SELECT
-      REQ_CODE AS "reqCode",
-      BID_CODE AS "bidCode",
+      ORDER_CODE AS "orderCode",
+      BID_UID AS "bidUid",
       BID_DESC AS "bidDesc",
       BID_PRICE AS "bidPrice",
-      BID_OWNER AS "bidOwner",
-      BID_OWNER_MOBILE AS "bidOwnerMobile",
+      BID_CONTACT_NAME AS "bidContactName",
+      BID_CONTACT_PHONE AS "bidContactPhone",
+      BID_COMMENT AS "bidComment",
       CREATE_AUTHOR AS "createAuthor",
       CREATE_DATETIME AS "createDatetime",
       UPDATE_AUTHOR AS "updateAuthor",
       UPDATE_DATETIME AS "updateDatetime"
-    FROM REQ_BID
+    FROM ORDER_BID
     WHERE 1 = 1 
-      <if test="reqCode != null">AND ( ${reqCode} )</if>
-      <if test="bidCode != null">AND ( ${bidCode} )</if>
+      <if test="orderCode != null">AND ( ${orderCode} )</if>
+      <if test="bidUid != null">AND ( ${bidUid} )</if>
       <if test="bidDesc != null">AND ( ${bidDesc} )</if>
       <if test="bidPrice != null">AND ( ${bidPrice} )</if>
-      <if test="bidOwner != null">AND ( ${bidOwner} )</if>
-      <if test="bidOwnerMobile != null">AND ( ${bidOwnerMobile} )</if>
+      <if test="bidContactName != null">AND ( ${bidContactName} )</if>
+      <if test="bidContactPhone != null">AND ( ${bidContactPhone} )</if>
+      <if test="bidComment != null">AND ( ${bidComment} )</if>
       <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
       <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
       <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
@@ -203,17 +215,18 @@
   </select>
   
   <!-- Count by input condition -->
-  <select id="REQ_BID_COUNT" resultType="java.lang.Integer">
+  <select id="ORDER_BID_COUNT" resultType="java.lang.Integer">
     SELECT count(*)
-    FROM REQ_BID
+    FROM ORDER_BID
     WHERE 1 = 1 
       <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
-      <if test="reqCode != null">AND REQ_CODE = #{reqCode}</if>
-      <if test="bidCode != null">AND BID_CODE = #{bidCode}</if>
+      <if test="orderCode != null">AND ORDER_CODE = #{orderCode}</if>
+      <if test="bidUid != null">AND BID_UID = #{bidUid}</if>
       <if test="bidDesc != null">AND BID_DESC = #{bidDesc}</if>
       <if test="bidPrice != null">AND BID_PRICE = #{bidPrice}</if>
-      <if test="bidOwner != null">AND BID_OWNER = #{bidOwner}</if>
-      <if test="bidOwnerMobile != null">AND BID_OWNER_MOBILE = #{bidOwnerMobile}</if>
+      <if test="bidContactName != null">AND BID_CONTACT_NAME = #{bidContactName}</if>
+      <if test="bidContactPhone != null">AND BID_CONTACT_PHONE = #{bidContactPhone}</if>
+      <if test="bidComment != null">AND BID_COMMENT = #{bidComment}</if>
   </select>
 
 </mapper>
