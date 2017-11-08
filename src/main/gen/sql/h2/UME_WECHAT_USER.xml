@@ -330,5 +330,6 @@
       <if test="wechatSubscribeTime != null">AND WECHAT_SUBSCRIBE_TIME = #{wechatSubscribeTime}</if>
   </select>
 
+
 </mapper>
 

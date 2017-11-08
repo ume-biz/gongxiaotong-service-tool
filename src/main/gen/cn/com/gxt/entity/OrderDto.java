@@ -455,6 +455,9 @@ public class OrderDto extends TableEntity implements Serializable {
         public static final String LIKE_SEARCH = "cn.com.gxt.entity.ORDER_LIKE_SEARCH"; 
         public static final String DYNA_SEARCH = "cn.com.gxt.entity.ORDER_DYNA_SEARCH"; 
         public static final String COUNT = "cn.com.gxt.entity.ORDER_COUNT";
+        public static final String INSERT_HT = "cn.com.gxt.entity.ORDER_INSERT_HT"; 
+        public static final String UPDATE_HT = "cn.com.gxt.entity.ORDER_UPDATE_HT"; 
+        public static final String DELETE_HT = "cn.com.gxt.entity.ORDER_DELETE_HT"; 
     } 
 
     /**

@@ -10,13 +10,27 @@ import ${dto.classPackage}.${dto.classId};
 import ${dto.tableCrudServiceInterfacePackage}.${dto.tableCrudServiceInterface};
 
 /**
- * ${dto.TblName}:${dto.tblId}<br>
- * Crud service implementation class.<br>
+ * ${dto.TblName}:${dto.tblId} CRUD service implementation.<br>
  *
- * @author DORA.Generator
+ * @author UME-Generator
  */
 @org.springframework.stereotype.Service
 public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${dto.tableCrudServiceInterface} {
+#if(${dto.tblHistory} == 'Y')
+    /**
+     * Enable operation history table automatic insert flag.<br>
+     */
+    private boolean enableOperationHistory = true;
+    /**
+     * Disable operation history table automatic insert.<br>
+     * 
+     * @param enableOperationHistory the enableOperationHistory to set
+     */
+    public void setEnableOperationHistory(boolean enableOperationHistory) {
+        this.enableOperationHistory = enableOperationHistory;
+    }
+#end
+
     /* (non-Javadoc)
      * 
      * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
@@ -25,7 +39,14 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     @TransactionRequired
     public Integer create(${dto.classId} entity) {
         validate(entity);
-        return getDao().update(${dto.classId}.SQLID.INSERT, entity);
+#if(${dto.tblHistory} == 'Y')
+        if (this.enableOperationHistory) {
+            // insert modified history
+            super.getDao().update(${dto.classId}.SQLID.INSERT_HT, entity);
+        }
+#end
+        int result = super.getDao().update(${dto.classId}.SQLID.INSERT, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -37,7 +58,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     public List<Integer> createList(List<${dto.classId}> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (${dto.classId} entity : entityList) {
-            result.add(create(entity));
+            result.add(this.create(entity));
         }
         return result;
     }
@@ -49,12 +70,12 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     @Override
     @TransactionRequired
     public Integer createOrUpdate(${dto.classId} entity) {
-        ${dto.classId} existed = getDao().queryForObject(${dto.classId}.SQLID.FIND, entity, ${dto.classId}.class);
+        ${dto.classId} existed = super.getDao().queryForObject(${dto.classId}.SQLID.FIND, entity, ${dto.classId}.class);
         if (existed == null) {
-            return getDao().update(${dto.classId}.SQLID.INSERT, entity);
+            return this.create(entity);
         } else {
             validate(entity);
-            return getDao().update(${dto.classId}.SQLID.SMART_UPDATE, entity);
+            return this.update(entity);
         }
     }
     
@@ -67,7 +88,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     public List<Integer> createOrUpdateList(List<${dto.classId}> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (${dto.classId} entity : entityList) {
-            result.add(createOrUpdate(entity));
+            result.add(this.createOrUpdate(entity));
         }
         return result;
     }
@@ -80,7 +101,14 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     @TransactionRequired
     public Integer update(${dto.classId} entity) {
         validate(entity);
-        return getDao().update(${dto.classId}.SQLID.SMART_UPDATE, entity);
+#if(${dto.tblHistory} == 'Y')
+        if (this.enableOperationHistory) {
+            // insert modified history
+            super.getDao().update(${dto.classId}.SQLID.UPDATE_HT, this.find(entity));
+        }
+#end
+        int result = super.getDao().update(${dto.classId}.SQLID.SMART_UPDATE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -92,7 +120,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     public List<Integer> updateList(List<${dto.classId}> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (${dto.classId} entity : entityList) {
-            result.add(update(entity));
+            result.add(this.update(entity));
         }
         return result;
     }
@@ -105,7 +133,14 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     @TransactionRequired
     public Integer updateFully(${dto.classId} entity) {
         validate(entity);
-        return getDao().update(${dto.classId}.SQLID.UPDATE, entity);
+#if(${dto.tblHistory} == 'Y')
+        if (this.enableOperationHistory) {
+            // insert modified history
+            super.getDao().update(${dto.classId}.SQLID.UPDATE_HT, entity);
+        }
+#end
+        int result = super.getDao().update(${dto.classId}.SQLID.UPDATE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -117,7 +152,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     public List<Integer> updateFullyList(List<${dto.classId}> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (${dto.classId} entity : entityList) {
-            result.add(updateFully(entity));
+            result.add(this.updateFully(entity));
         }
         return result;
     }
@@ -129,7 +164,14 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     @Override
     @TransactionRequired
     public Integer delete(${dto.classId} entity) {
-        return getDao().update(${dto.classId}.SQLID.DELETE, entity);
+#if(${dto.tblHistory} == 'Y')
+        if (this.enableOperationHistory) {
+            // insert modified history
+            super.getDao().update(${dto.classId}.SQLID.DELETE_HT, this.find(entity));
+        }
+#end
+        int result = super.getDao().update(${dto.classId}.SQLID.DELETE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -141,7 +183,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     public List<Integer> deleteList(List<${dto.classId}> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (${dto.classId} entity : entityList) {
-            result.add(delete(entity));
+            result.add(this.delete(entity));
         }
         return result;
     }
@@ -152,7 +194,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
      */
     @Override
     public ${dto.classId} find(${dto.classId} queryParam) {
-        return getDao().queryForObject(${dto.classId}.SQLID.FIND, queryParam, ${dto.classId}.class);
+        return super.getDao().queryForObject(${dto.classId}.SQLID.FIND, queryParam, ${dto.classId}.class);
     }
     
     /* (non-Javadoc)
@@ -161,7 +203,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
      */
     @Override
     public List<${dto.classId}> search(${dto.classId} condition) {
-        return getDao().queryForObjectList(${dto.classId}.SQLID.SEARCH, condition, ${dto.classId}.class);
+        return super.getDao().queryForObjectList(${dto.classId}.SQLID.SEARCH, condition, ${dto.classId}.class);
     }
     
     /* (non-Javadoc)
@@ -170,7 +212,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
      */
     @Override
     public List<${dto.classId}> likeSearch(Map<String, String> condition) {
-        return getDao().queryForObjectList(${dto.classId}.SQLID.LIKE_SEARCH, condition, ${dto.classId}.class);
+        return super.getDao().queryForObjectList(${dto.classId}.SQLID.LIKE_SEARCH, condition, ${dto.classId}.class);
     }
     
     /* (non-Javadoc)
@@ -179,7 +221,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
      */
     @Override
     public List<${dto.classId}> dynaSearch(Map<String, String> condition) {
-        return getDao().queryForObjectList(${dto.classId}.SQLID.DYNA_SEARCH, condition, ${dto.classId}.class);
+        return super.getDao().queryForObjectList(${dto.classId}.SQLID.DYNA_SEARCH, condition, ${dto.classId}.class);
     }
     
     /* (non-Javadoc)
@@ -188,7 +230,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
      */
     @Override
     public Integer count(Map<String, String> condition) {
-        return getDao().count(${dto.classId}.SQLID.COUNT, condition);
+        return super.getDao().count(${dto.classId}.SQLID.COUNT, condition);
     }
 
     /**

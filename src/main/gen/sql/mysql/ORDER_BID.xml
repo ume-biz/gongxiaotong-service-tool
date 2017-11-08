@@ -32,7 +32,7 @@
       current_timestamp()
     )
   </insert>
-
+  
   <!-- Update with optimism check) -->
   <update id="ORDER_BID_UPDATE" parameterType="cn.com.gxt.entity.OrderBidDto">
     UPDATE ORDER_BID
@@ -228,6 +228,100 @@
       <if test="bidContactPhone != null">AND BID_CONTACT_PHONE = #{bidContactPhone}</if>
       <if test="bidComment != null">AND BID_COMMENT = #{bidComment}</if>
   </select>
+  
+  <insert id="ORDER_BID_INSERT_HT" parameterType="cn.com.gxt.entity.OrderBidDto">
+    INSERT INTO ORDER_BID_HT (
+      THE_OPERATION_TIMESTAMP,
+      THE_OPERATION_CATEGORY,
+      ORDER_CODE,
+      BID_UID,
+      BID_DESC,
+      BID_PRICE,
+      BID_CONTACT_NAME,
+      BID_CONTACT_PHONE,
+      BID_COMMENT,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      UPDATE_AUTHOR,
+      UPDATE_DATETIME
+    ) VALUES (
+      current_timestamp(),
+      'C',
+      #{orderCode},
+      #{bidUid},
+      #{bidDesc},
+      #{bidPrice},
+      #{bidContactName},
+      #{bidContactPhone},
+      #{bidComment},
+      #{createAuthor},
+      #{createDatetime},
+      #{updateAuthor},
+      #{updateDatetime}
+    )
+  </insert>
+  <insert id="ORDER_BID_UPDATE_HT" parameterType="cn.com.gxt.entity.OrderBidDto">
+    INSERT INTO ORDER_BID_HT (
+      THE_OPERATION_TIMESTAMP,
+      THE_OPERATION_CATEGORY,
+      ORDER_CODE,
+      BID_UID,
+      BID_DESC,
+      BID_PRICE,
+      BID_CONTACT_NAME,
+      BID_CONTACT_PHONE,
+      BID_COMMENT,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      UPDATE_AUTHOR,
+      UPDATE_DATETIME
+    ) VALUES (
+      current_timestamp(),
+      'U',
+      #{orderCode},
+      #{bidUid},
+      #{bidDesc},
+      #{bidPrice},
+      #{bidContactName},
+      #{bidContactPhone},
+      #{bidComment},
+      #{createAuthor},
+      #{createDatetime},
+      #{updateAuthor},
+      #{updateDatetime}
+    )
+  </insert>
+  <insert id="ORDER_BID_DELETE_HT" parameterType="cn.com.gxt.entity.OrderBidDto">
+    INSERT INTO ORDER_BID_HT (
+      THE_OPERATION_TIMESTAMP,
+      THE_OPERATION_CATEGORY,
+      ORDER_CODE,
+      BID_UID,
+      BID_DESC,
+      BID_PRICE,
+      BID_CONTACT_NAME,
+      BID_CONTACT_PHONE,
+      BID_COMMENT,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      UPDATE_AUTHOR,
+      UPDATE_DATETIME
+    ) VALUES (
+      current_timestamp(),
+      'D',
+      #{orderCode},
+      #{bidUid},
+      #{bidDesc},
+      #{bidPrice},
+      #{bidContactName},
+      #{bidContactPhone},
+      #{bidComment},
+      #{createAuthor},
+      #{createDatetime},
+      #{updateAuthor},
+      #{updateDatetime}
+    )
+  </insert>
 
 </mapper>
 

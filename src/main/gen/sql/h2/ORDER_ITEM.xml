@@ -281,5 +281,123 @@
       <if test="orderItemComment != null">AND ORDER_ITEM_COMMENT = #{orderItemComment}</if>
   </select>
 
+  <insert id="ORDER_ITEM_INSERT_HT" parameterType="cn.com.gxt.entity.OrderItemDto">
+    INSERT INTO ORDER_ITEM_HT (
+      THE_OPERATION_TIMESTAMP,
+      THE_OPERATION_CATEGORY,
+      ORDER_CODE,
+      ORDER_ITEM_SEQ,
+      ORDER_ITEM_CODE,
+      ORDER_ITEM_DESC,
+      ORDER_ITEM_SPECS,
+      ORDER_ITEM_QUANTITY,
+      ORDER_ITEM_ESTIMATION,
+      ORDER_ITEM_LOGISTICS_CODE,
+      ORDER_ITEM_LOGISTICS_DESC,
+      ORDER_ITEM_ORDER_STATUS,
+      ORDER_ITEM_COMMENT,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      UPDATE_AUTHOR,
+      UPDATE_DATETIME
+    ) VALUES (
+      current_timestamp(),
+      'C',
+      #{orderCode},
+      #{orderItemSeq},
+      #{orderItemCode},
+      #{orderItemDesc},
+      #{orderItemSpecs},
+      #{orderItemQuantity},
+      #{orderItemEstimation},
+      #{orderItemLogisticsCode},
+      #{orderItemLogisticsDesc},
+      #{orderItemOrderStatus},
+      #{orderItemComment},
+      #{createAuthor},
+      #{createDatetime},
+      #{updateAuthor},
+      #{updateDatetime}
+    )
+  </insert>
+  <insert id="ORDER_ITEM_UPDATE_HT" parameterType="cn.com.gxt.entity.OrderItemDto">
+    INSERT INTO ORDER_ITEM_HT (
+      THE_OPERATION_TIMESTAMP,
+      THE_OPERATION_CATEGORY,
+      ORDER_CODE,
+      ORDER_ITEM_SEQ,
+      ORDER_ITEM_CODE,
+      ORDER_ITEM_DESC,
+      ORDER_ITEM_SPECS,
+      ORDER_ITEM_QUANTITY,
+      ORDER_ITEM_ESTIMATION,
+      ORDER_ITEM_LOGISTICS_CODE,
+      ORDER_ITEM_LOGISTICS_DESC,
+      ORDER_ITEM_ORDER_STATUS,
+      ORDER_ITEM_COMMENT,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      UPDATE_AUTHOR,
+      UPDATE_DATETIME
+    ) VALUES (
+      current_timestamp(),
+      'U',
+      #{orderCode},
+      #{orderItemSeq},
+      #{orderItemCode},
+      #{orderItemDesc},
+      #{orderItemSpecs},
+      #{orderItemQuantity},
+      #{orderItemEstimation},
+      #{orderItemLogisticsCode},
+      #{orderItemLogisticsDesc},
+      #{orderItemOrderStatus},
+      #{orderItemComment},
+      #{createAuthor},
+      #{createDatetime},
+      #{updateAuthor},
+      #{updateDatetime}
+    )
+  </insert>
+  <insert id="ORDER_ITEM_DELETE_HT" parameterType="cn.com.gxt.entity.OrderItemDto">
+    INSERT INTO ORDER_ITEM_HT (
+      THE_OPERATION_TIMESTAMP,
+      THE_OPERATION_CATEGORY,
+      ORDER_CODE,
+      ORDER_ITEM_SEQ,
+      ORDER_ITEM_CODE,
+      ORDER_ITEM_DESC,
+      ORDER_ITEM_SPECS,
+      ORDER_ITEM_QUANTITY,
+      ORDER_ITEM_ESTIMATION,
+      ORDER_ITEM_LOGISTICS_CODE,
+      ORDER_ITEM_LOGISTICS_DESC,
+      ORDER_ITEM_ORDER_STATUS,
+      ORDER_ITEM_COMMENT,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      UPDATE_AUTHOR,
+      UPDATE_DATETIME
+    ) VALUES (
+      current_timestamp(),
+      'D',
+      #{orderCode},
+      #{orderItemSeq},
+      #{orderItemCode},
+      #{orderItemDesc},
+      #{orderItemSpecs},
+      #{orderItemQuantity},
+      #{orderItemEstimation},
+      #{orderItemLogisticsCode},
+      #{orderItemLogisticsDesc},
+      #{orderItemOrderStatus},
+      #{orderItemComment},
+      #{createAuthor},
+      #{createDatetime},
+      #{updateAuthor},
+      #{updateDatetime}
+    )
+  </insert>
+
 </mapper>
 

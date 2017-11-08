@@ -34,7 +34,7 @@
       current_timestamp()
     )
   </insert>
-
+  
   <!-- Update with optimism check) -->
   <update id="UME_USER_PAYMENT_UPDATE" parameterType="cn.com.gxt.uac.entity.UmeUserPaymentDto">
     UPDATE UME_USER_PAYMENT
@@ -241,6 +241,7 @@
       <if test="cardExpirationDate != null">AND CARD_EXPIRATION_DATE = #{cardExpirationDate}</if>
       <if test="cardStatus != null">AND CARD_STATUS = #{cardStatus}</if>
   </select>
+  
 
 </mapper>
 

@@ -188,5 +188,77 @@
     <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
   </select>
 
+#if(${dto.tblHistory} == 'Y')
+  <insert id="${dto.tblId}_INSERT_HT" parameterType="$dto.classPackage.${dto.classId}">
+    INSERT INTO ${var_tablePreFix}${dto.tblId}${dto.tblDivision}_HT (
+      THE_OPERATION_TIMESTAMP,
+      THE_OPERATION_CATEGORY,
+#foreach(${field}in${dto.fieldList})
+      ${field.colId},
+#end
+      ${var_CREATE_AUTHOR},
+      ${var_CREATE_DATETIME},
+      ${var_UPDATE_AUTHOR},
+      ${var_UPDATE_DATETIME}
+    ) VALUES (
+      ${var_currentTimestamp},
+      'C',
+#foreach(${field}in${dto.fieldList})
+      #{${field.fieldId}},
+#end
+      #{${var_createAuthor}},
+      #{${var_createDatetime}},
+      #{${var_updateAuthor}},
+      #{${var_updateDatetime}}
+    )
+  </insert>
+  <insert id="${dto.tblId}_UPDATE_HT" parameterType="$dto.classPackage.${dto.classId}">
+    INSERT INTO ${var_tablePreFix}${dto.tblId}${dto.tblDivision}_HT (
+      THE_OPERATION_TIMESTAMP,
+      THE_OPERATION_CATEGORY,
+#foreach(${field}in${dto.fieldList})
+      ${field.colId},
+#end
+      ${var_CREATE_AUTHOR},
+      ${var_CREATE_DATETIME},
+      ${var_UPDATE_AUTHOR},
+      ${var_UPDATE_DATETIME}
+    ) VALUES (
+      ${var_currentTimestamp},
+      'U',
+#foreach(${field}in${dto.fieldList})
+      #{${field.fieldId}},
+#end
+      #{${var_createAuthor}},
+      #{${var_createDatetime}},
+      #{${var_updateAuthor}},
+      #{${var_updateDatetime}}
+    )
+  </insert>
+  <insert id="${dto.tblId}_DELETE_HT" parameterType="$dto.classPackage.${dto.classId}">
+    INSERT INTO ${var_tablePreFix}${dto.tblId}${dto.tblDivision}_HT (
+      THE_OPERATION_TIMESTAMP,
+      THE_OPERATION_CATEGORY,
+#foreach(${field}in${dto.fieldList})
+      ${field.colId},
+#end
+      ${var_CREATE_AUTHOR},
+      ${var_CREATE_DATETIME},
+      ${var_UPDATE_AUTHOR},
+      ${var_UPDATE_DATETIME}
+    ) VALUES (
+      ${var_currentTimestamp},
+      'D',
+#foreach(${field}in${dto.fieldList})
+      #{${field.fieldId}},
+#end
+      #{${var_createAuthor}},
+      #{${var_createDatetime}},
+      #{${var_updateAuthor}},
+      #{${var_updateDatetime}}
+    )
+  </insert>
+#end
+
 </mapper>
 

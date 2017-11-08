@@ -5,10 +5,9 @@ import java.util.Map;
 import cn.com.gxt.entity.OrderDto;
 
 /*
- * 需求发布主信息表:ORDER<br>
- * Crud service interface declare.<br>
+ * 需求发布主信息表:ORDER CRUD service interface declare.<br>
  *
- * @author DORA.Generator
+ * @author UME-Generator
  */
 public interface OrderCrudService {
     /**

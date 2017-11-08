@@ -10,13 +10,13 @@ import cn.com.gxt.uac.entity.UmeUserPaymentDto;
 import cn.com.gxt.uac.entity.crud.UmeUserPaymentCrudService;
 
 /**
- * 用户支付卡绑定管理表:UME_USER_PAYMENT<br>
- * Crud service implementation class.<br>
+ * 用户支付卡绑定管理表:UME_USER_PAYMENT CRUD service implementation.<br>
  *
- * @author DORA.Generator
+ * @author UME-Generator
  */
 @org.springframework.stereotype.Service
 public class UmeUserPaymentCrudServiceImpl extends BaseDBComponent implements UmeUserPaymentCrudService {
+
     /* (non-Javadoc)
      * 
      * @see cn.com.gxt.uac.entity.crud.impl.UmeUserPaymentCrudService
@@ -25,7 +25,8 @@ public class UmeUserPaymentCrudServiceImpl extends BaseDBComponent implements Um
     @TransactionRequired
     public Integer create(UmeUserPaymentDto entity) {
         validate(entity);
-        return getDao().update(UmeUserPaymentDto.SQLID.INSERT, entity);
+        int result = super.getDao().update(UmeUserPaymentDto.SQLID.INSERT, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -37,7 +38,7 @@ public class UmeUserPaymentCrudServiceImpl extends BaseDBComponent implements Um
     public List<Integer> createList(List<UmeUserPaymentDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeUserPaymentDto entity : entityList) {
-            result.add(create(entity));
+            result.add(this.create(entity));
         }
         return result;
     }
@@ -49,12 +50,12 @@ public class UmeUserPaymentCrudServiceImpl extends BaseDBComponent implements Um
     @Override
     @TransactionRequired
     public Integer createOrUpdate(UmeUserPaymentDto entity) {
-        UmeUserPaymentDto existed = getDao().queryForObject(UmeUserPaymentDto.SQLID.FIND, entity, UmeUserPaymentDto.class);
+        UmeUserPaymentDto existed = super.getDao().queryForObject(UmeUserPaymentDto.SQLID.FIND, entity, UmeUserPaymentDto.class);
         if (existed == null) {
-            return getDao().update(UmeUserPaymentDto.SQLID.INSERT, entity);
+            return this.create(entity);
         } else {
             validate(entity);
-            return getDao().update(UmeUserPaymentDto.SQLID.SMART_UPDATE, entity);
+            return this.update(entity);
         }
     }
     
@@ -67,7 +68,7 @@ public class UmeUserPaymentCrudServiceImpl extends BaseDBComponent implements Um
     public List<Integer> createOrUpdateList(List<UmeUserPaymentDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeUserPaymentDto entity : entityList) {
-            result.add(createOrUpdate(entity));
+            result.add(this.createOrUpdate(entity));
         }
         return result;
     }
@@ -80,7 +81,8 @@ public class UmeUserPaymentCrudServiceImpl extends BaseDBComponent implements Um
     @TransactionRequired
     public Integer update(UmeUserPaymentDto entity) {
         validate(entity);
-        return getDao().update(UmeUserPaymentDto.SQLID.SMART_UPDATE, entity);
+        int result = super.getDao().update(UmeUserPaymentDto.SQLID.SMART_UPDATE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -92,7 +94,7 @@ public class UmeUserPaymentCrudServiceImpl extends BaseDBComponent implements Um
     public List<Integer> updateList(List<UmeUserPaymentDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeUserPaymentDto entity : entityList) {
-            result.add(update(entity));
+            result.add(this.update(entity));
         }
         return result;
     }
@@ -105,7 +107,8 @@ public class UmeUserPaymentCrudServiceImpl extends BaseDBComponent implements Um
     @TransactionRequired
     public Integer updateFully(UmeUserPaymentDto entity) {
         validate(entity);
-        return getDao().update(UmeUserPaymentDto.SQLID.UPDATE, entity);
+        int result = super.getDao().update(UmeUserPaymentDto.SQLID.UPDATE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -117,7 +120,7 @@ public class UmeUserPaymentCrudServiceImpl extends BaseDBComponent implements Um
     public List<Integer> updateFullyList(List<UmeUserPaymentDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeUserPaymentDto entity : entityList) {
-            result.add(updateFully(entity));
+            result.add(this.updateFully(entity));
         }
         return result;
     }
@@ -129,7 +132,8 @@ public class UmeUserPaymentCrudServiceImpl extends BaseDBComponent implements Um
     @Override
     @TransactionRequired
     public Integer delete(UmeUserPaymentDto entity) {
-        return getDao().update(UmeUserPaymentDto.SQLID.DELETE, entity);
+        int result = super.getDao().update(UmeUserPaymentDto.SQLID.DELETE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -141,7 +145,7 @@ public class UmeUserPaymentCrudServiceImpl extends BaseDBComponent implements Um
     public List<Integer> deleteList(List<UmeUserPaymentDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeUserPaymentDto entity : entityList) {
-            result.add(delete(entity));
+            result.add(this.delete(entity));
         }
         return result;
     }
@@ -152,7 +156,7 @@ public class UmeUserPaymentCrudServiceImpl extends BaseDBComponent implements Um
      */
     @Override
     public UmeUserPaymentDto find(UmeUserPaymentDto queryParam) {
-        return getDao().queryForObject(UmeUserPaymentDto.SQLID.FIND, queryParam, UmeUserPaymentDto.class);
+        return super.getDao().queryForObject(UmeUserPaymentDto.SQLID.FIND, queryParam, UmeUserPaymentDto.class);
     }
     
     /* (non-Javadoc)
@@ -161,7 +165,7 @@ public class UmeUserPaymentCrudServiceImpl extends BaseDBComponent implements Um
      */
     @Override
     public List<UmeUserPaymentDto> search(UmeUserPaymentDto condition) {
-        return getDao().queryForObjectList(UmeUserPaymentDto.SQLID.SEARCH, condition, UmeUserPaymentDto.class);
+        return super.getDao().queryForObjectList(UmeUserPaymentDto.SQLID.SEARCH, condition, UmeUserPaymentDto.class);
     }
     
     /* (non-Javadoc)
@@ -170,7 +174,7 @@ public class UmeUserPaymentCrudServiceImpl extends BaseDBComponent implements Um
      */
     @Override
     public List<UmeUserPaymentDto> likeSearch(Map<String, String> condition) {
-        return getDao().queryForObjectList(UmeUserPaymentDto.SQLID.LIKE_SEARCH, condition, UmeUserPaymentDto.class);
+        return super.getDao().queryForObjectList(UmeUserPaymentDto.SQLID.LIKE_SEARCH, condition, UmeUserPaymentDto.class);
     }
     
     /* (non-Javadoc)
@@ -179,7 +183,7 @@ public class UmeUserPaymentCrudServiceImpl extends BaseDBComponent implements Um
      */
     @Override
     public List<UmeUserPaymentDto> dynaSearch(Map<String, String> condition) {
-        return getDao().queryForObjectList(UmeUserPaymentDto.SQLID.DYNA_SEARCH, condition, UmeUserPaymentDto.class);
+        return super.getDao().queryForObjectList(UmeUserPaymentDto.SQLID.DYNA_SEARCH, condition, UmeUserPaymentDto.class);
     }
     
     /* (non-Javadoc)
@@ -188,7 +192,7 @@ public class UmeUserPaymentCrudServiceImpl extends BaseDBComponent implements Um
      */
     @Override
     public Integer count(Map<String, String> condition) {
-        return getDao().count(UmeUserPaymentDto.SQLID.COUNT, condition);
+        return super.getDao().count(UmeUserPaymentDto.SQLID.COUNT, condition);
     }
 
     /**

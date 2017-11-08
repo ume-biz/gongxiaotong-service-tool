@@ -301,6 +301,9 @@ public class OrderBidDto extends TableEntity implements Serializable {
         public static final String LIKE_SEARCH = "cn.com.gxt.entity.ORDER_BID_LIKE_SEARCH"; 
         public static final String DYNA_SEARCH = "cn.com.gxt.entity.ORDER_BID_DYNA_SEARCH"; 
         public static final String COUNT = "cn.com.gxt.entity.ORDER_BID_COUNT";
+        public static final String INSERT_HT = "cn.com.gxt.entity.ORDER_BID_INSERT_HT"; 
+        public static final String UPDATE_HT = "cn.com.gxt.entity.ORDER_BID_UPDATE_HT"; 
+        public static final String DELETE_HT = "cn.com.gxt.entity.ORDER_BID_DELETE_HT"; 
     } 
 
     /**

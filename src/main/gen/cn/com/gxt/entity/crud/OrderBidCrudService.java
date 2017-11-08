@@ -5,10 +5,9 @@ import java.util.Map;
 import cn.com.gxt.entity.OrderBidDto;
 
 /*
- * 需求竞标信息表:ORDER_BID<br>
- * Crud service interface declare.<br>
+ * 需求竞标信息表:ORDER_BID CRUD service interface declare.<br>
  *
- * @author DORA.Generator
+ * @author UME-Generator
  */
 public interface OrderBidCrudService {
     /**

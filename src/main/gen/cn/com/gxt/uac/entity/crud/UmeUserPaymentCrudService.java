@@ -5,10 +5,9 @@ import java.util.Map;
 import cn.com.gxt.uac.entity.UmeUserPaymentDto;
 
 /*
- * 用户支付卡绑定管理表:UME_USER_PAYMENT<br>
- * Crud service interface declare.<br>
+ * 用户支付卡绑定管理表:UME_USER_PAYMENT CRUD service interface declare.<br>
  *
- * @author DORA.Generator
+ * @author UME-Generator
  */
 public interface UmeUserPaymentCrudService {
     /**

@@ -5,10 +5,9 @@ import java.util.Map;
 import cn.com.gxt.uac.entity.UmeUserAddressDto;
 
 /*
- * 用户配送地址管理表:UME_USER_ADDRESS<br>
- * Crud service interface declare.<br>
+ * 用户配送地址管理表:UME_USER_ADDRESS CRUD service interface declare.<br>
  *
- * @author DORA.Generator
+ * @author UME-Generator
  */
 public interface UmeUserAddressCrudService {
     /**

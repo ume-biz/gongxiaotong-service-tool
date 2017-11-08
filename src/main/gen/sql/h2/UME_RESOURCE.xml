@@ -229,5 +229,6 @@
       <if test="resStatus != null">AND RES_STATUS = #{resStatus}</if>
   </select>
 
+
 </mapper>
 

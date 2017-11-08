@@ -36,7 +36,7 @@
       current_timestamp()
     )
   </insert>
-
+  
   <!-- Update with optimism check) -->
   <update id="UME_USER_ADDRESS_UPDATE" parameterType="cn.com.gxt.uac.entity.UmeUserAddressDto">
     UPDATE UME_USER_ADDRESS
@@ -254,6 +254,7 @@
       <if test="contactNumber != null">AND CONTACT_NUMBER = #{contactNumber}</if>
       <if test="addressType != null">AND ADDRESS_TYPE = #{addressType}</if>
   </select>
+  
 
 </mapper>
 

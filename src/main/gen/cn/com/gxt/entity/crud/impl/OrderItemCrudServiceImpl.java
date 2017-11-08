@@ -10,13 +10,25 @@ import cn.com.gxt.entity.OrderItemDto;
 import cn.com.gxt.entity.crud.OrderItemCrudService;
 
 /**
- * 需求发布明细信息表:ORDER_ITEM<br>
- * Crud service implementation class.<br>
+ * 需求发布明细信息表:ORDER_ITEM CRUD service implementation.<br>
  *
- * @author DORA.Generator
+ * @author UME-Generator
  */
 @org.springframework.stereotype.Service
 public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderItemCrudService {
+    /**
+     * Enable operation history table automatic insert flag.<br>
+     */
+    private boolean enableOperationHistory = true;
+    /**
+     * Disable operation history table automatic insert.<br>
+     * 
+     * @param enableOperationHistory the enableOperationHistory to set
+     */
+    public void setEnableOperationHistory(boolean enableOperationHistory) {
+        this.enableOperationHistory = enableOperationHistory;
+    }
+
     /* (non-Javadoc)
      * 
      * @see cn.com.gxt.entity.crud.impl.OrderItemCrudService
@@ -25,7 +37,12 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
     @TransactionRequired
     public Integer create(OrderItemDto entity) {
         validate(entity);
-        return getDao().update(OrderItemDto.SQLID.INSERT, entity);
+        if (this.enableOperationHistory) {
+            // insert modified history
+            super.getDao().update(OrderItemDto.SQLID.INSERT_HT, entity);
+        }
+        int result = super.getDao().update(OrderItemDto.SQLID.INSERT, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -37,7 +54,7 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
     public List<Integer> createList(List<OrderItemDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (OrderItemDto entity : entityList) {
-            result.add(create(entity));
+            result.add(this.create(entity));
         }
         return result;
     }
@@ -49,12 +66,12 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
     @Override
     @TransactionRequired
     public Integer createOrUpdate(OrderItemDto entity) {
-        OrderItemDto existed = getDao().queryForObject(OrderItemDto.SQLID.FIND, entity, OrderItemDto.class);
+        OrderItemDto existed = super.getDao().queryForObject(OrderItemDto.SQLID.FIND, entity, OrderItemDto.class);
         if (existed == null) {
-            return getDao().update(OrderItemDto.SQLID.INSERT, entity);
+            return this.create(entity);
         } else {
             validate(entity);
-            return getDao().update(OrderItemDto.SQLID.SMART_UPDATE, entity);
+            return this.update(entity);
         }
     }
     
@@ -67,7 +84,7 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
     public List<Integer> createOrUpdateList(List<OrderItemDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (OrderItemDto entity : entityList) {
-            result.add(createOrUpdate(entity));
+            result.add(this.createOrUpdate(entity));
         }
         return result;
     }
@@ -80,7 +97,12 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
     @TransactionRequired
     public Integer update(OrderItemDto entity) {
         validate(entity);
-        return getDao().update(OrderItemDto.SQLID.SMART_UPDATE, entity);
+        if (this.enableOperationHistory) {
+            // insert modified history
+            super.getDao().update(OrderItemDto.SQLID.UPDATE_HT, this.find(entity));
+        }
+        int result = super.getDao().update(OrderItemDto.SQLID.SMART_UPDATE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -92,7 +114,7 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
     public List<Integer> updateList(List<OrderItemDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (OrderItemDto entity : entityList) {
-            result.add(update(entity));
+            result.add(this.update(entity));
         }
         return result;
     }
@@ -105,7 +127,12 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
     @TransactionRequired
     public Integer updateFully(OrderItemDto entity) {
         validate(entity);
-        return getDao().update(OrderItemDto.SQLID.UPDATE, entity);
+        if (this.enableOperationHistory) {
+            // insert modified history
+            super.getDao().update(OrderItemDto.SQLID.UPDATE_HT, entity);
+        }
+        int result = super.getDao().update(OrderItemDto.SQLID.UPDATE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -117,7 +144,7 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
     public List<Integer> updateFullyList(List<OrderItemDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (OrderItemDto entity : entityList) {
-            result.add(updateFully(entity));
+            result.add(this.updateFully(entity));
         }
         return result;
     }
@@ -129,7 +156,12 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
     @Override
     @TransactionRequired
     public Integer delete(OrderItemDto entity) {
-        return getDao().update(OrderItemDto.SQLID.DELETE, entity);
+        if (this.enableOperationHistory) {
+            // insert modified history
+            super.getDao().update(OrderItemDto.SQLID.DELETE_HT, this.find(entity));
+        }
+        int result = super.getDao().update(OrderItemDto.SQLID.DELETE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -141,7 +173,7 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
     public List<Integer> deleteList(List<OrderItemDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (OrderItemDto entity : entityList) {
-            result.add(delete(entity));
+            result.add(this.delete(entity));
         }
         return result;
     }
@@ -152,7 +184,7 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
      */
     @Override
     public OrderItemDto find(OrderItemDto queryParam) {
-        return getDao().queryForObject(OrderItemDto.SQLID.FIND, queryParam, OrderItemDto.class);
+        return super.getDao().queryForObject(OrderItemDto.SQLID.FIND, queryParam, OrderItemDto.class);
     }
     
     /* (non-Javadoc)
@@ -161,7 +193,7 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
      */
     @Override
     public List<OrderItemDto> search(OrderItemDto condition) {
-        return getDao().queryForObjectList(OrderItemDto.SQLID.SEARCH, condition, OrderItemDto.class);
+        return super.getDao().queryForObjectList(OrderItemDto.SQLID.SEARCH, condition, OrderItemDto.class);
     }
     
     /* (non-Javadoc)
@@ -170,7 +202,7 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
      */
     @Override
     public List<OrderItemDto> likeSearch(Map<String, String> condition) {
-        return getDao().queryForObjectList(OrderItemDto.SQLID.LIKE_SEARCH, condition, OrderItemDto.class);
+        return super.getDao().queryForObjectList(OrderItemDto.SQLID.LIKE_SEARCH, condition, OrderItemDto.class);
     }
     
     /* (non-Javadoc)
@@ -179,7 +211,7 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
      */
     @Override
     public List<OrderItemDto> dynaSearch(Map<String, String> condition) {
-        return getDao().queryForObjectList(OrderItemDto.SQLID.DYNA_SEARCH, condition, OrderItemDto.class);
+        return super.getDao().queryForObjectList(OrderItemDto.SQLID.DYNA_SEARCH, condition, OrderItemDto.class);
     }
     
     /* (non-Javadoc)
@@ -188,7 +220,7 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
      */
     @Override
     public Integer count(Map<String, String> condition) {
-        return getDao().count(OrderItemDto.SQLID.COUNT, condition);
+        return super.getDao().count(OrderItemDto.SQLID.COUNT, condition);
     }
 
     /**

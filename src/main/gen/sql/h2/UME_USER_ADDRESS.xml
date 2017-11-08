@@ -255,5 +255,6 @@
       <if test="addressType != null">AND ADDRESS_TYPE = #{addressType}</if>
   </select>
 
+
 </mapper>
 
