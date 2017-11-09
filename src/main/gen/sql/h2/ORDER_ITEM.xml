@@ -8,7 +8,6 @@
   <insert id="ORDER_ITEM_INSERT" parameterType="cn.com.gxt.entity.OrderItemDto">
     INSERT INTO ORDER_ITEM (
       ORDER_CODE,
-      ORDER_ITEM_SEQ,
       ORDER_ITEM_CODE,
       ORDER_ITEM_DESC,
       ORDER_ITEM_SPECS,
@@ -24,7 +23,6 @@
       UPDATE_DATETIME
     ) VALUES (
       #{orderCode},
-      #{orderItemSeq},
       #{orderItemCode},
       #{orderItemDesc},
       #{orderItemSpecs},
@@ -60,7 +58,6 @@
       UPDATE_DATETIME = current_timestamp() 
     WHERE UPDATE_DATETIME = #{updateDatetime}
       AND ORDER_CODE = #{orderCode}
-      AND ORDER_ITEM_SEQ = #{orderItemSeq}
       <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
   </update>
 
@@ -84,7 +81,6 @@
     </set>
     WHERE 
        ORDER_CODE = #{orderCode}
-       AND  ORDER_ITEM_SEQ = #{orderItemSeq}
       <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
   </update>
   
@@ -92,15 +88,13 @@
   <delete id="ORDER_ITEM_DELETE" parameterType="cn.com.gxt.entity.OrderItemDto">
     DELETE FROM ORDER_ITEM
     WHERE
-      ORDER_CODE = #{orderCode} AND 
-      ORDER_ITEM_SEQ = #{orderItemSeq} 
+      ORDER_CODE = #{orderCode} 
   </delete>
 
   <!-- Find by primary key -->
   <select id="ORDER_ITEM_FIND" resultType="cn.com.gxt.entity.OrderItemDto">
     SELECT
       ORDER_CODE AS "orderCode",
-      ORDER_ITEM_SEQ AS "orderItemSeq",
       ORDER_ITEM_CODE AS "orderItemCode",
       ORDER_ITEM_DESC AS "orderItemDesc",
       ORDER_ITEM_SPECS AS "orderItemSpecs",
@@ -116,15 +110,13 @@
       UPDATE_DATETIME AS "updateDatetime"
     FROM ORDER_ITEM
     WHERE
-      ORDER_CODE = #{orderCode} AND 
-      ORDER_ITEM_SEQ = #{orderItemSeq} 
+      ORDER_CODE = #{orderCode} 
   </select>
 
   <!-- Find by primary key for update with row lock -->
   <select id="ORDER_ITEM_FIND_FOR_UPDATE" resultType="cn.com.gxt.entity.OrderItemDto">
     SELECT
       ORDER_CODE AS "orderCode",
-      ORDER_ITEM_SEQ AS "orderItemSeq",
       ORDER_ITEM_CODE AS "orderItemCode",
       ORDER_ITEM_DESC AS "orderItemDesc",
       ORDER_ITEM_SPECS AS "orderItemSpecs",
@@ -140,8 +132,7 @@
       UPDATE_DATETIME AS "updateDatetime"
     FROM ORDER_ITEM
     WHERE
-      ORDER_CODE = #{orderCode} AND 
-      ORDER_ITEM_SEQ = #{orderItemSeq} 
+      ORDER_CODE = #{orderCode} 
     FOR UPDATE
   </select>
 
@@ -149,7 +140,6 @@
   <select id="ORDER_ITEM_SEARCH" resultType="cn.com.gxt.entity.OrderItemDto">
     SELECT
       ORDER_CODE AS "orderCode",
-      ORDER_ITEM_SEQ AS "orderItemSeq",
       ORDER_ITEM_CODE AS "orderItemCode",
       ORDER_ITEM_DESC AS "orderItemDesc",
       ORDER_ITEM_SPECS AS "orderItemSpecs",
@@ -166,7 +156,6 @@
     FROM ORDER_ITEM
     WHERE 1 = 1 
       <if test="orderCode != null">AND ORDER_CODE = #{orderCode}</if>
-      <if test="orderItemSeq != null">AND ORDER_ITEM_SEQ = #{orderItemSeq}</if>
       <if test="orderItemCode != null">AND ORDER_ITEM_CODE = #{orderItemCode}</if>
       <if test="orderItemDesc != null">AND ORDER_ITEM_DESC = #{orderItemDesc}</if>
       <if test="orderItemSpecs != null">AND ORDER_ITEM_SPECS = #{orderItemSpecs}</if>
@@ -189,7 +178,6 @@
   <select id="ORDER_ITEM_LIKE_SEARCH" resultType="cn.com.gxt.entity.OrderItemDto">
     SELECT
       ORDER_CODE AS "orderCode",
-      ORDER_ITEM_SEQ AS "orderItemSeq",
       ORDER_ITEM_CODE AS "orderItemCode",
       ORDER_ITEM_DESC AS "orderItemDesc",
       ORDER_ITEM_SPECS AS "orderItemSpecs",
@@ -206,7 +194,6 @@
     FROM ORDER_ITEM
     WHERE 1 = 1 
       <if test="orderCode != null">AND ORDER_CODE LIKE CONCAT('%', #{orderCode}, '%')</if>
-      <if test="orderItemSeq != null">AND ORDER_ITEM_SEQ LIKE CONCAT('%', #{orderItemSeq}, '%')</if>
       <if test="orderItemCode != null">AND ORDER_ITEM_CODE LIKE CONCAT('%', #{orderItemCode}, '%')</if>
       <if test="orderItemDesc != null">AND ORDER_ITEM_DESC LIKE CONCAT('%', #{orderItemDesc}, '%')</if>
       <if test="orderItemSpecs != null">AND ORDER_ITEM_SPECS LIKE CONCAT('%', #{orderItemSpecs}, '%')</if>
@@ -229,7 +216,6 @@
   <select id="ORDER_ITEM_DYNA_SEARCH" resultType="cn.com.gxt.entity.OrderItemDto">
     SELECT
       ORDER_CODE AS "orderCode",
-      ORDER_ITEM_SEQ AS "orderItemSeq",
       ORDER_ITEM_CODE AS "orderItemCode",
       ORDER_ITEM_DESC AS "orderItemDesc",
       ORDER_ITEM_SPECS AS "orderItemSpecs",
@@ -246,7 +232,6 @@
     FROM ORDER_ITEM
     WHERE 1 = 1 
       <if test="orderCode != null">AND ( ${orderCode} )</if>
-      <if test="orderItemSeq != null">AND ( ${orderItemSeq} )</if>
       <if test="orderItemCode != null">AND ( ${orderItemCode} )</if>
       <if test="orderItemDesc != null">AND ( ${orderItemDesc} )</if>
       <if test="orderItemSpecs != null">AND ( ${orderItemSpecs} )</if>
@@ -269,7 +254,6 @@
     WHERE 1 = 1 
       <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
       <if test="orderCode != null">AND ORDER_CODE = #{orderCode}</if>
-      <if test="orderItemSeq != null">AND ORDER_ITEM_SEQ = #{orderItemSeq}</if>
       <if test="orderItemCode != null">AND ORDER_ITEM_CODE = #{orderItemCode}</if>
       <if test="orderItemDesc != null">AND ORDER_ITEM_DESC = #{orderItemDesc}</if>
       <if test="orderItemSpecs != null">AND ORDER_ITEM_SPECS = #{orderItemSpecs}</if>
@@ -286,7 +270,6 @@
       OPERATION_HISTORY_DATETIME,
       OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
-      ORDER_ITEM_SEQ,
       ORDER_ITEM_CODE,
       ORDER_ITEM_DESC,
       ORDER_ITEM_SPECS,
@@ -304,7 +287,6 @@
       current_timestamp(),
       'C',
       #{orderCode},
-      #{orderItemSeq},
       #{orderItemCode},
       #{orderItemDesc},
       #{orderItemSpecs},
@@ -325,7 +307,6 @@
       OPERATION_HISTORY_DATETIME,
       OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
-      ORDER_ITEM_SEQ,
       ORDER_ITEM_CODE,
       ORDER_ITEM_DESC,
       ORDER_ITEM_SPECS,
@@ -343,7 +324,6 @@
       current_timestamp(),
       'U',
       #{orderCode},
-      #{orderItemSeq},
       #{orderItemCode},
       #{orderItemDesc},
       #{orderItemSpecs},
@@ -364,7 +344,6 @@
       OPERATION_HISTORY_DATETIME,
       OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
-      ORDER_ITEM_SEQ,
       ORDER_ITEM_CODE,
       ORDER_ITEM_DESC,
       ORDER_ITEM_SPECS,
@@ -382,7 +361,6 @@
       current_timestamp(),
       'D',
       #{orderCode},
-      #{orderItemSeq},
       #{orderItemCode},
       #{orderItemDesc},
       #{orderItemSpecs},

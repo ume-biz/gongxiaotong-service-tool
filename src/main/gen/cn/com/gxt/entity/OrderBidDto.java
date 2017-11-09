@@ -49,11 +49,12 @@ public class OrderBidDto extends TableEntity implements Serializable {
 
    /**
     * 竞标描述 
+    * JSON格式
     */
     @Size(max=256)
     @ColumnDesc(index=3, type="VARCHAR", label="竞标描述")
-    @Column(name="BID_DESC", nullable=true, length=256)
-    private String bidDesc;
+    @Column(name="BID_ORDER_ITEM_DESC", nullable=true, length=256)
+    private String bidOrderItemDesc;
 
    /**
     * 竞标报价 
@@ -143,15 +144,15 @@ public class OrderBidDto extends TableEntity implements Serializable {
     /**
      *　Get the "竞标描述"
      */
-    public String getBidDesc() {
-        return this.bidDesc;
+    public String getBidOrderItemDesc() {
+        return this.bidOrderItemDesc;
     }
     /**
      *　Set the "竞标描述"
      */
-    public void setBidDesc(
-            String bidDesc) {
-        this.bidDesc = bidDesc;
+    public void setBidOrderItemDesc(
+            String bidOrderItemDesc) {
+        this.bidOrderItemDesc = bidOrderItemDesc;
     }
 
     /**
@@ -312,7 +313,7 @@ public class OrderBidDto extends TableEntity implements Serializable {
     public static class Property {
         public static final String orderCode = "orderCode";
         public static final String bidUid = "bidUid";
-        public static final String bidDesc = "bidDesc";
+        public static final String bidOrderItemDesc = "bidOrderItemDesc";
         public static final String bidPrice = "bidPrice";
         public static final String bidContactName = "bidContactName";
         public static final String bidContactPhone = "bidContactPhone";
@@ -329,7 +330,7 @@ public class OrderBidDto extends TableEntity implements Serializable {
     public static class ColumnName {
         public static final String ORDER_CODE = "ORDER_CODE";
         public static final String BID_UID = "BID_UID";
-        public static final String BID_DESC = "BID_DESC";
+        public static final String BID_ORDER_ITEM_DESC = "BID_ORDER_ITEM_DESC";
         public static final String BID_PRICE = "BID_PRICE";
         public static final String BID_CONTACT_NAME = "BID_CONTACT_NAME";
         public static final String BID_CONTACT_PHONE = "BID_CONTACT_PHONE";

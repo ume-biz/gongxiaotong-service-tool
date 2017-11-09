@@ -38,50 +38,42 @@ public class OrderItemDto extends TableEntity implements Serializable {
     private String orderCode;
 
    /**
-    * 品类编号 
-    */
-    @NotEmpty
-    @Id
-    @ColumnDesc(index=2, type="INT", label="品类编号")
-    @Column(name="ORDER_ITEM_SEQ", nullable=false)
-    private Integer orderItemSeq;
-
-   /**
-    * 品类编号 
+    * 品类项目编号 
     */
     @Size(max=32)
-    @ColumnDesc(index=3, type="VARCHAR", label="品类编号")
+    @ColumnDesc(index=2, type="VARCHAR", label="品类项目编号")
     @Column(name="ORDER_ITEM_CODE", nullable=true, length=32)
     private String orderItemCode;
 
    /**
-    * 品类描述 
+    * 品类项目描述 
+    * JSON格式
     */
     @Size(max=256)
-    @ColumnDesc(index=4, type="VARCHAR", label="品类描述")
+    @ColumnDesc(index=3, type="VARCHAR", label="品类项目描述")
     @Column(name="ORDER_ITEM_DESC", nullable=true, length=256)
     private String orderItemDesc;
 
    /**
-    * 规格 
+    * 品类项目规格 
     */
     @Size(max=64)
-    @ColumnDesc(index=5, type="VARCHAR", label="规格")
+    @ColumnDesc(index=4, type="VARCHAR", label="品类项目规格")
     @Column(name="ORDER_ITEM_SPECS", nullable=true, length=64)
     private String orderItemSpecs;
 
    /**
-    * 数量 
+    * 品类项目数量 
     */
-    @ColumnDesc(index=6, type="INT", label="数量")
+    @ColumnDesc(index=5, type="INT", label="品类项目数量")
     @Column(name="ORDER_ITEM_QUANTITY", nullable=true)
     private Integer orderItemQuantity;
 
    /**
-    * 期望单价(MAX) 
+    * 品类项目期望单价(MAX) 
     * 单位:分
     */
-    @ColumnDesc(index=7, type="INT", label="期望单价(MAX)")
+    @ColumnDesc(index=6, type="INT", label="品类项目期望单价(MAX)")
     @Column(name="ORDER_ITEM_ESTIMATION", nullable=true)
     private Integer orderItemEstimation;
 
@@ -89,7 +81,7 @@ public class OrderItemDto extends TableEntity implements Serializable {
     * 物流单号 
     */
     @Size(max=128)
-    @ColumnDesc(index=8, type="VARCHAR", label="物流单号")
+    @ColumnDesc(index=7, type="VARCHAR", label="物流单号")
     @Column(name="ORDER_ITEM_LOGISTICS_CODE", nullable=true, length=128)
     private String orderItemLogisticsCode;
 
@@ -97,7 +89,7 @@ public class OrderItemDto extends TableEntity implements Serializable {
     * 物流描述/动态 
     */
     @Size(max=256)
-    @ColumnDesc(index=9, type="VARCHAR", label="物流描述/动态")
+    @ColumnDesc(index=8, type="VARCHAR", label="物流描述/动态")
     @Column(name="ORDER_ITEM_LOGISTICS_DESC", nullable=true, length=256)
     private String orderItemLogisticsDesc;
 
@@ -108,7 +100,7 @@ public class OrderItemDto extends TableEntity implements Serializable {
 44:退货/退款
 43:换货
     */
-    @ColumnDesc(index=10, type="INT", label="物流签收状态")
+    @ColumnDesc(index=9, type="INT", label="物流签收状态")
     @Column(name="ORDER_ITEM_ORDER_STATUS", nullable=true)
     private Integer orderItemOrderStatus;
 
@@ -116,32 +108,32 @@ public class OrderItemDto extends TableEntity implements Serializable {
     * 备注 
     */
     @Size(max=256)
-    @ColumnDesc(index=11, type="VARCHAR", label="备注")
+    @ColumnDesc(index=10, type="VARCHAR", label="备注")
     @Column(name="ORDER_ITEM_COMMENT", nullable=true, length=256)
     private String orderItemComment;
 
    /**
     * Create Author (default setting while insert)
     */
-    @ColumnDesc(index=(11 + 1), type="VARCHAR", label="createAuthor")
+    @ColumnDesc(index=(10 + 1), type="VARCHAR", label="createAuthor")
     @Column(name="CREATE_AUTHOR", nullable=true, length=32)
     private String createAuthor;
    /**
     * Create Datetime (default setting while insert)
     */
-    @ColumnDesc(index=(11 + 2), type="TIMESTAMP", label="createDatetime")
+    @ColumnDesc(index=(10 + 2), type="TIMESTAMP", label="createDatetime")
     @Column(name="CREATE_DATETIME", nullable=true)
     private java.sql.Timestamp createDatetime;
    /**
     * Update Author (refresh on each update)
     */
-    @ColumnDesc(index=(11 + 3), type="VARCHAR", label="updateAuthor")
+    @ColumnDesc(index=(10 + 3), type="VARCHAR", label="updateAuthor")
     @Column(name="UPDATE_AUTHOR", nullable=true, length=32)
     private String updateAuthor;
    /**
     * Update Datetime (refresh on each update)
     */
-    @ColumnDesc(index=(11 + 4), type="TIMESTAMP", label="updateDatetime")
+    @ColumnDesc(index=(10 + 4), type="TIMESTAMP", label="updateDatetime")
     @Column(name="UPDATE_DATETIME", nullable=true)
     private java.sql.Timestamp updateDatetime;
 
@@ -160,27 +152,13 @@ public class OrderItemDto extends TableEntity implements Serializable {
     }
 
     /**
-     *　Get the "品类编号"
-     */
-    public Integer getOrderItemSeq() {
-        return this.orderItemSeq;
-    }
-    /**
-     *　Set the "品类编号"
-     */
-    public void setOrderItemSeq(
-            Integer orderItemSeq) {
-        this.orderItemSeq = orderItemSeq;
-    }
-
-    /**
-     *　Get the "品类编号"
+     *　Get the "品类项目编号"
      */
     public String getOrderItemCode() {
         return this.orderItemCode;
     }
     /**
-     *　Set the "品类编号"
+     *　Set the "品类项目编号"
      */
     public void setOrderItemCode(
             String orderItemCode) {
@@ -188,13 +166,13 @@ public class OrderItemDto extends TableEntity implements Serializable {
     }
 
     /**
-     *　Get the "品类描述"
+     *　Get the "品类项目描述"
      */
     public String getOrderItemDesc() {
         return this.orderItemDesc;
     }
     /**
-     *　Set the "品类描述"
+     *　Set the "品类项目描述"
      */
     public void setOrderItemDesc(
             String orderItemDesc) {
@@ -202,13 +180,13 @@ public class OrderItemDto extends TableEntity implements Serializable {
     }
 
     /**
-     *　Get the "规格"
+     *　Get the "品类项目规格"
      */
     public String getOrderItemSpecs() {
         return this.orderItemSpecs;
     }
     /**
-     *　Set the "规格"
+     *　Set the "品类项目规格"
      */
     public void setOrderItemSpecs(
             String orderItemSpecs) {
@@ -216,13 +194,13 @@ public class OrderItemDto extends TableEntity implements Serializable {
     }
 
     /**
-     *　Get the "数量"
+     *　Get the "品类项目数量"
      */
     public Integer getOrderItemQuantity() {
         return this.orderItemQuantity;
     }
     /**
-     *　Set the "数量"
+     *　Set the "品类项目数量"
      */
     public void setOrderItemQuantity(
             Integer orderItemQuantity) {
@@ -230,13 +208,13 @@ public class OrderItemDto extends TableEntity implements Serializable {
     }
 
     /**
-     *　Get the "期望单价(MAX)"
+     *　Get the "品类项目期望单价(MAX)"
      */
     public Integer getOrderItemEstimation() {
         return this.orderItemEstimation;
     }
     /**
-     *　Set the "期望单价(MAX)"
+     *　Set the "品类项目期望单价(MAX)"
      */
     public void setOrderItemEstimation(
             Integer orderItemEstimation) {
@@ -400,7 +378,6 @@ public class OrderItemDto extends TableEntity implements Serializable {
      */
     public static class Property {
         public static final String orderCode = "orderCode";
-        public static final String orderItemSeq = "orderItemSeq";
         public static final String orderItemCode = "orderItemCode";
         public static final String orderItemDesc = "orderItemDesc";
         public static final String orderItemSpecs = "orderItemSpecs";
@@ -421,7 +398,6 @@ public class OrderItemDto extends TableEntity implements Serializable {
      */
     public static class ColumnName {
         public static final String ORDER_CODE = "ORDER_CODE";
-        public static final String ORDER_ITEM_SEQ = "ORDER_ITEM_SEQ";
         public static final String ORDER_ITEM_CODE = "ORDER_ITEM_CODE";
         public static final String ORDER_ITEM_DESC = "ORDER_ITEM_DESC";
         public static final String ORDER_ITEM_SPECS = "ORDER_ITEM_SPECS";
