@@ -227,74 +227,51 @@
       <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
   </select>
 
+
 #if(${dto.tblHistory} != '')
-  <insert id="${dto.tblId}_INSERT_${dto.tblHistory}" parameterType="$dto.classPackage.${dto.classId}">
+  <insert id="${dto.tblId}_${dto.tblHistory}_INSERT_C" parameterType="$dto.classPackage.${dto.classId}">
     INSERT INTO ${var_tablePreFix}${dto.tblId}_${dto.tblHistory}${dto.tblDivision} (
-      ${var_OPERATION_HISTORY_DATETIME},
-      ${var_OPERATION_HISTORY_CATEGORY},
 #foreach(${field}in${dto.fieldList})
       ${field.colId},
 #end
-      ${var_CREATE_AUTHOR},
-      ${var_CREATE_DATETIME},
-      ${var_UPDATE_AUTHOR},
-      ${var_UPDATE_DATETIME}
+      ${var_OPERATION_HISTORY_DATETIME},
+      ${var_OPERATION_HISTORY_CATEGORY}
     ) VALUES (
-      ${var_currentTimestamp},
-      'C',
 #foreach(${field}in${dto.fieldList})
       #{${field.fieldId}},
 #end
-      #{${var_createAuthor}},
-      #{${var_createDatetime}},
-      #{${var_updateAuthor}},
-      #{${var_updateDatetime}}
+      ${var_currentTimestamp},
+      'C'
     )
   </insert>
-  <insert id="${dto.tblId}_UPDATE_${dto.tblHistory}" parameterType="$dto.classPackage.${dto.classId}">
+  <insert id="${dto.tblId}_${dto.tblHistory}_INSERT_U" parameterType="$dto.classPackage.${dto.classId}">
     INSERT INTO ${var_tablePreFix}${dto.tblId}_${dto.tblHistory}${dto.tblDivision} (
-      ${var_OPERATION_HISTORY_DATETIME},
-      ${var_OPERATION_HISTORY_CATEGORY},
 #foreach(${field}in${dto.fieldList})
       ${field.colId},
 #end
-      ${var_CREATE_AUTHOR},
-      ${var_CREATE_DATETIME},
-      ${var_UPDATE_AUTHOR},
-      ${var_UPDATE_DATETIME}
+      ${var_OPERATION_HISTORY_DATETIME},
+      ${var_OPERATION_HISTORY_CATEGORY}
     ) VALUES (
-      ${var_currentTimestamp},
-      'U',
 #foreach(${field}in${dto.fieldList})
       #{${field.fieldId}},
 #end
-      #{${var_createAuthor}},
-      #{${var_createDatetime}},
-      #{${var_updateAuthor}},
-      #{${var_updateDatetime}}
+      ${var_currentTimestamp},
+      'U'
     )
   </insert>
-  <insert id="${dto.tblId}_DELETE_${dto.tblHistory}" parameterType="$dto.classPackage.${dto.classId}">
+  <insert id="${dto.tblId}_${dto.tblHistory}_INSERT_D" parameterType="$dto.classPackage.${dto.classId}">
     INSERT INTO ${var_tablePreFix}${dto.tblId}_${dto.tblHistory}${dto.tblDivision} (
-      ${var_OPERATION_HISTORY_DATETIME},
-      ${var_OPERATION_HISTORY_CATEGORY},
 #foreach(${field}in${dto.fieldList})
       ${field.colId},
 #end
-      ${var_CREATE_AUTHOR},
-      ${var_CREATE_DATETIME},
-      ${var_UPDATE_AUTHOR},
-      ${var_UPDATE_DATETIME}
+      ${var_OPERATION_HISTORY_DATETIME},
+      ${var_OPERATION_HISTORY_CATEGORY}
     ) VALUES (
-      ${var_currentTimestamp},
-      'D',
 #foreach(${field}in${dto.fieldList})
       #{${field.fieldId}},
 #end
-      #{${var_createAuthor}},
-      #{${var_createDatetime}},
-      #{${var_updateAuthor}},
-      #{${var_updateDatetime}}
+      ${var_currentTimestamp},
+      'D'
     )
   </insert>
 #end

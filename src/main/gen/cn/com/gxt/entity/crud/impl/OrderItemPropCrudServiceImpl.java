@@ -10,7 +10,7 @@ import cn.com.gxt.entity.OrderItemPropDto;
 import cn.com.gxt.entity.crud.OrderItemPropCrudService;
 
 /**
- * 需求发布明细信息表:ORDER_ITEM_PROP CRUD service implementation.<br>
+ * 需求信息品类属性描述表:ORDER_ITEM_PROP CRUD service implementation.<br>
  *
  * @author UME-Generator
  */
@@ -39,7 +39,7 @@ public class OrderItemPropCrudServiceImpl extends BaseDBComponent implements Ord
         validate(entity);
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(OrderItemPropDto.SQLID.INSERT_HT, entity);
+            super.getDao().update(OrderItemPropDto.SQLID.INSERT_HISTORY_C, entity);
         }
         int result = super.getDao().update(OrderItemPropDto.SQLID.INSERT, entity);
         return result;
@@ -99,7 +99,7 @@ public class OrderItemPropCrudServiceImpl extends BaseDBComponent implements Ord
         validate(entity);
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(OrderItemPropDto.SQLID.UPDATE_HT, this.find(entity));
+            super.getDao().update(OrderItemPropDto.SQLID.INSERT_HISTORY_U, this.find(entity));
         }
         int result = super.getDao().update(OrderItemPropDto.SQLID.SMART_UPDATE, entity);
         return result;
@@ -129,7 +129,7 @@ public class OrderItemPropCrudServiceImpl extends BaseDBComponent implements Ord
         validate(entity);
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(OrderItemPropDto.SQLID.UPDATE_HT, entity);
+            super.getDao().update(OrderItemPropDto.SQLID.INSERT_HISTORY_U, entity);
         }
         int result = super.getDao().update(OrderItemPropDto.SQLID.UPDATE, entity);
         return result;
@@ -158,7 +158,7 @@ public class OrderItemPropCrudServiceImpl extends BaseDBComponent implements Ord
     public Integer delete(OrderItemPropDto entity) {
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(OrderItemPropDto.SQLID.DELETE_HT, this.find(entity));
+            super.getDao().update(OrderItemPropDto.SQLID.INSERT_HISTORY_D, this.find(entity));
         }
         int result = super.getDao().update(OrderItemPropDto.SQLID.DELETE, entity);
         return result;

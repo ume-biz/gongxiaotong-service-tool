@@ -14,13 +14,13 @@ import org.umeframework.dora.bean.BeanUtil;
 import org.umeframework.dora.service.TableEntity;
 
 /**
- * Entity class map to table "需求发布主信息表"
+ * Entity class map to table "需求信息主表"
  *
  * @author ume-team
  */
 @Entity
 @Table(name="ORDER")
-@TableDesc(label="需求发布主信息表")
+@TableDesc(label="需求信息主表")
 public class OrderDto extends TableEntity implements Serializable {
    /**
     * Default serial version code
@@ -129,9 +129,17 @@ public class OrderDto extends TableEntity implements Serializable {
     private String orderFinalBidUid;
 
    /**
-    * 最终成交价格 
+    * 最终选定方案描述 
     */
-    @ColumnDesc(index=13, type="INT", label="最终成交价格")
+    @Size(max=256)
+    @ColumnDesc(index=13, type="VARCHAR", label="最终选定方案描述")
+    @Column(name="ORDER_FINAL_BID_DESC", nullable=true, length=256)
+    private String orderFinalBidDesc;
+
+   /**
+    * 最终选定方案价格 
+    */
+    @ColumnDesc(index=14, type="INT", label="最终选定方案价格")
     @Column(name="ORDER_FINAL_BID_PRICE", nullable=true)
     private Integer orderFinalBidPrice;
 
@@ -139,32 +147,32 @@ public class OrderDto extends TableEntity implements Serializable {
     * 备注 
     */
     @Size(max=256)
-    @ColumnDesc(index=14, type="VARCHAR", label="备注")
+    @ColumnDesc(index=15, type="VARCHAR", label="备注")
     @Column(name="ORDER_COMMENT", nullable=true, length=256)
     private String orderComment;
 
    /**
     * Create Author (default setting while insert)
     */
-    @ColumnDesc(index=(14 + 1), type="VARCHAR", label="createAuthor")
+    @ColumnDesc(index=(15 + 1), type="VARCHAR", label="createAuthor")
     @Column(name="CREATE_AUTHOR", nullable=true, length=32)
     private String createAuthor;
    /**
     * Create Datetime (default setting while insert)
     */
-    @ColumnDesc(index=(14 + 2), type="TIMESTAMP", label="createDatetime")
+    @ColumnDesc(index=(15 + 2), type="TIMESTAMP", label="createDatetime")
     @Column(name="CREATE_DATETIME", nullable=true)
     private java.sql.Timestamp createDatetime;
    /**
     * Update Author (refresh on each update)
     */
-    @ColumnDesc(index=(14 + 3), type="VARCHAR", label="updateAuthor")
+    @ColumnDesc(index=(15 + 3), type="VARCHAR", label="updateAuthor")
     @Column(name="UPDATE_AUTHOR", nullable=true, length=32)
     private String updateAuthor;
    /**
     * Update Datetime (refresh on each update)
     */
-    @ColumnDesc(index=(14 + 4), type="TIMESTAMP", label="updateDatetime")
+    @ColumnDesc(index=(15 + 4), type="TIMESTAMP", label="updateDatetime")
     @Column(name="UPDATE_DATETIME", nullable=true)
     private java.sql.Timestamp updateDatetime;
 
@@ -337,13 +345,27 @@ public class OrderDto extends TableEntity implements Serializable {
     }
 
     /**
-     *　Get the "最终成交价格"
+     *　Get the "最终选定方案描述"
+     */
+    public String getOrderFinalBidDesc() {
+        return this.orderFinalBidDesc;
+    }
+    /**
+     *　Set the "最终选定方案描述"
+     */
+    public void setOrderFinalBidDesc(
+            String orderFinalBidDesc) {
+        this.orderFinalBidDesc = orderFinalBidDesc;
+    }
+
+    /**
+     *　Get the "最终选定方案价格"
      */
     public Integer getOrderFinalBidPrice() {
         return this.orderFinalBidPrice;
     }
     /**
-     *　Set the "最终成交价格"
+     *　Set the "最终选定方案价格"
      */
     public void setOrderFinalBidPrice(
             Integer orderFinalBidPrice) {
@@ -455,9 +477,9 @@ public class OrderDto extends TableEntity implements Serializable {
         public static final String LIKE_SEARCH = "cn.com.gxt.entity.ORDER_LIKE_SEARCH"; 
         public static final String DYNA_SEARCH = "cn.com.gxt.entity.ORDER_DYNA_SEARCH"; 
         public static final String COUNT = "cn.com.gxt.entity.ORDER_COUNT";
-        public static final String INSERT_HT = "cn.com.gxt.entity.ORDER_INSERT_{dto.tblHistory}"; 
-        public static final String UPDATE_HT = "cn.com.gxt.entity.ORDER_UPDATE_{dto.tblHistory}"; 
-        public static final String DELETE_HT = "cn.com.gxt.entity.ORDER_DELETE_{dto.tblHistory}"; 
+        public static final String INSERT_HISTORY_C = "cn.com.gxt.entity.ORDER_HT_INSERT_C"; 
+        public static final String INSERT_HISTORY_U = "cn.com.gxt.entity.ORDER_HT_INSERT_U"; 
+        public static final String INSERT_HISTORY_D = "cn.com.gxt.entity.ORDER_HT_INSERT_D"; 
     } 
 
     /**
@@ -476,6 +498,7 @@ public class OrderDto extends TableEntity implements Serializable {
         public static final String orderEffectiveEndDate = "orderEffectiveEndDate";
         public static final String orderBidRecordLimit = "orderBidRecordLimit";
         public static final String orderFinalBidUid = "orderFinalBidUid";
+        public static final String orderFinalBidDesc = "orderFinalBidDesc";
         public static final String orderFinalBidPrice = "orderFinalBidPrice";
         public static final String orderComment = "orderComment";
         public static final String createAuthor = "createAuthor";
@@ -500,6 +523,7 @@ public class OrderDto extends TableEntity implements Serializable {
         public static final String ORDER_EFFECTIVE_END_DATE = "ORDER_EFFECTIVE_END_DATE";
         public static final String ORDER_BID_RECORD_LIMIT = "ORDER_BID_RECORD_LIMIT";
         public static final String ORDER_FINAL_BID_UID = "ORDER_FINAL_BID_UID";
+        public static final String ORDER_FINAL_BID_DESC = "ORDER_FINAL_BID_DESC";
         public static final String ORDER_FINAL_BID_PRICE = "ORDER_FINAL_BID_PRICE";
         public static final String ORDER_COMMENT = "ORDER_COMMENT";
         public static final String CREATE_AUTHOR = "CREATE_AUTHOR";

@@ -16,6 +16,18 @@ import cn.com.gxt.uac.entity.crud.UmeUserAddressCrudService;
  */
 @org.springframework.stereotype.Service
 public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements UmeUserAddressCrudService {
+    /**
+     * Enable operation history table automatic insert flag.<br>
+     */
+    private boolean enableOperationHistory = true;
+    /**
+     * Disable operation history table automatic insert.<br>
+     * 
+     * @param enableOperationHistory the enableOperationHistory to set
+     */
+    public void setEnableOperationHistory(boolean enableOperationHistory) {
+        this.enableOperationHistory = enableOperationHistory;
+    }
 
     /* (non-Javadoc)
      * 
@@ -25,6 +37,10 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
     @TransactionRequired
     public Integer create(UmeUserAddressDto entity) {
         validate(entity);
+        if (this.enableOperationHistory) {
+            // insert modified history
+            super.getDao().update(UmeUserAddressDto.SQLID.INSERT_HISTORY_C, entity);
+        }
         int result = super.getDao().update(UmeUserAddressDto.SQLID.INSERT, entity);
         return result;
     }
@@ -81,6 +97,10 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
     @TransactionRequired
     public Integer update(UmeUserAddressDto entity) {
         validate(entity);
+        if (this.enableOperationHistory) {
+            // insert modified history
+            super.getDao().update(UmeUserAddressDto.SQLID.INSERT_HISTORY_U, this.find(entity));
+        }
         int result = super.getDao().update(UmeUserAddressDto.SQLID.SMART_UPDATE, entity);
         return result;
     }
@@ -107,6 +127,10 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
     @TransactionRequired
     public Integer updateFully(UmeUserAddressDto entity) {
         validate(entity);
+        if (this.enableOperationHistory) {
+            // insert modified history
+            super.getDao().update(UmeUserAddressDto.SQLID.INSERT_HISTORY_U, entity);
+        }
         int result = super.getDao().update(UmeUserAddressDto.SQLID.UPDATE, entity);
         return result;
     }
@@ -132,6 +156,10 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
     @Override
     @TransactionRequired
     public Integer delete(UmeUserAddressDto entity) {
+        if (this.enableOperationHistory) {
+            // insert modified history
+            super.getDao().update(UmeUserAddressDto.SQLID.INSERT_HISTORY_D, this.find(entity));
+        }
         int result = super.getDao().update(UmeUserAddressDto.SQLID.DELETE, entity);
         return result;
     }

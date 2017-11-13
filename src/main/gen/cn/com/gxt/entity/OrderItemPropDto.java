@@ -14,13 +14,13 @@ import org.umeframework.dora.bean.BeanUtil;
 import org.umeframework.dora.service.TableEntity;
 
 /**
- * Entity class map to table "需求发布明细信息表"
+ * Entity class map to table "需求信息品类属性描述表"
  *
  * @author ume-team
  */
 @Entity
 @Table(name="ORDER_ITEM_PROP")
-@TableDesc(label="需求发布明细信息表")
+@TableDesc(label="需求信息品类属性描述表")
 public class OrderItemPropDto extends TableEntity implements Serializable {
    /**
     * Default serial version code
@@ -40,32 +40,28 @@ public class OrderItemPropDto extends TableEntity implements Serializable {
    /**
     * 品类编号 
     */
+    @NotEmpty
     @Size(max=32)
+    @Id
     @ColumnDesc(index=2, type="VARCHAR", label="品类编号")
-    @Column(name="ORDER_ITEM_CODE", nullable=true, length=32)
+    @Column(name="ORDER_ITEM_CODE", nullable=false, length=32)
     private String orderItemCode;
-
-   /**
-    * 品类项目属性分组 
-    */
-    @Size(max=256)
-    @ColumnDesc(index=3, type="VARCHAR", label="品类项目属性分组")
-    @Column(name="ORDER_ITEM_PROP_GROUP", nullable=true, length=256)
-    private String orderItemPropGroup;
 
    /**
     * 品类项目属性KEY 
     */
-    @Size(max=256)
-    @ColumnDesc(index=4, type="VARCHAR", label="品类项目属性KEY")
-    @Column(name="ORDER_ITEM_PROP_KEY", nullable=true, length=256)
+    @NotEmpty
+    @Size(max=32)
+    @Id
+    @ColumnDesc(index=3, type="VARCHAR", label="品类项目属性KEY")
+    @Column(name="ORDER_ITEM_PROP_KEY", nullable=false, length=32)
     private String orderItemPropKey;
 
    /**
     * 品类项目属性VALUE 
     */
     @Size(max=64)
-    @ColumnDesc(index=5, type="VARCHAR", label="品类项目属性VALUE")
+    @ColumnDesc(index=4, type="VARCHAR", label="品类项目属性VALUE")
     @Column(name="ORDER_ITEM_PROP_VALUE", nullable=true, length=64)
     private String orderItemPropValue;
 
@@ -73,9 +69,16 @@ public class OrderItemPropDto extends TableEntity implements Serializable {
     * 品类项目属性可选标识 
     * 1:必须 0:可选
     */
-    @ColumnDesc(index=6, type="INT", label="品类项目属性可选标识")
+    @ColumnDesc(index=5, type="INT", label="品类项目属性可选标识")
     @Column(name="ORDER_ITEM_PROP_OPTION", nullable=true)
     private Integer orderItemPropOption;
+
+   /**
+    * 品类项目属性INDEX 
+    */
+    @ColumnDesc(index=6, type="INT", label="品类项目属性INDEX")
+    @Column(name="ORDER_ITEM_PROP_INDEX", nullable=true)
+    private Integer orderItemPropIndex;
 
    /**
     * Create Author (default setting while insert)
@@ -131,20 +134,6 @@ public class OrderItemPropDto extends TableEntity implements Serializable {
     }
 
     /**
-     *　Get the "品类项目属性分组"
-     */
-    public String getOrderItemPropGroup() {
-        return this.orderItemPropGroup;
-    }
-    /**
-     *　Set the "品类项目属性分组"
-     */
-    public void setOrderItemPropGroup(
-            String orderItemPropGroup) {
-        this.orderItemPropGroup = orderItemPropGroup;
-    }
-
-    /**
      *　Get the "品类项目属性KEY"
      */
     public String getOrderItemPropKey() {
@@ -184,6 +173,20 @@ public class OrderItemPropDto extends TableEntity implements Serializable {
     public void setOrderItemPropOption(
             Integer orderItemPropOption) {
         this.orderItemPropOption = orderItemPropOption;
+    }
+
+    /**
+     *　Get the "品类项目属性INDEX"
+     */
+    public Integer getOrderItemPropIndex() {
+        return this.orderItemPropIndex;
+    }
+    /**
+     *　Set the "品类项目属性INDEX"
+     */
+    public void setOrderItemPropIndex(
+            Integer orderItemPropIndex) {
+        this.orderItemPropIndex = orderItemPropIndex;
     }
 
     /**
@@ -277,9 +280,9 @@ public class OrderItemPropDto extends TableEntity implements Serializable {
         public static final String LIKE_SEARCH = "cn.com.gxt.entity.ORDER_ITEM_PROP_LIKE_SEARCH"; 
         public static final String DYNA_SEARCH = "cn.com.gxt.entity.ORDER_ITEM_PROP_DYNA_SEARCH"; 
         public static final String COUNT = "cn.com.gxt.entity.ORDER_ITEM_PROP_COUNT";
-        public static final String INSERT_HT = "cn.com.gxt.entity.ORDER_ITEM_PROP_INSERT_{dto.tblHistory}"; 
-        public static final String UPDATE_HT = "cn.com.gxt.entity.ORDER_ITEM_PROP_UPDATE_{dto.tblHistory}"; 
-        public static final String DELETE_HT = "cn.com.gxt.entity.ORDER_ITEM_PROP_DELETE_{dto.tblHistory}"; 
+        public static final String INSERT_HISTORY_C = "cn.com.gxt.entity.ORDER_ITEM_PROP_HT_INSERT_C"; 
+        public static final String INSERT_HISTORY_U = "cn.com.gxt.entity.ORDER_ITEM_PROP_HT_INSERT_U"; 
+        public static final String INSERT_HISTORY_D = "cn.com.gxt.entity.ORDER_ITEM_PROP_HT_INSERT_D"; 
     } 
 
     /**
@@ -288,10 +291,10 @@ public class OrderItemPropDto extends TableEntity implements Serializable {
     public static class Property {
         public static final String orderCode = "orderCode";
         public static final String orderItemCode = "orderItemCode";
-        public static final String orderItemPropGroup = "orderItemPropGroup";
         public static final String orderItemPropKey = "orderItemPropKey";
         public static final String orderItemPropValue = "orderItemPropValue";
         public static final String orderItemPropOption = "orderItemPropOption";
+        public static final String orderItemPropIndex = "orderItemPropIndex";
         public static final String createAuthor = "createAuthor";
         public static final String createDatetime = "createDatetime";
         public static final String updateAuthor = "updateAuthor";
@@ -304,10 +307,10 @@ public class OrderItemPropDto extends TableEntity implements Serializable {
     public static class ColumnName {
         public static final String ORDER_CODE = "ORDER_CODE";
         public static final String ORDER_ITEM_CODE = "ORDER_ITEM_CODE";
-        public static final String ORDER_ITEM_PROP_GROUP = "ORDER_ITEM_PROP_GROUP";
         public static final String ORDER_ITEM_PROP_KEY = "ORDER_ITEM_PROP_KEY";
         public static final String ORDER_ITEM_PROP_VALUE = "ORDER_ITEM_PROP_VALUE";
         public static final String ORDER_ITEM_PROP_OPTION = "ORDER_ITEM_PROP_OPTION";
+        public static final String ORDER_ITEM_PROP_INDEX = "ORDER_ITEM_PROP_INDEX";
         public static final String CREATE_AUTHOR = "CREATE_AUTHOR";
         public static final String CREATE_DATETIME = "CREATE_DATETIME";
         public static final String UPDATE_AUTHOR = "UPDATE_AUTHOR";

@@ -5,7 +5,7 @@ import java.util.Map;
 import cn.com.gxt.entity.OrderItemPropDto;
 
 /*
- * 需求发布明细信息表:ORDER_ITEM_PROP CRUD service interface declare.<br>
+ * 需求信息品类属性描述表:ORDER_ITEM_PROP CRUD service interface declare.<br>
  *
  * @author UME-Generator
  */

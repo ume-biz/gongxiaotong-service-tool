@@ -39,7 +39,7 @@ public class OrderBidCrudServiceImpl extends BaseDBComponent implements OrderBid
         validate(entity);
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(OrderBidDto.SQLID.INSERT_HT, entity);
+            super.getDao().update(OrderBidDto.SQLID.INSERT_HISTORY_C, entity);
         }
         int result = super.getDao().update(OrderBidDto.SQLID.INSERT, entity);
         return result;
@@ -99,7 +99,7 @@ public class OrderBidCrudServiceImpl extends BaseDBComponent implements OrderBid
         validate(entity);
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(OrderBidDto.SQLID.UPDATE_HT, this.find(entity));
+            super.getDao().update(OrderBidDto.SQLID.INSERT_HISTORY_U, this.find(entity));
         }
         int result = super.getDao().update(OrderBidDto.SQLID.SMART_UPDATE, entity);
         return result;
@@ -129,7 +129,7 @@ public class OrderBidCrudServiceImpl extends BaseDBComponent implements OrderBid
         validate(entity);
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(OrderBidDto.SQLID.UPDATE_HT, entity);
+            super.getDao().update(OrderBidDto.SQLID.INSERT_HISTORY_U, entity);
         }
         int result = super.getDao().update(OrderBidDto.SQLID.UPDATE, entity);
         return result;
@@ -158,7 +158,7 @@ public class OrderBidCrudServiceImpl extends BaseDBComponent implements OrderBid
     public Integer delete(OrderBidDto entity) {
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(OrderBidDto.SQLID.DELETE_HT, this.find(entity));
+            super.getDao().update(OrderBidDto.SQLID.INSERT_HISTORY_D, this.find(entity));
         }
         int result = super.getDao().update(OrderBidDto.SQLID.DELETE, entity);
         return result;

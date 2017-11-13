@@ -1,4 +1,4 @@
-package cn.com.gxt.entity.crud.impl;
+package cn.com.gxt.uac.entity.crud.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,16 +6,16 @@ import java.util.Map;
 import org.umeframework.dora.bean.BeanValidator;
 import org.umeframework.dora.transaction.TransactionRequired;
 import org.umeframework.dora.service.BaseDBComponent;
-import cn.com.gxt.entity.OrderItemDto;
-import cn.com.gxt.entity.crud.OrderItemCrudService;
+import cn.com.gxt.uac.entity.UmeUserCardDto;
+import cn.com.gxt.uac.entity.crud.UmeUserCardCrudService;
 
 /**
- * 需求信息品类明细表:ORDER_ITEM CRUD service implementation.<br>
+ * 用户支付卡绑定管理表:UME_USER_CARD CRUD service implementation.<br>
  *
  * @author UME-Generator
  */
 @org.springframework.stereotype.Service
-public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderItemCrudService {
+public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUserCardCrudService {
     /**
      * Enable operation history table automatic insert flag.<br>
      */
@@ -31,29 +31,29 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
 
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderItemCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
      */
     @Override
     @TransactionRequired
-    public Integer create(OrderItemDto entity) {
+    public Integer create(UmeUserCardDto entity) {
         validate(entity);
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(OrderItemDto.SQLID.INSERT_HISTORY_C, entity);
+            super.getDao().update(UmeUserCardDto.SQLID.INSERT_HISTORY_C, entity);
         }
-        int result = super.getDao().update(OrderItemDto.SQLID.INSERT, entity);
+        int result = super.getDao().update(UmeUserCardDto.SQLID.INSERT, entity);
         return result;
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderItemCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
      */
     @Override
     @TransactionRequired
-    public List<Integer> createList(List<OrderItemDto> entityList) {
+    public List<Integer> createList(List<UmeUserCardDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
-        for (OrderItemDto entity : entityList) {
+        for (UmeUserCardDto entity : entityList) {
             result.add(this.create(entity));
         }
         return result;
@@ -61,12 +61,12 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderItemCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
      */
     @Override
     @TransactionRequired
-    public Integer createOrUpdate(OrderItemDto entity) {
-        OrderItemDto existed = super.getDao().queryForObject(OrderItemDto.SQLID.FIND, entity, OrderItemDto.class);
+    public Integer createOrUpdate(UmeUserCardDto entity) {
+        UmeUserCardDto existed = super.getDao().queryForObject(UmeUserCardDto.SQLID.FIND, entity, UmeUserCardDto.class);
         if (existed == null) {
             return this.create(entity);
         } else {
@@ -77,13 +77,13 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderItemCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
      */
     @Override
     @TransactionRequired
-    public List<Integer> createOrUpdateList(List<OrderItemDto> entityList) {
+    public List<Integer> createOrUpdateList(List<UmeUserCardDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
-        for (OrderItemDto entity : entityList) {
+        for (UmeUserCardDto entity : entityList) {
             result.add(this.createOrUpdate(entity));
         }
         return result;
@@ -91,29 +91,29 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderItemCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
      */
     @Override
     @TransactionRequired
-    public Integer update(OrderItemDto entity) {
+    public Integer update(UmeUserCardDto entity) {
         validate(entity);
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(OrderItemDto.SQLID.INSERT_HISTORY_U, this.find(entity));
+            super.getDao().update(UmeUserCardDto.SQLID.INSERT_HISTORY_U, this.find(entity));
         }
-        int result = super.getDao().update(OrderItemDto.SQLID.SMART_UPDATE, entity);
+        int result = super.getDao().update(UmeUserCardDto.SQLID.SMART_UPDATE, entity);
         return result;
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderItemCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
      */
     @Override
     @TransactionRequired
-    public List<Integer> updateList(List<OrderItemDto> entityList) {
+    public List<Integer> updateList(List<UmeUserCardDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
-        for (OrderItemDto entity : entityList) {
+        for (UmeUserCardDto entity : entityList) {
             result.add(this.update(entity));
         }
         return result;
@@ -121,29 +121,29 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderItemCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
      */
     @Override
     @TransactionRequired
-    public Integer updateFully(OrderItemDto entity) {
+    public Integer updateFully(UmeUserCardDto entity) {
         validate(entity);
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(OrderItemDto.SQLID.INSERT_HISTORY_U, entity);
+            super.getDao().update(UmeUserCardDto.SQLID.INSERT_HISTORY_U, entity);
         }
-        int result = super.getDao().update(OrderItemDto.SQLID.UPDATE, entity);
+        int result = super.getDao().update(UmeUserCardDto.SQLID.UPDATE, entity);
         return result;
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderItemCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
      */
     @Override
     @TransactionRequired
-    public List<Integer> updateFullyList(List<OrderItemDto> entityList) {
+    public List<Integer> updateFullyList(List<UmeUserCardDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
-        for (OrderItemDto entity : entityList) {
+        for (UmeUserCardDto entity : entityList) {
             result.add(this.updateFully(entity));
         }
         return result;
@@ -151,28 +151,28 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderItemCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
      */
     @Override
     @TransactionRequired
-    public Integer delete(OrderItemDto entity) {
+    public Integer delete(UmeUserCardDto entity) {
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(OrderItemDto.SQLID.INSERT_HISTORY_D, this.find(entity));
+            super.getDao().update(UmeUserCardDto.SQLID.INSERT_HISTORY_D, this.find(entity));
         }
-        int result = super.getDao().update(OrderItemDto.SQLID.DELETE, entity);
+        int result = super.getDao().update(UmeUserCardDto.SQLID.DELETE, entity);
         return result;
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderItemCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
      */
     @Override
     @TransactionRequired
-    public List<Integer> deleteList(List<OrderItemDto> entityList) {
+    public List<Integer> deleteList(List<UmeUserCardDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
-        for (OrderItemDto entity : entityList) {
+        for (UmeUserCardDto entity : entityList) {
             result.add(this.delete(entity));
         }
         return result;
@@ -180,47 +180,47 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderItemCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
      */
     @Override
-    public OrderItemDto find(OrderItemDto queryParam) {
-        return super.getDao().queryForObject(OrderItemDto.SQLID.FIND, queryParam, OrderItemDto.class);
+    public UmeUserCardDto find(UmeUserCardDto queryParam) {
+        return super.getDao().queryForObject(UmeUserCardDto.SQLID.FIND, queryParam, UmeUserCardDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderItemCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
      */
     @Override
-    public List<OrderItemDto> search(OrderItemDto condition) {
-        return super.getDao().queryForObjectList(OrderItemDto.SQLID.SEARCH, condition, OrderItemDto.class);
+    public List<UmeUserCardDto> search(UmeUserCardDto condition) {
+        return super.getDao().queryForObjectList(UmeUserCardDto.SQLID.SEARCH, condition, UmeUserCardDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderItemCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
      */
     @Override
-    public List<OrderItemDto> likeSearch(Map<String, String> condition) {
-        return super.getDao().queryForObjectList(OrderItemDto.SQLID.LIKE_SEARCH, condition, OrderItemDto.class);
+    public List<UmeUserCardDto> likeSearch(Map<String, String> condition) {
+        return super.getDao().queryForObjectList(UmeUserCardDto.SQLID.LIKE_SEARCH, condition, UmeUserCardDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderItemCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
      */
     @Override
-    public List<OrderItemDto> dynaSearch(Map<String, String> condition) {
-        return super.getDao().queryForObjectList(OrderItemDto.SQLID.DYNA_SEARCH, condition, OrderItemDto.class);
+    public List<UmeUserCardDto> dynaSearch(Map<String, String> condition) {
+        return super.getDao().queryForObjectList(UmeUserCardDto.SQLID.DYNA_SEARCH, condition, UmeUserCardDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderItemCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
      */
     @Override
     public Integer count(Map<String, String> condition) {
-        return super.getDao().count(OrderItemDto.SQLID.COUNT, condition);
+        return super.getDao().count(UmeUserCardDto.SQLID.COUNT, condition);
     }
 
     /**
@@ -228,7 +228,7 @@ public class OrderItemCrudServiceImpl extends BaseDBComponent implements OrderIt
      * 
      * @param entity - Target doUpdate Entity
      */
-    protected void validate(OrderItemDto entity) {
+    protected void validate(UmeUserCardDto entity) {
         // Here invoke the default entity check logic
         BeanValidator beanValidator = new BeanValidator();
         // Invoke validation rule

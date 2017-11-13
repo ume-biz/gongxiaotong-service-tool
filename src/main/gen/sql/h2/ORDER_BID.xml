@@ -9,7 +9,7 @@
     INSERT INTO ORDER_BID (
       ORDER_CODE,
       BID_UID,
-      BID_ORDER_ITEM_DESC,
+      BID_DESC,
       BID_PRICE,
       BID_CONTACT_NAME,
       BID_CONTACT_PHONE,
@@ -21,7 +21,7 @@
     ) VALUES (
       #{orderCode},
       #{bidUid},
-      #{bidOrderItemDesc},
+      #{bidDesc},
       #{bidPrice},
       #{bidContactName},
       #{bidContactPhone},
@@ -37,7 +37,7 @@
   <update id="ORDER_BID_UPDATE" parameterType="cn.com.gxt.entity.OrderBidDto">
     UPDATE ORDER_BID
     SET
-      BID_ORDER_ITEM_DESC = #{bidOrderItemDesc},
+      BID_DESC = #{bidDesc},
       BID_PRICE = #{bidPrice},
       BID_CONTACT_NAME = #{bidContactName},
       BID_CONTACT_PHONE = #{bidContactPhone},
@@ -56,7 +56,7 @@
   <update id="ORDER_BID_SMART_UPDATE" parameterType="cn.com.gxt.entity.OrderBidDto">
     UPDATE ORDER_BID
     <set>
-      <if test="bidOrderItemDesc!=null">BID_ORDER_ITEM_DESC = #{bidOrderItemDesc},</if>
+      <if test="bidDesc!=null">BID_DESC = #{bidDesc},</if>
       <if test="bidPrice!=null">BID_PRICE = #{bidPrice},</if>
       <if test="bidContactName!=null">BID_CONTACT_NAME = #{bidContactName},</if>
       <if test="bidContactPhone!=null">BID_CONTACT_PHONE = #{bidContactPhone},</if>
@@ -85,7 +85,7 @@
     SELECT
       ORDER_CODE AS "orderCode",
       BID_UID AS "bidUid",
-      BID_ORDER_ITEM_DESC AS "bidOrderItemDesc",
+      BID_DESC AS "bidDesc",
       BID_PRICE AS "bidPrice",
       BID_CONTACT_NAME AS "bidContactName",
       BID_CONTACT_PHONE AS "bidContactPhone",
@@ -105,7 +105,7 @@
     SELECT
       ORDER_CODE AS "orderCode",
       BID_UID AS "bidUid",
-      BID_ORDER_ITEM_DESC AS "bidOrderItemDesc",
+      BID_DESC AS "bidDesc",
       BID_PRICE AS "bidPrice",
       BID_CONTACT_NAME AS "bidContactName",
       BID_CONTACT_PHONE AS "bidContactPhone",
@@ -126,7 +126,7 @@
     SELECT
       ORDER_CODE AS "orderCode",
       BID_UID AS "bidUid",
-      BID_ORDER_ITEM_DESC AS "bidOrderItemDesc",
+      BID_DESC AS "bidDesc",
       BID_PRICE AS "bidPrice",
       BID_CONTACT_NAME AS "bidContactName",
       BID_CONTACT_PHONE AS "bidContactPhone",
@@ -139,7 +139,7 @@
     WHERE 1 = 1 
       <if test="orderCode != null">AND ORDER_CODE = #{orderCode}</if>
       <if test="bidUid != null">AND BID_UID = #{bidUid}</if>
-      <if test="bidOrderItemDesc != null">AND BID_ORDER_ITEM_DESC = #{bidOrderItemDesc}</if>
+      <if test="bidDesc != null">AND BID_DESC = #{bidDesc}</if>
       <if test="bidPrice != null">AND BID_PRICE = #{bidPrice}</if>
       <if test="bidContactName != null">AND BID_CONTACT_NAME = #{bidContactName}</if>
       <if test="bidContactPhone != null">AND BID_CONTACT_PHONE = #{bidContactPhone}</if>
@@ -158,7 +158,7 @@
     SELECT
       ORDER_CODE AS "orderCode",
       BID_UID AS "bidUid",
-      BID_ORDER_ITEM_DESC AS "bidOrderItemDesc",
+      BID_DESC AS "bidDesc",
       BID_PRICE AS "bidPrice",
       BID_CONTACT_NAME AS "bidContactName",
       BID_CONTACT_PHONE AS "bidContactPhone",
@@ -171,7 +171,7 @@
     WHERE 1 = 1 
       <if test="orderCode != null">AND ORDER_CODE LIKE CONCAT('%', #{orderCode}, '%')</if>
       <if test="bidUid != null">AND BID_UID LIKE CONCAT('%', #{bidUid}, '%')</if>
-      <if test="bidOrderItemDesc != null">AND BID_ORDER_ITEM_DESC LIKE CONCAT('%', #{bidOrderItemDesc}, '%')</if>
+      <if test="bidDesc != null">AND BID_DESC LIKE CONCAT('%', #{bidDesc}, '%')</if>
       <if test="bidPrice != null">AND BID_PRICE LIKE CONCAT('%', #{bidPrice}, '%')</if>
       <if test="bidContactName != null">AND BID_CONTACT_NAME LIKE CONCAT('%', #{bidContactName}, '%')</if>
       <if test="bidContactPhone != null">AND BID_CONTACT_PHONE LIKE CONCAT('%', #{bidContactPhone}, '%')</if>
@@ -190,7 +190,7 @@
     SELECT
       ORDER_CODE AS "orderCode",
       BID_UID AS "bidUid",
-      BID_ORDER_ITEM_DESC AS "bidOrderItemDesc",
+      BID_DESC AS "bidDesc",
       BID_PRICE AS "bidPrice",
       BID_CONTACT_NAME AS "bidContactName",
       BID_CONTACT_PHONE AS "bidContactPhone",
@@ -203,7 +203,7 @@
     WHERE 1 = 1 
       <if test="orderCode != null">AND ( ${orderCode} )</if>
       <if test="bidUid != null">AND ( ${bidUid} )</if>
-      <if test="bidOrderItemDesc != null">AND ( ${bidOrderItemDesc} )</if>
+      <if test="bidDesc != null">AND ( ${bidDesc} )</if>
       <if test="bidPrice != null">AND ( ${bidPrice} )</if>
       <if test="bidContactName != null">AND ( ${bidContactName} )</if>
       <if test="bidContactPhone != null">AND ( ${bidContactPhone} )</if>
@@ -222,104 +222,81 @@
       <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
       <if test="orderCode != null">AND ORDER_CODE = #{orderCode}</if>
       <if test="bidUid != null">AND BID_UID = #{bidUid}</if>
-      <if test="bidOrderItemDesc != null">AND BID_ORDER_ITEM_DESC = #{bidOrderItemDesc}</if>
+      <if test="bidDesc != null">AND BID_DESC = #{bidDesc}</if>
       <if test="bidPrice != null">AND BID_PRICE = #{bidPrice}</if>
       <if test="bidContactName != null">AND BID_CONTACT_NAME = #{bidContactName}</if>
       <if test="bidContactPhone != null">AND BID_CONTACT_PHONE = #{bidContactPhone}</if>
       <if test="bidComment != null">AND BID_COMMENT = #{bidComment}</if>
   </select>
 
-  <insert id="ORDER_BID_INSERT_HT" parameterType="cn.com.gxt.entity.OrderBidDto">
+
+  <insert id="ORDER_BID_HT_INSERT_C" parameterType="cn.com.gxt.entity.OrderBidDto">
     INSERT INTO ORDER_BID_HT (
-      OPERATION_HISTORY_DATETIME,
-      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       BID_UID,
-      BID_ORDER_ITEM_DESC,
+      BID_DESC,
       BID_PRICE,
       BID_CONTACT_NAME,
       BID_CONTACT_PHONE,
       BID_COMMENT,
-      CREATE_AUTHOR,
-      CREATE_DATETIME,
-      UPDATE_AUTHOR,
-      UPDATE_DATETIME
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY
     ) VALUES (
-      current_timestamp(),
-      'C',
       #{orderCode},
       #{bidUid},
-      #{bidOrderItemDesc},
+      #{bidDesc},
       #{bidPrice},
       #{bidContactName},
       #{bidContactPhone},
       #{bidComment},
-      #{createAuthor},
-      #{createDatetime},
-      #{updateAuthor},
-      #{updateDatetime}
+      current_timestamp(),
+      'C'
     )
   </insert>
-  <insert id="ORDER_BID_UPDATE_HT" parameterType="cn.com.gxt.entity.OrderBidDto">
+  <insert id="ORDER_BID_HT_INSERT_U" parameterType="cn.com.gxt.entity.OrderBidDto">
     INSERT INTO ORDER_BID_HT (
-      OPERATION_HISTORY_DATETIME,
-      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       BID_UID,
-      BID_ORDER_ITEM_DESC,
+      BID_DESC,
       BID_PRICE,
       BID_CONTACT_NAME,
       BID_CONTACT_PHONE,
       BID_COMMENT,
-      CREATE_AUTHOR,
-      CREATE_DATETIME,
-      UPDATE_AUTHOR,
-      UPDATE_DATETIME
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY
     ) VALUES (
-      current_timestamp(),
-      'U',
       #{orderCode},
       #{bidUid},
-      #{bidOrderItemDesc},
+      #{bidDesc},
       #{bidPrice},
       #{bidContactName},
       #{bidContactPhone},
       #{bidComment},
-      #{createAuthor},
-      #{createDatetime},
-      #{updateAuthor},
-      #{updateDatetime}
+      current_timestamp(),
+      'U'
     )
   </insert>
-  <insert id="ORDER_BID_DELETE_HT" parameterType="cn.com.gxt.entity.OrderBidDto">
+  <insert id="ORDER_BID_HT_INSERT_D" parameterType="cn.com.gxt.entity.OrderBidDto">
     INSERT INTO ORDER_BID_HT (
-      OPERATION_HISTORY_DATETIME,
-      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       BID_UID,
-      BID_ORDER_ITEM_DESC,
+      BID_DESC,
       BID_PRICE,
       BID_CONTACT_NAME,
       BID_CONTACT_PHONE,
       BID_COMMENT,
-      CREATE_AUTHOR,
-      CREATE_DATETIME,
-      UPDATE_AUTHOR,
-      UPDATE_DATETIME
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY
     ) VALUES (
-      current_timestamp(),
-      'D',
       #{orderCode},
       #{bidUid},
-      #{bidOrderItemDesc},
+      #{bidDesc},
       #{bidPrice},
       #{bidContactName},
       #{bidContactPhone},
       #{bidComment},
-      #{createAuthor},
-      #{createDatetime},
-      #{updateAuthor},
-      #{updateDatetime}
+      current_timestamp(),
+      'D'
     )
   </insert>
 

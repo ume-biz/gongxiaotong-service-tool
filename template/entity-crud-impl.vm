@@ -42,7 +42,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
 #if(${dto.tblHistory} != '')
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(${dto.classId}.SQLID.INSERT_${dto.tblHistory}, entity);
+            super.getDao().update(${dto.classId}.SQLID.INSERT_HISTORY_C, entity);
         }
 #end
         int result = super.getDao().update(${dto.classId}.SQLID.INSERT, entity);
@@ -104,7 +104,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
 #if(${dto.tblHistory} != '')
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(${dto.classId}.SQLID.UPDATE_${dto.tblHistory}, this.find(entity));
+            super.getDao().update(${dto.classId}.SQLID.INSERT_HISTORY_U, this.find(entity));
         }
 #end
         int result = super.getDao().update(${dto.classId}.SQLID.SMART_UPDATE, entity);
@@ -136,7 +136,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
 #if(${dto.tblHistory} != '')
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(${dto.classId}.SQLID.UPDATE_${dto.tblHistory}, entity);
+            super.getDao().update(${dto.classId}.SQLID.INSERT_HISTORY_U, entity);
         }
 #end
         int result = super.getDao().update(${dto.classId}.SQLID.UPDATE, entity);
@@ -167,7 +167,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
 #if(${dto.tblHistory} != '')
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(${dto.classId}.SQLID.DELETE_${dto.tblHistory}, this.find(entity));
+            super.getDao().update(${dto.classId}.SQLID.INSERT_HISTORY_D, this.find(entity));
         }
 #end
         int result = super.getDao().update(${dto.classId}.SQLID.DELETE, entity);

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.com.gxt.entity">
-  <!-- 需求发布主信息表 [ORDER] -->
+  <!-- 需求信息主表 [ORDER] -->
   
   <!-- Insert one -->
   <insert id="ORDER_INSERT" parameterType="cn.com.gxt.entity.OrderDto">
@@ -19,6 +19,7 @@
       ORDER_EFFECTIVE_END_DATE,
       ORDER_BID_RECORD_LIMIT,
       ORDER_FINAL_BID_UID,
+      ORDER_FINAL_BID_DESC,
       ORDER_FINAL_BID_PRICE,
       ORDER_COMMENT,
       CREATE_AUTHOR,
@@ -38,6 +39,7 @@
       #{orderEffectiveEndDate},
       #{orderBidRecordLimit},
       #{orderFinalBidUid},
+      #{orderFinalBidDesc},
       #{orderFinalBidPrice},
       #{orderComment},
       #{createAuthor},
@@ -62,6 +64,7 @@
       ORDER_EFFECTIVE_END_DATE = #{orderEffectiveEndDate},
       ORDER_BID_RECORD_LIMIT = #{orderBidRecordLimit},
       ORDER_FINAL_BID_UID = #{orderFinalBidUid},
+      ORDER_FINAL_BID_DESC = #{orderFinalBidDesc},
       ORDER_FINAL_BID_PRICE = #{orderFinalBidPrice},
       ORDER_COMMENT = #{orderComment},
       CREATE_AUTHOR = #{createAuthor},
@@ -88,6 +91,7 @@
       <if test="orderEffectiveEndDate!=null">ORDER_EFFECTIVE_END_DATE = #{orderEffectiveEndDate},</if>
       <if test="orderBidRecordLimit!=null">ORDER_BID_RECORD_LIMIT = #{orderBidRecordLimit},</if>
       <if test="orderFinalBidUid!=null">ORDER_FINAL_BID_UID = #{orderFinalBidUid},</if>
+      <if test="orderFinalBidDesc!=null">ORDER_FINAL_BID_DESC = #{orderFinalBidDesc},</if>
       <if test="orderFinalBidPrice!=null">ORDER_FINAL_BID_PRICE = #{orderFinalBidPrice},</if>
       <if test="orderComment!=null">ORDER_COMMENT = #{orderComment},</if>
       <if test="createAuthor!=null">CREATE_AUTHOR = #{createAuthor},</if>
@@ -122,6 +126,7 @@
       ORDER_EFFECTIVE_END_DATE AS "orderEffectiveEndDate",
       ORDER_BID_RECORD_LIMIT AS "orderBidRecordLimit",
       ORDER_FINAL_BID_UID AS "orderFinalBidUid",
+      ORDER_FINAL_BID_DESC AS "orderFinalBidDesc",
       ORDER_FINAL_BID_PRICE AS "orderFinalBidPrice",
       ORDER_COMMENT AS "orderComment",
       CREATE_AUTHOR AS "createAuthor",
@@ -148,6 +153,7 @@
       ORDER_EFFECTIVE_END_DATE AS "orderEffectiveEndDate",
       ORDER_BID_RECORD_LIMIT AS "orderBidRecordLimit",
       ORDER_FINAL_BID_UID AS "orderFinalBidUid",
+      ORDER_FINAL_BID_DESC AS "orderFinalBidDesc",
       ORDER_FINAL_BID_PRICE AS "orderFinalBidPrice",
       ORDER_COMMENT AS "orderComment",
       CREATE_AUTHOR AS "createAuthor",
@@ -175,6 +181,7 @@
       ORDER_EFFECTIVE_END_DATE AS "orderEffectiveEndDate",
       ORDER_BID_RECORD_LIMIT AS "orderBidRecordLimit",
       ORDER_FINAL_BID_UID AS "orderFinalBidUid",
+      ORDER_FINAL_BID_DESC AS "orderFinalBidDesc",
       ORDER_FINAL_BID_PRICE AS "orderFinalBidPrice",
       ORDER_COMMENT AS "orderComment",
       CREATE_AUTHOR AS "createAuthor",
@@ -195,6 +202,7 @@
       <if test="orderEffectiveEndDate != null">AND ORDER_EFFECTIVE_END_DATE = #{orderEffectiveEndDate}</if>
       <if test="orderBidRecordLimit != null">AND ORDER_BID_RECORD_LIMIT = #{orderBidRecordLimit}</if>
       <if test="orderFinalBidUid != null">AND ORDER_FINAL_BID_UID = #{orderFinalBidUid}</if>
+      <if test="orderFinalBidDesc != null">AND ORDER_FINAL_BID_DESC = #{orderFinalBidDesc}</if>
       <if test="orderFinalBidPrice != null">AND ORDER_FINAL_BID_PRICE = #{orderFinalBidPrice}</if>
       <if test="orderComment != null">AND ORDER_COMMENT = #{orderComment}</if>
       <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
@@ -221,6 +229,7 @@
       ORDER_EFFECTIVE_END_DATE AS "orderEffectiveEndDate",
       ORDER_BID_RECORD_LIMIT AS "orderBidRecordLimit",
       ORDER_FINAL_BID_UID AS "orderFinalBidUid",
+      ORDER_FINAL_BID_DESC AS "orderFinalBidDesc",
       ORDER_FINAL_BID_PRICE AS "orderFinalBidPrice",
       ORDER_COMMENT AS "orderComment",
       CREATE_AUTHOR AS "createAuthor",
@@ -241,6 +250,7 @@
       <if test="orderEffectiveEndDate != null">AND ORDER_EFFECTIVE_END_DATE LIKE CONCAT('%', #{orderEffectiveEndDate}, '%')</if>
       <if test="orderBidRecordLimit != null">AND ORDER_BID_RECORD_LIMIT LIKE CONCAT('%', #{orderBidRecordLimit}, '%')</if>
       <if test="orderFinalBidUid != null">AND ORDER_FINAL_BID_UID LIKE CONCAT('%', #{orderFinalBidUid}, '%')</if>
+      <if test="orderFinalBidDesc != null">AND ORDER_FINAL_BID_DESC LIKE CONCAT('%', #{orderFinalBidDesc}, '%')</if>
       <if test="orderFinalBidPrice != null">AND ORDER_FINAL_BID_PRICE LIKE CONCAT('%', #{orderFinalBidPrice}, '%')</if>
       <if test="orderComment != null">AND ORDER_COMMENT LIKE CONCAT('%', #{orderComment}, '%')</if>
       <if test="createAuthor != null">AND CREATE_AUTHOR LIKE CONCAT('%', #{createAuthor}, '%')</if>
@@ -267,6 +277,7 @@
       ORDER_EFFECTIVE_END_DATE AS "orderEffectiveEndDate",
       ORDER_BID_RECORD_LIMIT AS "orderBidRecordLimit",
       ORDER_FINAL_BID_UID AS "orderFinalBidUid",
+      ORDER_FINAL_BID_DESC AS "orderFinalBidDesc",
       ORDER_FINAL_BID_PRICE AS "orderFinalBidPrice",
       ORDER_COMMENT AS "orderComment",
       CREATE_AUTHOR AS "createAuthor",
@@ -287,6 +298,7 @@
       <if test="orderEffectiveEndDate != null">AND ( ${orderEffectiveEndDate} )</if>
       <if test="orderBidRecordLimit != null">AND ( ${orderBidRecordLimit} )</if>
       <if test="orderFinalBidUid != null">AND ( ${orderFinalBidUid} )</if>
+      <if test="orderFinalBidDesc != null">AND ( ${orderFinalBidDesc} )</if>
       <if test="orderFinalBidPrice != null">AND ( ${orderFinalBidPrice} )</if>
       <if test="orderComment != null">AND ( ${orderComment} )</if>
       <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
@@ -313,14 +325,14 @@
       <if test="orderEffectiveEndDate != null">AND ORDER_EFFECTIVE_END_DATE = #{orderEffectiveEndDate}</if>
       <if test="orderBidRecordLimit != null">AND ORDER_BID_RECORD_LIMIT = #{orderBidRecordLimit}</if>
       <if test="orderFinalBidUid != null">AND ORDER_FINAL_BID_UID = #{orderFinalBidUid}</if>
+      <if test="orderFinalBidDesc != null">AND ORDER_FINAL_BID_DESC = #{orderFinalBidDesc}</if>
       <if test="orderFinalBidPrice != null">AND ORDER_FINAL_BID_PRICE = #{orderFinalBidPrice}</if>
       <if test="orderComment != null">AND ORDER_COMMENT = #{orderComment}</if>
   </select>
 
-  <insert id="ORDER_INSERT_HT" parameterType="cn.com.gxt.entity.OrderDto">
+
+  <insert id="ORDER_HT_INSERT_C" parameterType="cn.com.gxt.entity.OrderDto">
     INSERT INTO ORDER_HT (
-      OPERATION_HISTORY_DATETIME,
-      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       ORDER_DESC,
       ORDER_DELIVERY_DATE,
@@ -333,15 +345,12 @@
       ORDER_EFFECTIVE_END_DATE,
       ORDER_BID_RECORD_LIMIT,
       ORDER_FINAL_BID_UID,
+      ORDER_FINAL_BID_DESC,
       ORDER_FINAL_BID_PRICE,
       ORDER_COMMENT,
-      CREATE_AUTHOR,
-      CREATE_DATETIME,
-      UPDATE_AUTHOR,
-      UPDATE_DATETIME
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY
     ) VALUES (
-      current_timestamp(),
-      'C',
       #{orderCode},
       #{orderDesc},
       #{orderDeliveryDate},
@@ -354,18 +363,15 @@
       #{orderEffectiveEndDate},
       #{orderBidRecordLimit},
       #{orderFinalBidUid},
+      #{orderFinalBidDesc},
       #{orderFinalBidPrice},
       #{orderComment},
-      #{createAuthor},
-      #{createDatetime},
-      #{updateAuthor},
-      #{updateDatetime}
+      current_timestamp(),
+      'C'
     )
   </insert>
-  <insert id="ORDER_UPDATE_HT" parameterType="cn.com.gxt.entity.OrderDto">
+  <insert id="ORDER_HT_INSERT_U" parameterType="cn.com.gxt.entity.OrderDto">
     INSERT INTO ORDER_HT (
-      OPERATION_HISTORY_DATETIME,
-      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       ORDER_DESC,
       ORDER_DELIVERY_DATE,
@@ -378,15 +384,12 @@
       ORDER_EFFECTIVE_END_DATE,
       ORDER_BID_RECORD_LIMIT,
       ORDER_FINAL_BID_UID,
+      ORDER_FINAL_BID_DESC,
       ORDER_FINAL_BID_PRICE,
       ORDER_COMMENT,
-      CREATE_AUTHOR,
-      CREATE_DATETIME,
-      UPDATE_AUTHOR,
-      UPDATE_DATETIME
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY
     ) VALUES (
-      current_timestamp(),
-      'U',
       #{orderCode},
       #{orderDesc},
       #{orderDeliveryDate},
@@ -399,18 +402,15 @@
       #{orderEffectiveEndDate},
       #{orderBidRecordLimit},
       #{orderFinalBidUid},
+      #{orderFinalBidDesc},
       #{orderFinalBidPrice},
       #{orderComment},
-      #{createAuthor},
-      #{createDatetime},
-      #{updateAuthor},
-      #{updateDatetime}
+      current_timestamp(),
+      'U'
     )
   </insert>
-  <insert id="ORDER_DELETE_HT" parameterType="cn.com.gxt.entity.OrderDto">
+  <insert id="ORDER_HT_INSERT_D" parameterType="cn.com.gxt.entity.OrderDto">
     INSERT INTO ORDER_HT (
-      OPERATION_HISTORY_DATETIME,
-      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       ORDER_DESC,
       ORDER_DELIVERY_DATE,
@@ -423,15 +423,12 @@
       ORDER_EFFECTIVE_END_DATE,
       ORDER_BID_RECORD_LIMIT,
       ORDER_FINAL_BID_UID,
+      ORDER_FINAL_BID_DESC,
       ORDER_FINAL_BID_PRICE,
       ORDER_COMMENT,
-      CREATE_AUTHOR,
-      CREATE_DATETIME,
-      UPDATE_AUTHOR,
-      UPDATE_DATETIME
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY
     ) VALUES (
-      current_timestamp(),
-      'D',
       #{orderCode},
       #{orderDesc},
       #{orderDeliveryDate},
@@ -444,12 +441,11 @@
       #{orderEffectiveEndDate},
       #{orderBidRecordLimit},
       #{orderFinalBidUid},
+      #{orderFinalBidDesc},
       #{orderFinalBidPrice},
       #{orderComment},
-      #{createAuthor},
-      #{createDatetime},
-      #{updateAuthor},
-      #{updateDatetime}
+      current_timestamp(),
+      'D'
     )
   </insert>
 

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.com.gxt.entity">
-  <!-- 需求发布明细信息表 [ORDER_ITEM] -->
+  <!-- 需求信息品类明细表 [ORDER_ITEM] -->
   
   <!-- Insert one -->
   <insert id="ORDER_ITEM_INSERT" parameterType="cn.com.gxt.entity.OrderItemDto">
@@ -43,7 +43,6 @@
   <update id="ORDER_ITEM_UPDATE" parameterType="cn.com.gxt.entity.OrderItemDto">
     UPDATE ORDER_ITEM
     SET
-      ORDER_ITEM_CODE = #{orderItemCode},
       ORDER_ITEM_DESC = #{orderItemDesc},
       ORDER_ITEM_SPECS = #{orderItemSpecs},
       ORDER_ITEM_QUANTITY = #{orderItemQuantity},
@@ -58,6 +57,7 @@
       UPDATE_DATETIME = current_timestamp() 
     WHERE UPDATE_DATETIME = #{updateDatetime}
       AND ORDER_CODE = #{orderCode}
+      AND ORDER_ITEM_CODE = #{orderItemCode}
       <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
   </update>
 
@@ -65,7 +65,6 @@
   <update id="ORDER_ITEM_SMART_UPDATE" parameterType="cn.com.gxt.entity.OrderItemDto">
     UPDATE ORDER_ITEM
     <set>
-      <if test="orderItemCode!=null">ORDER_ITEM_CODE = #{orderItemCode},</if>
       <if test="orderItemDesc!=null">ORDER_ITEM_DESC = #{orderItemDesc},</if>
       <if test="orderItemSpecs!=null">ORDER_ITEM_SPECS = #{orderItemSpecs},</if>
       <if test="orderItemQuantity!=null">ORDER_ITEM_QUANTITY = #{orderItemQuantity},</if>
@@ -81,6 +80,7 @@
     </set>
     WHERE 
        ORDER_CODE = #{orderCode}
+       AND  ORDER_ITEM_CODE = #{orderItemCode}
       <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
   </update>
   
@@ -88,7 +88,8 @@
   <delete id="ORDER_ITEM_DELETE" parameterType="cn.com.gxt.entity.OrderItemDto">
     DELETE FROM ORDER_ITEM
     WHERE
-      ORDER_CODE = #{orderCode} 
+      ORDER_CODE = #{orderCode} AND 
+      ORDER_ITEM_CODE = #{orderItemCode} 
   </delete>
 
   <!-- Find by primary key -->
@@ -110,7 +111,8 @@
       UPDATE_DATETIME AS "updateDatetime"
     FROM ORDER_ITEM
     WHERE
-      ORDER_CODE = #{orderCode} 
+      ORDER_CODE = #{orderCode} AND 
+      ORDER_ITEM_CODE = #{orderItemCode} 
   </select>
 
   <!-- Find by primary key for update with row lock -->
@@ -132,7 +134,8 @@
       UPDATE_DATETIME AS "updateDatetime"
     FROM ORDER_ITEM
     WHERE
-      ORDER_CODE = #{orderCode} 
+      ORDER_CODE = #{orderCode} AND 
+      ORDER_ITEM_CODE = #{orderItemCode} 
     FOR UPDATE
   </select>
 
@@ -265,10 +268,9 @@
       <if test="orderItemComment != null">AND ORDER_ITEM_COMMENT = #{orderItemComment}</if>
   </select>
 
-  <insert id="ORDER_ITEM_INSERT_HT" parameterType="cn.com.gxt.entity.OrderItemDto">
+
+  <insert id="ORDER_ITEM_HT_INSERT_C" parameterType="cn.com.gxt.entity.OrderItemDto">
     INSERT INTO ORDER_ITEM_HT (
-      OPERATION_HISTORY_DATETIME,
-      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       ORDER_ITEM_CODE,
       ORDER_ITEM_DESC,
@@ -279,13 +281,9 @@
       ORDER_ITEM_LOGISTICS_DESC,
       ORDER_ITEM_ORDER_STATUS,
       ORDER_ITEM_COMMENT,
-      CREATE_AUTHOR,
-      CREATE_DATETIME,
-      UPDATE_AUTHOR,
-      UPDATE_DATETIME
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY
     ) VALUES (
-      current_timestamp(),
-      'C',
       #{orderCode},
       #{orderItemCode},
       #{orderItemDesc},
@@ -296,16 +294,12 @@
       #{orderItemLogisticsDesc},
       #{orderItemOrderStatus},
       #{orderItemComment},
-      #{createAuthor},
-      #{createDatetime},
-      #{updateAuthor},
-      #{updateDatetime}
+      current_timestamp(),
+      'C'
     )
   </insert>
-  <insert id="ORDER_ITEM_UPDATE_HT" parameterType="cn.com.gxt.entity.OrderItemDto">
+  <insert id="ORDER_ITEM_HT_INSERT_U" parameterType="cn.com.gxt.entity.OrderItemDto">
     INSERT INTO ORDER_ITEM_HT (
-      OPERATION_HISTORY_DATETIME,
-      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       ORDER_ITEM_CODE,
       ORDER_ITEM_DESC,
@@ -316,13 +310,9 @@
       ORDER_ITEM_LOGISTICS_DESC,
       ORDER_ITEM_ORDER_STATUS,
       ORDER_ITEM_COMMENT,
-      CREATE_AUTHOR,
-      CREATE_DATETIME,
-      UPDATE_AUTHOR,
-      UPDATE_DATETIME
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY
     ) VALUES (
-      current_timestamp(),
-      'U',
       #{orderCode},
       #{orderItemCode},
       #{orderItemDesc},
@@ -333,16 +323,12 @@
       #{orderItemLogisticsDesc},
       #{orderItemOrderStatus},
       #{orderItemComment},
-      #{createAuthor},
-      #{createDatetime},
-      #{updateAuthor},
-      #{updateDatetime}
+      current_timestamp(),
+      'U'
     )
   </insert>
-  <insert id="ORDER_ITEM_DELETE_HT" parameterType="cn.com.gxt.entity.OrderItemDto">
+  <insert id="ORDER_ITEM_HT_INSERT_D" parameterType="cn.com.gxt.entity.OrderItemDto">
     INSERT INTO ORDER_ITEM_HT (
-      OPERATION_HISTORY_DATETIME,
-      OPERATION_HISTORY_CATEGORY,
       ORDER_CODE,
       ORDER_ITEM_CODE,
       ORDER_ITEM_DESC,
@@ -353,13 +339,9 @@
       ORDER_ITEM_LOGISTICS_DESC,
       ORDER_ITEM_ORDER_STATUS,
       ORDER_ITEM_COMMENT,
-      CREATE_AUTHOR,
-      CREATE_DATETIME,
-      UPDATE_AUTHOR,
-      UPDATE_DATETIME
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY
     ) VALUES (
-      current_timestamp(),
-      'D',
       #{orderCode},
       #{orderItemCode},
       #{orderItemDesc},
@@ -370,10 +352,8 @@
       #{orderItemLogisticsDesc},
       #{orderItemOrderStatus},
       #{orderItemComment},
-      #{createAuthor},
-      #{createDatetime},
-      #{updateAuthor},
-      #{updateDatetime}
+      current_timestamp(),
+      'D'
     )
   </insert>
 

@@ -14,13 +14,13 @@ import org.umeframework.dora.bean.BeanUtil;
 import org.umeframework.dora.service.TableEntity;
 
 /**
- * Entity class map to table "需求发布明细信息表"
+ * Entity class map to table "需求信息品类明细表"
  *
  * @author ume-team
  */
 @Entity
 @Table(name="ORDER_ITEM")
-@TableDesc(label="需求发布明细信息表")
+@TableDesc(label="需求信息品类明细表")
 public class OrderItemDto extends TableEntity implements Serializable {
    /**
     * Default serial version code
@@ -40,9 +40,11 @@ public class OrderItemDto extends TableEntity implements Serializable {
    /**
     * 品类项目编号 
     */
+    @NotEmpty
     @Size(max=32)
+    @Id
     @ColumnDesc(index=2, type="VARCHAR", label="品类项目编号")
-    @Column(name="ORDER_ITEM_CODE", nullable=true, length=32)
+    @Column(name="ORDER_ITEM_CODE", nullable=false, length=32)
     private String orderItemCode;
 
    /**
@@ -368,9 +370,9 @@ public class OrderItemDto extends TableEntity implements Serializable {
         public static final String LIKE_SEARCH = "cn.com.gxt.entity.ORDER_ITEM_LIKE_SEARCH"; 
         public static final String DYNA_SEARCH = "cn.com.gxt.entity.ORDER_ITEM_DYNA_SEARCH"; 
         public static final String COUNT = "cn.com.gxt.entity.ORDER_ITEM_COUNT";
-        public static final String INSERT_HT = "cn.com.gxt.entity.ORDER_ITEM_INSERT_{dto.tblHistory}"; 
-        public static final String UPDATE_HT = "cn.com.gxt.entity.ORDER_ITEM_UPDATE_{dto.tblHistory}"; 
-        public static final String DELETE_HT = "cn.com.gxt.entity.ORDER_ITEM_DELETE_{dto.tblHistory}"; 
+        public static final String INSERT_HISTORY_C = "cn.com.gxt.entity.ORDER_ITEM_HT_INSERT_C"; 
+        public static final String INSERT_HISTORY_U = "cn.com.gxt.entity.ORDER_ITEM_HT_INSERT_U"; 
+        public static final String INSERT_HISTORY_D = "cn.com.gxt.entity.ORDER_ITEM_HT_INSERT_D"; 
     } 
 
     /**

@@ -53,8 +53,8 @@ public class OrderBidDto extends TableEntity implements Serializable {
     */
     @Size(max=256)
     @ColumnDesc(index=3, type="VARCHAR", label="竞标描述")
-    @Column(name="BID_ORDER_ITEM_DESC", nullable=true, length=256)
-    private String bidOrderItemDesc;
+    @Column(name="BID_DESC", nullable=true, length=256)
+    private String bidDesc;
 
    /**
     * 竞标报价 
@@ -144,15 +144,15 @@ public class OrderBidDto extends TableEntity implements Serializable {
     /**
      *　Get the "竞标描述"
      */
-    public String getBidOrderItemDesc() {
-        return this.bidOrderItemDesc;
+    public String getBidDesc() {
+        return this.bidDesc;
     }
     /**
      *　Set the "竞标描述"
      */
-    public void setBidOrderItemDesc(
-            String bidOrderItemDesc) {
-        this.bidOrderItemDesc = bidOrderItemDesc;
+    public void setBidDesc(
+            String bidDesc) {
+        this.bidDesc = bidDesc;
     }
 
     /**
@@ -302,9 +302,9 @@ public class OrderBidDto extends TableEntity implements Serializable {
         public static final String LIKE_SEARCH = "cn.com.gxt.entity.ORDER_BID_LIKE_SEARCH"; 
         public static final String DYNA_SEARCH = "cn.com.gxt.entity.ORDER_BID_DYNA_SEARCH"; 
         public static final String COUNT = "cn.com.gxt.entity.ORDER_BID_COUNT";
-        public static final String INSERT_HT = "cn.com.gxt.entity.ORDER_BID_INSERT_{dto.tblHistory}"; 
-        public static final String UPDATE_HT = "cn.com.gxt.entity.ORDER_BID_UPDATE_{dto.tblHistory}"; 
-        public static final String DELETE_HT = "cn.com.gxt.entity.ORDER_BID_DELETE_{dto.tblHistory}"; 
+        public static final String INSERT_HISTORY_C = "cn.com.gxt.entity.ORDER_BID_HT_INSERT_C"; 
+        public static final String INSERT_HISTORY_U = "cn.com.gxt.entity.ORDER_BID_HT_INSERT_U"; 
+        public static final String INSERT_HISTORY_D = "cn.com.gxt.entity.ORDER_BID_HT_INSERT_D"; 
     } 
 
     /**
@@ -313,7 +313,7 @@ public class OrderBidDto extends TableEntity implements Serializable {
     public static class Property {
         public static final String orderCode = "orderCode";
         public static final String bidUid = "bidUid";
-        public static final String bidOrderItemDesc = "bidOrderItemDesc";
+        public static final String bidDesc = "bidDesc";
         public static final String bidPrice = "bidPrice";
         public static final String bidContactName = "bidContactName";
         public static final String bidContactPhone = "bidContactPhone";
@@ -330,7 +330,7 @@ public class OrderBidDto extends TableEntity implements Serializable {
     public static class ColumnName {
         public static final String ORDER_CODE = "ORDER_CODE";
         public static final String BID_UID = "BID_UID";
-        public static final String BID_ORDER_ITEM_DESC = "BID_ORDER_ITEM_DESC";
+        public static final String BID_DESC = "BID_DESC";
         public static final String BID_PRICE = "BID_PRICE";
         public static final String BID_CONTACT_NAME = "BID_CONTACT_NAME";
         public static final String BID_CONTACT_PHONE = "BID_CONTACT_PHONE";
