@@ -10,6 +10,15 @@ import ${dto.classPackage}.${dto.classId};
  * @author UME-Generator
  */
 public interface ${dto.tableCrudServiceInterface} {
+#if(${dto.tblHistory} != '')
+    /**
+     * Enable/Disable operation history table automatic insert.<br>
+     * 
+     * @param enable the enable to set
+     */
+    void setEnableOperationHistory(boolean enable);
+#end
+
     /**
      * Insert entity.<br>
      * 
@@ -101,26 +110,26 @@ public interface ${dto.tableCrudServiceInterface} {
     /**
      * Search entity list use equal match.<br>
      * 
-     * @param condition - query parameter
+     * @param condition - query parameter describe by entity
      * @return - matched entity instance list
      */
-    List<${dto.classId}> search(${dto.classId} condition);
+    List<${dto.classId}> findList(${dto.classId} condition);
     
     /**
      * Search entity list use like (%var%) match.<br>
      * 
-     * @param condition - query parameter
+     * @param condition - query parameter describe by map
      * @return - matched entity instance list
      */
-    List<${dto.classId}> likeSearch(Map<String, String> condition);
+    List<${dto.classId}> findListLike(Map<String, String> condition);
     
     /**
      * Search entity list use dynamic condition.<br>
      * 
-     * @param condition - query parameter
+     * @param dynaCondition - dynamic query parameter describe by map
      * @return - matched entity instance list
      */
-    List<${dto.classId}> dynaSearch(Map<String, String> condition);
+    List<${dto.classId}> findListMatch(Map<String, String> dynaCondition);
     
     /**
      * Count.<br>

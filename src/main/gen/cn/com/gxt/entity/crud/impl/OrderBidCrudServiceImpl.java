@@ -20,18 +20,19 @@ public class OrderBidCrudServiceImpl extends BaseDBComponent implements OrderBid
      * Enable operation history table automatic insert flag.<br>
      */
     private boolean enableOperationHistory = true;
-    /**
-     * Disable operation history table automatic insert.<br>
+    
+    /* (non-Javadoc)
      * 
-     * @param enableOperationHistory the enableOperationHistory to set
+     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService#setEnableOperationHistory
      */
-    public void setEnableOperationHistory(boolean enableOperationHistory) {
-        this.enableOperationHistory = enableOperationHistory;
+    @Override
+    public void setEnableOperationHistory(boolean enable) {
+        this.enableOperationHistory = enable;
     }
 
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService
+     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService#create
      */
     @Override
     @TransactionRequired
@@ -47,7 +48,7 @@ public class OrderBidCrudServiceImpl extends BaseDBComponent implements OrderBid
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService
+     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService#createList
      */
     @Override
     @TransactionRequired
@@ -61,7 +62,7 @@ public class OrderBidCrudServiceImpl extends BaseDBComponent implements OrderBid
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService
+     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService#createOrUpdate
      */
     @Override
     @TransactionRequired
@@ -77,7 +78,7 @@ public class OrderBidCrudServiceImpl extends BaseDBComponent implements OrderBid
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService
+     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService#createOrUpdateList
      */
     @Override
     @TransactionRequired
@@ -91,7 +92,7 @@ public class OrderBidCrudServiceImpl extends BaseDBComponent implements OrderBid
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService
+     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService#update
      */
     @Override
     @TransactionRequired
@@ -107,7 +108,7 @@ public class OrderBidCrudServiceImpl extends BaseDBComponent implements OrderBid
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService
+     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService#updateList
      */
     @Override
     @TransactionRequired
@@ -121,7 +122,7 @@ public class OrderBidCrudServiceImpl extends BaseDBComponent implements OrderBid
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService
+     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService#updateFully
      */
     @Override
     @TransactionRequired
@@ -137,7 +138,7 @@ public class OrderBidCrudServiceImpl extends BaseDBComponent implements OrderBid
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService
+     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService#updateFullyList
      */
     @Override
     @TransactionRequired
@@ -151,7 +152,7 @@ public class OrderBidCrudServiceImpl extends BaseDBComponent implements OrderBid
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService
+     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService#delete
      */
     @Override
     @TransactionRequired
@@ -166,7 +167,7 @@ public class OrderBidCrudServiceImpl extends BaseDBComponent implements OrderBid
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService
+     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService#deleteList
      */
     @Override
     @TransactionRequired
@@ -180,7 +181,7 @@ public class OrderBidCrudServiceImpl extends BaseDBComponent implements OrderBid
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService
+     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService#find
      */
     @Override
     public OrderBidDto find(OrderBidDto queryParam) {
@@ -189,29 +190,29 @@ public class OrderBidCrudServiceImpl extends BaseDBComponent implements OrderBid
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService
+     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService#findList
      */
     @Override
-    public List<OrderBidDto> search(OrderBidDto condition) {
+    public List<OrderBidDto> findList(OrderBidDto condition) {
         return super.getDao().queryForObjectList(OrderBidDto.SQLID.SEARCH, condition, OrderBidDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService
+     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService#findListLike
      */
     @Override
-    public List<OrderBidDto> likeSearch(Map<String, String> condition) {
+    public List<OrderBidDto> findListLike(Map<String, String> condition) {
         return super.getDao().queryForObjectList(OrderBidDto.SQLID.LIKE_SEARCH, condition, OrderBidDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService
+     * @see cn.com.gxt.entity.crud.impl.OrderBidCrudService#findListMatch
      */
     @Override
-    public List<OrderBidDto> dynaSearch(Map<String, String> condition) {
-        return super.getDao().queryForObjectList(OrderBidDto.SQLID.DYNA_SEARCH, condition, OrderBidDto.class);
+    public List<OrderBidDto> findListMatch(Map<String, String> dynaCondition) {
+        return super.getDao().queryForObjectList(OrderBidDto.SQLID.DYNA_SEARCH, dynaCondition, OrderBidDto.class);
     }
     
     /* (non-Javadoc)

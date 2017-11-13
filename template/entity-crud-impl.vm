@@ -21,19 +21,20 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
      * Enable operation history table automatic insert flag.<br>
      */
     private boolean enableOperationHistory = true;
-    /**
-     * Disable operation history table automatic insert.<br>
+    
+    /* (non-Javadoc)
      * 
-     * @param enableOperationHistory the enableOperationHistory to set
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}#setEnableOperationHistory
      */
-    public void setEnableOperationHistory(boolean enableOperationHistory) {
-        this.enableOperationHistory = enableOperationHistory;
+    @Override
+    public void setEnableOperationHistory(boolean enable) {
+        this.enableOperationHistory = enable;
     }
 #end
 
     /* (non-Javadoc)
      * 
-     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}#create
      */
     @Override
     @TransactionRequired
@@ -51,7 +52,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     
     /* (non-Javadoc)
      * 
-     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}#createList
      */
     @Override
     @TransactionRequired
@@ -65,7 +66,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     
     /* (non-Javadoc)
      * 
-     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}#createOrUpdate
      */
     @Override
     @TransactionRequired
@@ -81,7 +82,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     
     /* (non-Javadoc)
      * 
-     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}#createOrUpdateList
      */
     @Override
     @TransactionRequired
@@ -95,7 +96,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     
     /* (non-Javadoc)
      * 
-     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}#update
      */
     @Override
     @TransactionRequired
@@ -113,7 +114,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     
     /* (non-Javadoc)
      * 
-     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}#updateList
      */
     @Override
     @TransactionRequired
@@ -127,7 +128,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     
     /* (non-Javadoc)
      * 
-     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}#updateFully
      */
     @Override
     @TransactionRequired
@@ -145,7 +146,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     
     /* (non-Javadoc)
      * 
-     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}#updateFullyList
      */
     @Override
     @TransactionRequired
@@ -159,7 +160,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     
     /* (non-Javadoc)
      * 
-     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}#delete
      */
     @Override
     @TransactionRequired
@@ -176,7 +177,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     
     /* (non-Javadoc)
      * 
-     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}#deleteList
      */
     @Override
     @TransactionRequired
@@ -190,7 +191,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     
     /* (non-Javadoc)
      * 
-     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}#find
      */
     @Override
     public ${dto.classId} find(${dto.classId} queryParam) {
@@ -199,29 +200,29 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
     
     /* (non-Javadoc)
      * 
-     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}#findList
      */
     @Override
-    public List<${dto.classId}> search(${dto.classId} condition) {
+    public List<${dto.classId}> findList(${dto.classId} condition) {
         return super.getDao().queryForObjectList(${dto.classId}.SQLID.SEARCH, condition, ${dto.classId}.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}#findListLike
      */
     @Override
-    public List<${dto.classId}> likeSearch(Map<String, String> condition) {
+    public List<${dto.classId}> findListLike(Map<String, String> condition) {
         return super.getDao().queryForObjectList(${dto.classId}.SQLID.LIKE_SEARCH, condition, ${dto.classId}.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}
+     * @see ${dto.tableCrudServicePackage}.${dto.tableCrudServiceInterface}#findListMatch
      */
     @Override
-    public List<${dto.classId}> dynaSearch(Map<String, String> condition) {
-        return super.getDao().queryForObjectList(${dto.classId}.SQLID.DYNA_SEARCH, condition, ${dto.classId}.class);
+    public List<${dto.classId}> findListMatch(Map<String, String> dynaCondition) {
+        return super.getDao().queryForObjectList(${dto.classId}.SQLID.DYNA_SEARCH, dynaCondition, ${dto.classId}.class);
     }
     
     /* (non-Javadoc)

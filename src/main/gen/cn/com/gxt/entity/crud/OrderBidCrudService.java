@@ -11,6 +11,13 @@ import cn.com.gxt.entity.OrderBidDto;
  */
 public interface OrderBidCrudService {
     /**
+     * Enable/Disable operation history table automatic insert.<br>
+     * 
+     * @param enable the enable to set
+     */
+    void setEnableOperationHistory(boolean enable);
+
+    /**
      * Insert entity.<br>
      * 
      * @param entity - entity instance
@@ -101,26 +108,26 @@ public interface OrderBidCrudService {
     /**
      * Search entity list use equal match.<br>
      * 
-     * @param condition - query parameter
+     * @param condition - query parameter describe by entity
      * @return - matched entity instance list
      */
-    List<OrderBidDto> search(OrderBidDto condition);
+    List<OrderBidDto> findList(OrderBidDto condition);
     
     /**
      * Search entity list use like (%var%) match.<br>
      * 
-     * @param condition - query parameter
+     * @param condition - query parameter describe by map
      * @return - matched entity instance list
      */
-    List<OrderBidDto> likeSearch(Map<String, String> condition);
+    List<OrderBidDto> findListLike(Map<String, String> condition);
     
     /**
      * Search entity list use dynamic condition.<br>
      * 
-     * @param condition - query parameter
+     * @param dynaCondition - dynamic query parameter describe by map
      * @return - matched entity instance list
      */
-    List<OrderBidDto> dynaSearch(Map<String, String> condition);
+    List<OrderBidDto> findListMatch(Map<String, String> dynaCondition);
     
     /**
      * Count.<br>

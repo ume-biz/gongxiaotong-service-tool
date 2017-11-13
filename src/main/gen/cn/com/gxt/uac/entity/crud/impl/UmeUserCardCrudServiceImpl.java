@@ -20,18 +20,19 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
      * Enable operation history table automatic insert flag.<br>
      */
     private boolean enableOperationHistory = true;
-    /**
-     * Disable operation history table automatic insert.<br>
+    
+    /* (non-Javadoc)
      * 
-     * @param enableOperationHistory the enableOperationHistory to set
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#setEnableOperationHistory
      */
-    public void setEnableOperationHistory(boolean enableOperationHistory) {
-        this.enableOperationHistory = enableOperationHistory;
+    @Override
+    public void setEnableOperationHistory(boolean enable) {
+        this.enableOperationHistory = enable;
     }
 
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#create
      */
     @Override
     @TransactionRequired
@@ -47,7 +48,7 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#createList
      */
     @Override
     @TransactionRequired
@@ -61,7 +62,7 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#createOrUpdate
      */
     @Override
     @TransactionRequired
@@ -77,7 +78,7 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#createOrUpdateList
      */
     @Override
     @TransactionRequired
@@ -91,7 +92,7 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#update
      */
     @Override
     @TransactionRequired
@@ -107,7 +108,7 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#updateList
      */
     @Override
     @TransactionRequired
@@ -121,7 +122,7 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#updateFully
      */
     @Override
     @TransactionRequired
@@ -137,7 +138,7 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#updateFullyList
      */
     @Override
     @TransactionRequired
@@ -151,7 +152,7 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#delete
      */
     @Override
     @TransactionRequired
@@ -166,7 +167,7 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#deleteList
      */
     @Override
     @TransactionRequired
@@ -180,7 +181,7 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#find
      */
     @Override
     public UmeUserCardDto find(UmeUserCardDto queryParam) {
@@ -189,29 +190,29 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#findList
      */
     @Override
-    public List<UmeUserCardDto> search(UmeUserCardDto condition) {
+    public List<UmeUserCardDto> findList(UmeUserCardDto condition) {
         return super.getDao().queryForObjectList(UmeUserCardDto.SQLID.SEARCH, condition, UmeUserCardDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#findListLike
      */
     @Override
-    public List<UmeUserCardDto> likeSearch(Map<String, String> condition) {
+    public List<UmeUserCardDto> findListLike(Map<String, String> condition) {
         return super.getDao().queryForObjectList(UmeUserCardDto.SQLID.LIKE_SEARCH, condition, UmeUserCardDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#findListMatch
      */
     @Override
-    public List<UmeUserCardDto> dynaSearch(Map<String, String> condition) {
-        return super.getDao().queryForObjectList(UmeUserCardDto.SQLID.DYNA_SEARCH, condition, UmeUserCardDto.class);
+    public List<UmeUserCardDto> findListMatch(Map<String, String> dynaCondition) {
+        return super.getDao().queryForObjectList(UmeUserCardDto.SQLID.DYNA_SEARCH, dynaCondition, UmeUserCardDto.class);
     }
     
     /* (non-Javadoc)
